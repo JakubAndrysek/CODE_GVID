@@ -6,7 +6,6 @@
 **  Jakub Andrysek 17.9.2019
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 
