@@ -24,9 +24,9 @@ int main()
         //scanf("%d", &To);
         printf("Cislo: %d \n",To);
 
-        switch(From)
+        switch(From) 
         {
-            case 1:
+            case 1:  //DVOJKOVA
                 switch(To)
                 {
                     case 1: //Dvojkova
@@ -41,7 +41,7 @@ int main()
                         break;
                 }
 
-            case 2:
+            case 2://CTYRKOVA
                switch(To)
                {
                     case 1: //Dvojkova
@@ -55,7 +55,7 @@ int main()
                     case 5: //sestnactkova
                         break;
                 }
-            case 3:
+            case 3: //OSMICKOVA
                switch(To)
                {
                     case 1: //Dvojkova
@@ -69,7 +69,7 @@ int main()
                     case 5: //sestnactkova
                         break;
                 }
-            case 4:
+            case 4: DESITKOVA
                switch(To)
                {
                     case 1: //Dvojkova
@@ -83,7 +83,7 @@ int main()
                     case 5: //sestnactkova
                         break;
                 }
-            case 5:
+            case 5: //SESTNACTKOVA
                switch(To)
                {
                     case 1: //Dvojkova
