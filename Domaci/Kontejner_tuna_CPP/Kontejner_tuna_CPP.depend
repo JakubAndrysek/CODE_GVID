@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1571176405 source:d:\data\github\jakub_andrysek\c_gvid\domaci\kontejner_tuna_cpp\main.cpp
+	<iostream>
+	<stdio.h>
+	<stdlib.h>
+	"Kontejner.h"
+
+1571176545 source:d:\data\github\jakub_andrysek\c_gvid\domaci\kontejner_tuna_cpp\src\kontejner.cpp
+	"Kontejner.h"
+
+1571176374 d:\data\github\jakub_andrysek\c_gvid\domaci\kontejner_tuna_cpp\include\kontejner.h
+	<stdio.h>
+	<stdlib.h>
+

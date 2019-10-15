@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1571172101 source:d:\data\github\jakub_andrysek\c_gvid\domaci\kontejner_tuna\main.c
+	<stdio.h>
+	<stdlib.h>
+
