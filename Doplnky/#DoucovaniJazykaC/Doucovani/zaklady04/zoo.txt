@@ -1,0 +1,13 @@
+11
+Slon 1247.7
+Slepice 1.5
+Pes 15.34
+Medved 153.1
+Tchor 6.4
+Husa 2.5
+Houser 3.5
+Tygr 112.2
+Kocour 6.5
+Mys 0.25
+Blecha 2.34e-4
+

@@ -1,7 +1,9 @@
 # depslib dependency file v1.0
-1568840894 source:d:\data\github\jakub_andrysek\c_gvid\domaci\ciselne_soustavy\main.c
+1572717675 source:d:\data\github\jakub_andrysek\c_gvid\domaci\ciselne_soustavy\main.c
 	<stdio.h>
 	<stdlib.h>
+
+1568961938 source:d:\data\github\jakub_andrysek\c_gvid\domaci\ciselne_soustavy\test.c
 	<stdio.h>
 	<stdlib.h>
 
