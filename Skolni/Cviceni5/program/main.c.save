@@ -101,7 +101,7 @@ void ukol4A()
   for(int i = 0; i < pocet; i++)
   {
     scanf()
-    if
+    if 
   }
 }
 
