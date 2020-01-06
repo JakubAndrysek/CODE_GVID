@@ -1,7 +1,7 @@
 /*
- * Projekt:
- * Autor:
- * Datum:
+ * Projekt:   Program6
+ * Autor:     Jakub Andrysek
+ * Datum:     2019-12-
  */
 
 #include <stdio.h>
@@ -80,10 +80,10 @@ void ukol2()
   printf("Obsah kruznice je %g", obsahKruznice(x));
 }
 
-long long faktorial(long long x)
+long faktorial(long x)
 {
   // koncova podminka, primitivni pripad
-  if (x = 0)
+  if (x == 0)
   {
     return 1;
   }
@@ -94,12 +94,12 @@ long long faktorial(long long x)
 
 ukol3()
 {
-  printf("Faktorial 5 je: %d\n", faktorial(5));
+  printf("Faktorial 5 je: %l\n", faktorial(3));
 
   float x;
   printf("\nNove zadani\nCislo pro faktorial\n");
   scanf("%f", &x);
-  printf("Faktorial 5 je: %d\n", obsahKruznice(x));
+  printf("Faktorial %l je: %l\n", x, faktorial(x));
 }
 
 

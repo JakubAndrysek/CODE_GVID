@@ -1,7 +1,7 @@
 /*
- * Projekt:
- * Autor:
- * Datum:
+ * Projekt:   Program6
+ * Autor:     Jakub Andrysek
+ * Datum:     2019-12-
  */
 
 #include <stdio.h>
