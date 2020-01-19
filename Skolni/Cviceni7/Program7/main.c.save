@@ -149,7 +149,7 @@ bool jePrvocislo(int n)
 
 void ukol5()
 {
-  printf("Je cislo 8 prvocislo? -> %d\n", jePrvocislo(8));
+  printf("Je cislo 8 prvocislo? -> %d\n", jePrvocislo(7));
 
   printf("Zadavej cisla, ukonci pomoci CTRL+Z\n");
   int a;
@@ -165,11 +165,36 @@ void ukol5()
 bool jeRostouci()
 {
   int pocet;
+  int minule, ted;
+  bool rostouci = true;
+  printf("Kolik mam nacist cisel?\n");
   scanf("%d", &pocet);
-  for(int i = 0; i < pocet, i++)
+  printf("Nacitam...\n");
+  scanf("%d", &minule);
+  for(int i = 1; i < pocet; i++)
   {
-    
+    scanf("%d", &ted);
+    if(ted<minule)
+    {
+      rostouci = false;
+    }
+    minule = ted;
   }
+  return rostouci;
+}
+
+void ukol6()
+{
+  printf("Je rostouci? -> %d", jeRostouci());
+
+  printf("Zadavej cisla, ukonci pomoci CTRL+Z\n");
+  int a;
+
+  while(scanf("%d", &a) == 1)
+  {
+    printf("Je rostouci? -> %d", jeRostouci());
+  }
+*/
 }
 
 int main()
@@ -178,6 +203,7 @@ int main()
   //ukol2();
   //ukol3();
   //ukol4();
-  ukol5();
+  //ukol5();
+  ukol6();
   return 0;
 }
