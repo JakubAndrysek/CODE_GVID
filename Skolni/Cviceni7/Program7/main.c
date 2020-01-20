@@ -144,7 +144,6 @@ bool jePrvocislo(int n)
     }
   }
   return true;
-
 }
 
 void ukol5()
