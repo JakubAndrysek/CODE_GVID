@@ -10,8 +10,8 @@
 #include <stdbool.h> // pro praci s typem bool a konstantami true a false
 // #include <ctype.h>   // isalpha, isspace, islower, isupper, ...
 // #include <math.h>    // funkce z matematicke knihovny
-// #include <float.h>   // konstanty pro racionální typy DBL_MAX, DBL_DIG, ...
-// #include <limits.h>  // konstanty pro celoèíselné typy INT_MAX, INT_MIN, ...
+// #include <float.h>   // konstanty pro racionÃ¡lnÃ­ typy DBL_MAX, DBL_DIG, ...
+// #include <limits.h>  // konstanty pro celoÃ¨Ã­selnÃ© typy INT_MAX, INT_MIN, ...
 
 
 //##//##//##//##//##//##//##//##//##//##//##//##//##//##//##//##//##//##//##
@@ -138,20 +138,42 @@ bool jePrvocislo(int n)
 //Delime cislo postupne nejmensim moznym prvocislem
 int pocetPrvociselRada(int vstup)
 {
-  int prvocislo = 2;
+  int prvocislo = 2, delitele = 1;
+    printf("Cislo %d ma tyto delitele -> {", vstup);
+  while(!jePrvocislo(vstup))
+  {
+    if(vstup%prvocislo == 0)
+    {
+        //printf("vstup:%d / prvoc:%d = %d\n", vstup, prvocislo, vstup/prvocislo);
+        printf("%d, ", prvocislo);
+        vstup /= prvocislo;
 
+        delitele++;
+    }
+    else
+    {
+        do
+        {
+            prvocislo++;
+        }while(!jePrvocislo(prvocislo));
+    }
+  }
 
-  return vstup;
+printf("%d}", vstup);
+
+  return delitele;
 }
 
 int ukol3()
 {
-  printf(" a ma %d delitelu\n", pocetPrvociselRada(15));
+  printf(" je jich %d\n", pocetPrvociselRada(255));
 }
 
-int kalkulacka(int a, int b, char operace)
-{
 
+
+
+int kalkulacka(int a, char operace, int b )
+{
   switch(operace)
   {
   case '+':
@@ -176,7 +198,6 @@ int kalkulacka(int a, int b, char operace)
 
 }
 
-
 void ukol4()
 {
   int a, b;
@@ -185,19 +206,49 @@ void ukol4()
   printf("Kalkulacka -> Zadej cislo, operator, cislo    priklad->(5+15)\n");
   while(scanf("%d %c %d", &a, &operace, &b)==3)  //musi tam byt mezery -> "%d %c %d"
   {
-    int c = kalkulacka(a, b, operace);
-    printf("%d %c %d = %d\n");
+    int c = kalkulacka(a, operace, b);
+    printf("%d %c %d = %d\n", a, operace, b, c);
   }
 }
 
 
+
+int faktorial(int x)
+{
+    long out = 1;
+    for(int i = 1; i <= x; i++)
+    {
+        out *=i;
+    }
+    return out;
+}
+
+int faktorialRekurze(int x)
+{
+    if(x >= 1)
+    {
+        return x * faktorialRekurze(x-1);
+    }
+    else
+    {
+        return 1;
+    }
+ }
+
+void ukol5()
+{
+  printf("Faktorial 5 -> %d\n", faktorial(5) ) ;
+
+  printf("Faktorial 5 -> %d\n", faktorialRekurze(5) ) ;
+}
 
 
 int main()
 {
   //ukol1();
   //ukol2();
-  //ukol3();
-  ukol4();
+  ukol3();
+  //ukol4();
+  //ukol5();
   return 0;
 }
