@@ -139,7 +139,7 @@ bool jePrvocislo(int n)
 int pocetPrvociselRada(int vstup)
 {
   int prvocislo = 2, delitele = 1;
-    printf("Cislo %d ma tyto deitele: {");
+    printf("Cislo %d ma tyto delitele -> {", vstup);
   while(!jePrvocislo(vstup))
   {
     if(vstup%prvocislo == 0)
@@ -159,14 +159,23 @@ int pocetPrvociselRada(int vstup)
     }
   }
 
-printf("%d}\n", vstup);
+printf("%d}", vstup);
 
   return delitele;
 }
 
 int ukol3()
 {
-  printf("X ma %d delitelu\n", pocetPrvociselRada(754));
+  printf(" je jich %d\n", pocetPrvociselRada(255));
+  
+  printf("Zadej cele kladne cislo, cyklus ukonci pomoci CTRL+Z\n");
+
+  while(scanf("%d", &a) == 1)
+  {
+
+    printf("-> cislo ma %d delitelu\n", pocetDelitelu(a));
+    printf("Zadej cislo, cyklus ukonci pomoci CTRL+Z\n\n");
+  }  
 }
 
 

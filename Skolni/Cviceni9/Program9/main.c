@@ -154,7 +154,7 @@ int pocetPrvociselRada(int vstup)
     {
         do
         {
-            prvocislo++;
+          prvocislo++;
         }while(!jePrvocislo(prvocislo));
     }
   }
@@ -167,6 +167,16 @@ printf("%d}", vstup);
 int ukol3()
 {
   printf(" je jich %d\n", pocetPrvociselRada(255));
+
+  printf("\nZadej cele kladne cislo, cyklus ukonci pomoci CTRL+Z\n");
+
+  int a;
+  while(scanf("%d", &a) == 1)
+  {
+
+    printf(" je jich %d\n", pocetPrvociselRada(a));
+    printf("Zadej cislo, cyklus ukonci pomoci CTRL+Z\n\n");
+  }
 }
 
 
