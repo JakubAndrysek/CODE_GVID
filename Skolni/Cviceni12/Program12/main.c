@@ -52,6 +52,14 @@ void vypisPole(int pole[], int velikostPole)
   printf("\n");
 }
 
+void vypisPoleMezery(int pole[], int velikostPole)
+{
+  for(int i = 0; i < velikostPole; i++)
+  {
+    printf("%2d ", pole[i]);
+  }
+  printf("\n");
+}
 
 void vypisPoleCarky(int pole[], int velikostPole)
 {
@@ -282,18 +290,25 @@ void ukol8()
 }
 
 
+
 void pascaluvTrojuhelnikPole(int pole[], int velikostPole)
 {
-  pole[0] = 1;
-  pole[velikostPole-1] = 1;
+    pole[0] = 1;
+    pole[1] = 1;
+    for(int y = 1; y<=velikostPole; y++)
+    {
+        for (int i = y-2; i>=1; i--)
+        {
+            pole[i] = pole[i] + pole[i-1];
+        }
+        pole[y-1] = 1;
+        for(int z = velikostPole-y+1; z > 1; z--)
+        {
+            printf(" ");
+        }
+        vypisPoleMezery(pole, y);
+    }
 
-
-  for(int i = velikostPole-2; i >= 1; i--)
-  {
-    vypisPole(pole, velikostPole);
-    printf("pole i: %d\n",i);
-    pole[i] = pole[i] + pole[i-1];
-  }
 }
 
 
@@ -310,8 +325,36 @@ void ukol9()
   printf("Vypocet pascala\n");
   pascaluvTrojuhelnikPole(hlavniPole, prvku);
 
-  printf("Vypis pole\n");
-  vypisPoleCarky(hlavniPole, prvku);
+}
+
+
+void pascal2()
+{
+ int pocet = 5;
+ pocet++;
+ int radek[pocet];
+ int i,j;
+ radek[0]=1; radek[1]=1;
+
+ for(i=0;i<pocet-1;i++)
+ {
+     for(j=pocet-1;j>=i;j--)
+     {
+        printf(" ");
+     }
+     for(j=0;j<=i;j++) printf("%2d ",radek[j]);
+     {
+        printf("\n");
+     }
+
+     for(j=i;j>0;j--)
+     {
+        radek[j]=radek[j]+radek[j-1];
+        radek[i+1]=1;
+     }
+ }
+ getch();
+
 }
 
 
@@ -327,5 +370,6 @@ int main(int argc, char *argv[])
   //ukol7();    //suma
   //ukol8();    //fibonaci
   ukol9();    //pascaluv trojuhelnik
+  //pascal();
   return 0;
 }
