@@ -149,7 +149,10 @@ void ukol3()
 
 void vlozDoSerazenehoPole(int vstupPole[], int velikostPole, int vloz)
 {
+  //for(int x = velikostPole-1; x > -1)
+  {
 
+  }
 }
 
 /*
@@ -221,32 +224,21 @@ void eratostenovoSito(int pole[], int velikostPole)
 
 void ukol5()
 {
-  int velikostPole = 100;
-
+  int velikostPole = 10000;
 
   int vstupPole[velikostPole];
 
-
-
-
-
   eratostenovoSito(vstupPole, velikostPole);
-  printf("\nkonec\n");
-
-  for(int i = 0; i <= velikostPole-1; i++)
-  {
-    printf("%d, ", vstupPole[i]);
-  }
 }
 
 
 
 int main()
 {
-  //ukol1(); //Nacteni a vypis pole
+  //ukol1();  //Nacteni a vypis pole
   //ukol2();  //hledej v poli
-  //ukol3();
-  //ukol4();
-  ukol5();
+  //ukol3();  //Kopiruj do pole prvky vetsi nez
+  //ukol4();  //vloz prvek do pole
+  ukol5();  //Eratostenovo sito
   return 0;
 }
