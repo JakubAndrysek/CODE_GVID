@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1580738295 source:r:\github\c_gvid\skolni\cviceni11\program11\main.c
+	<stdio.h>
+	<stdlib.h>
+

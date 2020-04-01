@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1583155940 source:r:\github\c_gvid\skolni\cviceni13\program13\main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
