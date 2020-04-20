@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1587111102 source:/media/kuba/Data/!data/Github/Jakub_Andrysek/C_GVID/Skolni/7-Struktury/Ukol1/main.c
+	<stdio.h>
+	<string.h>
+
