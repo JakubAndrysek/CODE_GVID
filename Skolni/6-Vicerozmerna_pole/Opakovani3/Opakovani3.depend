@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1599650443 source:r:\github\c_gvid\skolni\6-vicerozmerna_pole\opakovani3\main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+
+1593693349 r:\github\c_gvid\skolni\6-vicerozmerna_pole\opakovani3\gvid.h
+
