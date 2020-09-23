@@ -93,6 +93,39 @@ void preloz(char p[], SLOVO s[], int n, char vysledek[]){
   strcpy(vysledek, "NULL");
 }
 
+void cjdoaj_veta(char p[], SLOVO s[], int n, char vysledek[]){
+  strcpy(vysledek, p);
+
+  char * pch;
+  pch = strtok (p," ,.-");
+  while (pch != NULL)
+  {
+    printf ("*%s*\n",pch);
+
+
+    for(int i = 0; i<n; i++)
+    {
+      if(strcmp(pch, s[i].cj) == 0)
+      {
+          printf("%s ", s[i].aj);
+          //strcpy(vysledek, s[i].aj);
+          return;
+      }
+    }
+    printf("- ");
+
+
+
+    pch = strtok (NULL, " ,.-");
+  }
+  printf("\n\n");
+
+
+
+}
+
+
+
 void vypis(char vysledek[])
 {
   if(strcmp(vysledek, "NULL")!= 0)
@@ -111,16 +144,24 @@ void nactiSlovo(char s[]){
     scanf("%20s",s);
 
 }
+
+
+void nactiVetu(char s[]){
+    printf("Zadej vetu, kterou chces prelozit: \n");
+    //fgets(s, 200, stdin);
+    scanf("%200[^.].",s);
+}
+
 int main()
 {
     SLOVO slovnik[100]={{"pes","dog"},{"je","is"}, {"zvire","animal"}, {"ja","I"}, {"jsem","am"}, {"student","student"}, {"chlapec","boy"},
      {"on","he"}, {"strom","tree"}, {"kocka","cat"}, {"divka","girl"}, {"budoucnost","future"}, {"muj","my"}, {"oblibeny","favourite"},
-     {"predmet","subject"},{"matematika","mathematics" }, {"slovo","word"}};
+     {"predmet","subject"},{"matematika","mathematics" }, {"a","and"}};
 
 
     int volba=1, n=17;
-    char preklad[21];
-    char vysledek[21];
+    char preklad[201];
+    char vysledek[201];
     while (volba!=0){
 
       menu();
@@ -131,6 +172,7 @@ int main()
         case 1: nactiSlovo(preklad);cjdoaj(preklad, slovnik, n, vysledek); vypis(vysledek); break;
         case 2: nactiSlovo(preklad);ajdocj(preklad, slovnik, n, vysledek); vypis(vysledek); break;
         case 3: vypisSlovniku(slovnik, n);break;
+        case 4: nactiVetu(preklad);cjdoaj_veta(preklad, slovnik, n, vysledek); break;
         case 6: nactiSlovo(preklad);preloz(preklad, slovnik, n, vysledek); vypis(vysledek); break;
 
         default: printf("\n*****Tato volba neexistuje******\n\n");
