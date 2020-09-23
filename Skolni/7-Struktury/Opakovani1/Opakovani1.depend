@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1600856499 source:r:\github\c_gvid\skolni\7-struktury\opakovani1\main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1593693349 r:\github\c_gvid\skolni\7-struktury\opakovani1\gvid.h
+
