@@ -1,0 +1,29 @@
+Nastavení Code::Blocks
+----------------------
+
+Spusť ./instaluj-lokalni-konfiguraci.sh
+
+
+- Předpokládám, že v systému je program Code::Blocks nainstalován
+  z instalačních balíčků.
+- Konfigurace je dělána pro C::B verze 20.03. 
+- U jiných verzí a nestandardních instalací to nemusí fungovat.
+
+
+Ruční instalace
+---------------
+Složka share patří do 
+~/.local (pro lokálního uživatele)
+nebo
+/usr (pro všechny uživatele)
+
+Soubor default.conf patří do
+~/.config/codeblocks
+(Globálně nainstalovat nejde.)
+
+
+Soubor barevna_schemata_pro_GVID.conf obsahuje různá barevná schémata
+pro zvýrazňování syntaxe (světlá i tmavá). Pro jejich přesun do 
+konfiguračního souboru ~/.config/codeblocks/default.conf, je potřeba 
+použít program cb_share_config, který je součástí instalace programu
+Code::Blocks.

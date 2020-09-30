@@ -1,0 +1,5 @@
+1. Vypni CB.
+2. Pøesuò tuto sloku na svou plochu (ze síového disku, ani z USB disku nespustíš .bat skript).
+3. Spus instaluj-lokalni-konfiguraci.sh a odpovìz A na otázku.
+4. Nakopíruj adresáø Help do adresáøe c:\Program Files\CodeBlocks. Musíš mít práva správce.
+5. Spus CB -- bude fungovat s novou konfigurací (barevná schémata, nápovìda, viz Novinky.txt)

@@ -1,0 +1,43 @@
+Novinky a Tipy pro používání programu Code::Blocks
+
++Tento skript funguje pro Code::Blocks od verze 20.03.
+
++Přidány barevné profily pro zvýrazňování syntaxe v jazycích C/C++.
+-- Implicitně je nastaven profil GVID_zluta, ale v nastavení editoru si jde
+   vybrat z mnoha dalších (světlých i tmavých).
+-- Můžeš si je upravit v menu Settings -> Editor -> Syntax highligting
+
++Šablona "Školní projekt"
+-- Při tvorbě nového projektu, je na prvním místě šablona "Školní projekt"
+   s logem GVID. Obsahuje nastavení překladače pro použití jazyka C v moderní
+   verzi C99 a zapíná výpisy chybových hlášení. Nový projekt také obsahuje
+   hlavičkový soubor "gvid.h" s definicí užitečných konstant a funkce dprintf
+   pro výpis ladících informací.
+
++Manuálové stránky (F1)
+-- Nastav textový kurzor na jméno systémové funkce a stiskni F1.
+-- Je-li v nápovědě více funkcí stejného jména, tebe zajímají ty ze 3. kapitoly
+   nápovědy (za jménem je obvykle (3)).
+
++Další zdroje nápovědy
+-- V menu Help jsou dostupné manuálové stránky, referenční manuál libc
+   (obojí musí být v systému nainstalováno z odpovídajících balíčků)
+   a vyhledávání na webu CppReference.com.
+   
++Tools/Spusť konzoli v bin/Debug
+-- Spustí konzoli v adresáři s přeloženým programem.
+-- Ideální pro testování programů, co používají parametry příkazového řádku 
+   a přesměrování. Pozor! Testovací soubory si pak musíš nahrát do adresáře 
+   bin/Debug tvého projektu.
+
++Debugger
+-- F8: Start/pokračuj (musíš mít nastavenou zarážku (breakpoint)
+-- F4: Pokračuj až k (textovému) kurzoru.
+-- F7: Pokračuj na další řádek, vykonej funkci
+-- Shif+F7: Pokračuj na další řádek, skoč do funkce
+
++Doplňování kódu (Ctrl+J)
+-- Napiš forb a zmáčkni Ctrl+J.
+-- Podobně to zkus pro slova struct, fori, pr, prf, pri, prln, priln, ...
+-- Seznam klíčových slov pro doplňování kódu najdeš v menu
+   Settings -> Editor -> Abbreviations

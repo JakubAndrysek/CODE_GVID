@@ -1,7 +1,0 @@
-1. Vypni CB.
-2. Pøesuò tuto sloku na svou plochu (z disku P nespustíš .bat skript).
-3. Spus spust-nastaveni.bat a odpovìz A na otázku.
-4. Spus CB -- bude fungovat s novou konfigurací (debugger, nápovìda, viz Novinky.txt)
-
-5. Aby debugger pracoval správnì, nesmí v cestì ani v názvu projektu bıt ani mezery, ani znaky s diakritikou!
- 

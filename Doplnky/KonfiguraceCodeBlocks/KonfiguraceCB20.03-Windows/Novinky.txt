@@ -1,0 +1,43 @@
+Novinky a Tipy pro používání programu Code::Blocks
+
++Tento skript funguje pro Code::Blocks od verze 20.03.
+
++Barevné profily pro zvýrazòování syntaxe v jazycích C/C++.
+-- Implicitnì je nastaven profil GVID_zluta, ale v nastavení editoru si jde
+   vybrat z mnoha dalších (svìtlých i tmavých).
+-- Mùžeš si je upravit v menu Settings -> Editor -> Syntax highligting
+
++Šablona "Školní projekt"
+-- Pøi tvorbì nového projektu, je na prvním místì šablona "Školní projekt"
+   s logem GVID. Obsahuje nastavení pøekladaèe pro použití jazyka C v moderní
+   verzi C99 a zapíná výpisy chybových hlášení. Nový projekt také obsahuje
+   hlavièkový soubor "gvid.h" s definicí užiteèných konstant a funkce dprintf
+   pro výpis ladících informací.
+
++Manuálové stránky (F1)
+-- Oèekává, že v adresáøi c:\Program Files\CodeBlocks\ je podadresáø Help
+   se soubory nápovìdy - zkopíruj si je tam (musíš mít práva správce).
+-- Nastav textový kurzor na jméno systémové funkce a stiskni F1.
+-- Je-li v nápovìdì více funkcí stejného jména, tebe zajímají ty ze 3. kapitoly
+   nápovìdy (za jménem je obvykle (3)).
+
++Tools/Spus konzoli v bin/Debug
+-- Spustí konzoli v adresáøi s pøeloženým programem.
+-- Ideální pro testování programù, co používají parametry pøíkazového øádku 
+   a pøesmìrování. Pozor! Testovací soubory si pak musíš nahrát do adresáøe 
+   bin/Debug tvého projektu.
+
++Debugger
+-- Aby debugger pracoval správnì, nesmí v cestì ani v názvu projektu být ani
+   mezery, ani znaky s diakritikou!
+-- F8: Start/pokraèuj (musíš mít nastavenou zarážku (breakpoint)
+-- F4: Pokraèuj až k (textovému) kurzoru.
+-- F7: Pokraèuj na další øádek, vykonej funkci
+-- Shif+F7: Pokraèuj na další øádek, skoè do funkce
+
++Doplòování kódu (Ctrl+J)
+-- Napiš forb a zmáèkni Ctrl+J.
+-- Podobnì to zkus pro slova print, fori, struct, whileb.
+-- Seznam klíèových slov pro doplòování kódu najdeš v menu
+   Settings -> Editor -> Abbreviations
+
