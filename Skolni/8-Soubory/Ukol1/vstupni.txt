@@ -1,0 +1,25 @@
+Zadejte nove heslo:
+zelí
+
+Heslo musi obsahovat vice nez 8 znaku.
+kyselý zelí
+
+Heslo musi obsahovat alespon jednu cislici.
+3 kyselý zelí
+
+Heslo nesmi obsahovat diakritiku.
+3 kysely zeli
+
+Heslo nesmi obsahovat mezery.
+3blbykyselyzeli
+
+heslo musi obsahovat alespon jedno velke pismeno.
+3BLBYkyselyzeli
+
+Heslo nesmi obsahovat vice velkych pismen jdoucich po sobe.
+3BlbyKyselyZeli,DejMiTenBlbejPristup
+
+Heslo nesmi obsahovat interpunkci.
+TakTedJsemSeAleUzFaktNasral3BlbyKyselyZeliDejMiTenBlbejPristup
+
+Omlouvame se, ale toto heslo uz nekdo pouziva. Vymyslete jine!
