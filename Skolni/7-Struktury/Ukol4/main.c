@@ -7,6 +7,8 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
 
 #define MAX_POCET 10
 
@@ -37,7 +39,8 @@ void menu()
   printf("-> Nejpouzivanejsi OS.......2\n");
   printf("-> Filtr OS podle vzniku....3\n");
   printf("-> Filtr OS podle procent...4\n");
-  printf("-> Pridani noveho OS........5\n");
+  printf("-> Vyhledej vyvojare........5\n");
+  printf("-> Pridani noveho OS........6\n");
   printf("ID: ");
 }
 
@@ -94,8 +97,6 @@ void filtrujSystemyRok(SYSTEM sys[], int pocet)
     {
       printf("| %8s | %5d | %9d\% | %12s |\n",sys[i].nazev, sys[i].vznik, sys[i].zastoupeni, sys[i].vyvoj);
     }
-
-
   }
   cara();
 }
@@ -120,7 +121,31 @@ void filtrujSystemyZastoupeni(SYSTEM sys[], int pocet)
     {
       printf("| %8s | %5d | %9d\% | %12s |\n",sys[i].nazev, sys[i].vznik, sys[i].zastoupeni, sys[i].vyvoj);
     }
+  }
+  cara();
+}
 
+void vyhledejSystemVyvoj(SYSTEM sys[], int pocet)
+{
+  printf("VYHLEDAVANI\n");
+  char vyvoj[21];
+  int nalezeno = 0;
+  scanf("%20s", vyvoj);
+  nl();
+  hlavicka();
+  int x = 0;
+  for(int i = 0; i<pocet; i++)
+  {
+    if(strcmp(vyvoj, sys[i].vyvoj)==0)
+    {
+      printf("| %8s | %5d | %9d\% | %12s |\n",sys[i].nazev, sys[i].vznik, sys[i].zastoupeni, sys[i].vyvoj);
+      nalezeno++;
+    }
+  }
+
+  if(nalezeno == 0)
+  {
+    printf("Nebyl nalezen zadny vysledek\n");
   }
   cara();
 }
@@ -191,6 +216,9 @@ int main()
         filtrujSystemyZastoupeni(systemy, realnyPocet);
         break;
       case 5:
+        vyhledejSystemVyvoj(systemy, realnyPocet);
+        break;
+      case 6:
         realnyPocet += pridejSystem(systemy, realnyPocet);
         break;
       default:

@@ -82,14 +82,14 @@ int pocetZanku(FILE* vstup)
 
 
 
-//int main(int argc, char *argv[])  // pro parametry prikazoveho radku
-int main(void)
+int main(int argc, char *argv[])  // pro parametry prikazoveho radku
+//int main(void)
 {
   char cesta[256+1];
 
 
-  FILE* fvstup = fopen("vstupni.txt", "r");
-  FILE* fvystup = fopen("vystupni.txt", "w");
+  FILE* fvstup = fopen("vstupni_linux.txt", "r");
+  FILE* fvystup = fopen("vystupni_linux.txt", "w");
 
   if(fvstup == NULL)
   {
@@ -113,7 +113,7 @@ int main(void)
 
   /*3*/
   //int pocetZ = pocetZanku(fvstup);
-  //printf("Pocet znaku %d\n\n", pocetZ);
+  printf("Pocet znaku %d\n\n", pocetZanku(fvstup));
 
 
   fclose(fvstup);

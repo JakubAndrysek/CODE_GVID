@@ -1,0 +1,6 @@
+Metracek je obezni ma BMI 34.55
+David je obezni ma BMI 34.35
+Katka je obezni ma BMI 30.74
+Andrej je obezni ma BMI 30.29
+Otka je obezni ma BMI 32.45
+Moula je obezni ma BMI 32.63

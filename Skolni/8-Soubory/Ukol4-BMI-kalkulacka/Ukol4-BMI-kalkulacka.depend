@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1602673754 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/8-Soubory/Ukol4-BMI-kalkulacka/main.c
+	<stdio.h>
+	<stdlib.h>
+

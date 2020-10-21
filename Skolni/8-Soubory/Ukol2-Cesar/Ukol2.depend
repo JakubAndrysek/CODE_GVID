@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1602069318 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/8-Soubory/Ukol2/main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+
+1602066475 /media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/8-Soubory/Ukol2/gvid.h
+
+1602071949 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/8-Soubory/Ukol2-Cesar/main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+
+1602066475 /media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/8-Soubory/Ukol2-Cesar/gvid.h
+

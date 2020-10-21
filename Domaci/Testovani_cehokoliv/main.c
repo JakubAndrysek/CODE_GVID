@@ -3,53 +3,40 @@
 
 #include <stdio.h>
 
-int Digits(int number){
-    int count = 0;
-    while(number != 0)
-    {
-        number /= 10;
-        ++count;
-    }
-    //printf("%d", count);
-    return count;
+
+
+
+int delka(char r[]){
+int i;
+for (i=0;r[i]!='\0';i++)
+;
+return i;
 }
 
-int pole[100] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+char toLowChar(char *text[])
+{
+  int length = delka(text);
+  printf("fDelka: %d", length);
 
-void ToLen(int cislo, int *pole[]){
-    printf("ASD");
-    int i = 0;
-
-    int dig = Digits(cislo);
-
-    int poc = dig-1;
-    for (i; i<dig; i++){
-        //printf("%d\n", cislo%10);
-        *pole[poc]=cislo%10;
-        poc--;
-        cislo/=10;
-    }
-
-    int p = dig;
-    for(i=0;i<20;i++){
-        printf("%d",*pole[i]);
-    }
-
-
+  return text;
 }
 
 int main()
 {
-    int a[100];
+    char text[11] = "AhOj";
+    char nove[11];
+    //puts(toLowChar(text));
+    int length = delka(text);
+    printf("Delka: %d\n", length);
+    /*
+    for(int i = 0; i<length; i++)
+    {
 
-    ToLen(1554548, &a);
-
-    return 0;
-
-
-
-
-
+    //text[i] = tolower(text[i]);
+      printf("*%c*\n", tolower(text[i]));
+    }
+    */
+    nove = toLowChar(text);
 
 
     return 0;
