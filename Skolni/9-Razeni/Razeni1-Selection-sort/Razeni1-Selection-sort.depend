@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1610025200 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni1-Selection-sort/main.c
+1610029713 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni1-Selection-sort/main.c
 	"gvid.h"
 	<stdio.h>
 	<stdlib.h>
