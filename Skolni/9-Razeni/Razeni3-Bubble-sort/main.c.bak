@@ -7,7 +7,7 @@
 #include "gvid.h"       // par drobnosti pro zjednoduseni prace
 #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>  // pro praci s textovymi retezci
+#include <string.h>  // pro praci s textovymi retezci
 // #include <stdbool.h> // pro praci s typem bool a konstantami true a false
 // #include <ctype.h>   // isalpha, isspace, islower, isupper, ...
 // #include <math.h>    // funkce z matematicke knihovny
@@ -48,16 +48,18 @@ void sort(int pole[], int pocet)
 {
 	int d, i, vkladany;
 
-	for(d = 1; d<pocet; d++)
+	for(int i = 0; i<pocet-1; i++)
 	{
-		vkladany = pole[d];
-		i = d-1;
-		while((i>=0) && (pole[i]>vkladany))
+		for(int l = pocet-2; l>i+1; l--)
 		{
-			pole[i+1] = pole[i];
-			i--;
+			if(pole[l-1]>pole[l])
+			{
+				int pom = pole[l-1];
+				pole[l-1] = pole[l];
+				pole[l] = pom;
+			}
+//			vypisPole(pole, pocet);
 		}
-		pole[i+1] = vkladany;
 	}
 }
 

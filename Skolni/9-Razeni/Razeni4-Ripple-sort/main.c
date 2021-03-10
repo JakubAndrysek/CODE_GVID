@@ -7,8 +7,8 @@
 #include "gvid.h"       // par drobnosti pro zjednoduseni prace
 #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>  // pro praci s textovymi retezci
-// #include <stdbool.h> // pro praci s typem bool a konstantami true a false
+#include <string.h>  // pro praci s textovymi retezci
+ #include <stdbool.h> // pro praci s typem bool a konstantami true a false
 // #include <ctype.h>   // isalpha, isspace, islower, isupper, ...
 // #include <math.h>    // funkce z matematicke knihovny
 // #include <float.h>   // konstanty pro racionalni typy DBL_MAX, DBL_DIG, ...
@@ -27,37 +27,61 @@ int nacteniSouboruDoPole(FILE* vstup, int pole[])
 	return i;
 }
 
-void zapisPoleDoSouboru(FILE* vystup, int pole[], int pocet)
+void zapisPoleDoSouboru(FILE* vstup, int pole[], int pocet, int zarazka)
 {
 	for(int i = 0; i<pocet; i++)
 	{
-		printf("%d ", pole[i]);
-		fprintf(vystup,"%d ", pole[i]);
-	}
-}
 
-void vypisPole(int pole[], int pocet)
-{
-	for(int i = 0; i<pocet; i++)
-	{
-		printf("%2d ", pole[i]);
-	}
-}
-
-void sort(int pole[], int pocet)
-{
-	int d, i, vkladany;
-
-	for(d = 1; d<pocet; d++)
-	{
-		vkladany = pole[d];
-		i = d-1;
-		while((i>=0) && (pole[i]>vkladany))
+		if(i == zarazka && zarazka != -1)
 		{
-			pole[i+1] = pole[i];
-			i--;
+			fprintf(vstup, "*%d  ", pole[i]);
 		}
-		pole[i+1] = vkladany;
+		else
+		{
+			fprintf(vstup, "%d  ", pole[i]);
+		}
+	}
+	fprintf(vstup, "\n");
+}
+
+void vypisPole(int pole[], int pocet, int zarazka)
+{
+	for(int i = 0; i<pocet; i++)
+	{
+
+		if(i == zarazka && zarazka != -1)
+		{
+			printf("*%d ", pole[i]);
+		}
+		else
+		{
+			printf(" %d ", pole[i]);
+		}
+	}
+	printf("\n");
+}
+
+
+void sort(FILE* vystup, int pole[], int pocet)
+{
+	int l, posledni, i = 0;
+
+	for(int i = 0; i<pocet-1; i++)
+	{
+		int posledni = pocet-1;
+		for(l = pocet-1; l>i; l--)
+		{
+			if(pole[l-1]>pole[l])
+			{
+				int pom = pole[l-1];
+				pole[l-1] = pole[l];
+				pole[l] = pom;
+				posledni = l;
+			}
+		}
+		i = posledni;
+		vypisPole(pole, pocet, posledni);
+		zapisPoleDoSouboru(vystup, pole, pocet, posledni);
 	}
 }
 
@@ -92,11 +116,14 @@ int main(void)
 		return 1;
 	}
 
-	sort(pole, pocet);
+	vypisPole( pole, pocet, -1);
+	zapisPoleDoSouboru(vystup, pole, pocet, -1);
 
-//	vypisPole(pole, pocet);
+	sort(vystup, pole, pocet);
 
-	zapisPoleDoSouboru(vystup, pole, pocet);
+	vypisPole( pole, pocet, -1);
+	zapisPoleDoSouboru(vystup, pole, pocet, -1);
+
 	printf("\n\nDokonceno");
 
 	return 0;

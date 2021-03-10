@@ -7,8 +7,8 @@
 #include "gvid.h"       // par drobnosti pro zjednoduseni prace
 #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>  // pro praci s textovymi retezci
-// #include <stdbool.h> // pro praci s typem bool a konstantami true a false
+#include <string.h>  // pro praci s textovymi retezci
+ #include <stdbool.h> // pro praci s typem bool a konstantami true a false
 // #include <ctype.h>   // isalpha, isspace, islower, isupper, ...
 // #include <math.h>    // funkce z matematicke knihovny
 // #include <float.h>   // konstanty pro racionalni typy DBL_MAX, DBL_DIG, ...
@@ -31,9 +31,9 @@ void zapisPoleDoSouboru(FILE* vystup, int pole[], int pocet)
 {
 	for(int i = 0; i<pocet; i++)
 	{
-		printf("%d ", pole[i]);
 		fprintf(vystup,"%d ", pole[i]);
 	}
+
 }
 
 void vypisPole(int pole[], int pocet)
@@ -42,22 +42,53 @@ void vypisPole(int pole[], int pocet)
 	{
 		printf("%2d ", pole[i]);
 	}
+	printf("\n");
 }
 
-void sort(int pole[], int pocet)
-{
-	int d, i, vkladany;
 
-	for(d = 1; d<pocet; d++)
+
+void sort(int pole[],int pomPole[], int od, int po) {
+	if (od < po)
 	{
-		vkladany = pole[d];
-		i = d-1;
-		while((i>=0) && (pole[i]>vkladany))
+		int stred = (od + po)/2;
+		sort(pole, pomPole, od, stred);
+		sort(pole, pomPole, stred+1, po);
+		slevani(pole, pomPole, od, po);
+
+		for(int i = od; i<=po; i++)
 		{
-			pole[i+1] = pole[i];
-			i--;
+			pole[i] = pomPole[i];
 		}
-		pole[i+1] = vkladany;
+
+	}
+}
+
+void slevani(int pole[], int pomPole[], int od, int po)
+{
+	int levy = od;
+	int pom = od;
+	int stred = (od+po)/2;
+	int pravy = stred+1;
+
+	while (levy <= stred && pravy <= po)
+	{
+		if(pole[levy] <= pole[pravy])
+		{
+			pomPole[pom++] = pole[levy++];
+		}
+		else
+		{
+			pomPole[pom++] = pole[pravy++];
+		}
+	}
+
+	while(levy <= stred)
+	{
+		pomPole[pom++] = pole[levy++];
+	}
+	while(pravy <= po)
+	{
+		pomPole[pom++] = pole[pravy++];
 	}
 }
 
@@ -80,7 +111,8 @@ int main(void)
 		return 1;
 	}
 
-	int pole[1010];
+	int pole[1000];
+	int pomPole[1000];
 	int pocet;
 
 
@@ -92,11 +124,14 @@ int main(void)
 		return 1;
 	}
 
-	sort(pole, pocet);
+	vypisPole( pole, pocet);
 
-//	vypisPole(pole, pocet);
+	sort(pole, pomPole, 0, pocet-1);
 
+
+	vypisPole( pole, pocet);
 	zapisPoleDoSouboru(vystup, pole, pocet);
+
 	printf("\n\nDokonceno");
 
 	return 0;

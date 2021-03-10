@@ -7,8 +7,8 @@
 #include "gvid.h"       // par drobnosti pro zjednoduseni prace
 #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>  // pro praci s textovymi retezci
-// #include <stdbool.h> // pro praci s typem bool a konstantami true a false
+#include <string.h>  // pro praci s textovymi retezci
+ #include <stdbool.h> // pro praci s typem bool a konstantami true a false
 // #include <ctype.h>   // isalpha, isspace, islower, isupper, ...
 // #include <math.h>    // funkce z matematicke knihovny
 // #include <float.h>   // konstanty pro racionalni typy DBL_MAX, DBL_DIG, ...
@@ -31,9 +31,9 @@ void zapisPoleDoSouboru(FILE* vystup, int pole[], int pocet)
 {
 	for(int i = 0; i<pocet; i++)
 	{
-		printf("%d ", pole[i]);
 		fprintf(vystup,"%d ", pole[i]);
 	}
+
 }
 
 void vypisPole(int pole[], int pocet)
@@ -42,22 +42,57 @@ void vypisPole(int pole[], int pocet)
 	{
 		printf("%2d ", pole[i]);
 	}
+	printf("\n");
 }
 
-void sort(int pole[], int pocet)
-{
-	int d, i, vkladany;
 
-	for(d = 1; d<pocet; d++)
+void rozdeleni(int pole[], int od, int po, int pivot, int *levy, int *pravy)
+{
+	*levy = od;
+	*pravy = po;
+	do
 	{
-		vkladany = pole[d];
-		i = d-1;
-		while((i>=0) && (pole[i]>vkladany))
+
+		while (pole[*levy] < pivot && *levy < po)
 		{
-			pole[i+1] = pole[i];
-			i--;
+			++*levy;
 		}
-		pole[i+1] = vkladany;
+		while (pivot < pole[*pravy] && *pravy > od)
+		{
+			--*pravy;
+		}
+
+		if (*levy < *pravy)
+		{
+			int pom = pole[*levy];
+			pole[*levy] = pole[*pravy];
+			pole[*pravy] = pom;
+		}
+
+		if(*levy <= *pravy)
+		{
+			++*levy;
+			--*pravy;
+		}
+	}while (*levy < *pravy);
+}
+
+
+
+void sort(int pole[], int od, int po)
+{
+	int levy;
+	int pravy;
+
+	if (od < po)
+	{
+//		int pivot = pole[(od + po)/2];
+		int pivot = pole[po];
+
+		rozdeleni(pole, od, po, pivot, &levy, &pravy);
+
+		sort(pole, od, pravy);
+		sort(pole, levy, po);
 	}
 }
 
@@ -92,11 +127,14 @@ int main(void)
 		return 1;
 	}
 
-	sort(pole, pocet);
+	vypisPole( pole, pocet);
 
-//	vypisPole(pole, pocet);
+	sort(pole, 0, pocet-1);
 
+
+	vypisPole( pole, pocet);
 	zapisPoleDoSouboru(vystup, pole, pocet);
+
 	printf("\n\nDokonceno");
 
 	return 0;

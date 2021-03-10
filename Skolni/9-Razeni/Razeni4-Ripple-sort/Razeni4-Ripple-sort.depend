@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1612434585 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni4-Ripple-sort/main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1612351495 /media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni4-Ripple-sort/gvid.h
+
