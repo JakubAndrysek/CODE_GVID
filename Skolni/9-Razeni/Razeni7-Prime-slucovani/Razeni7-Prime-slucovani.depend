@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1615389094 source:/media/kuba/neon/git/kuba/C_GVID/Skolni/9-Razeni/Razeni7-Prime-slucovani/main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<stdbool.h>
+
+1615381980 /media/kuba/neon/git/kuba/C_GVID/Skolni/9-Razeni/Razeni7-Prime-slucovani/gvid.h
+

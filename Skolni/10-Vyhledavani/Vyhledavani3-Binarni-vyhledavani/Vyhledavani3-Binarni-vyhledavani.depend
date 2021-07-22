@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1619611121 source:/media/kuba/neon/git/kuba/C_GVID/Skolni/10-Vyhledavani/Vyhledavani3-Binarni-vyhledavani/main.c
+	"gvid.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1619609338 /media/kuba/neon/git/kuba/C_GVID/Skolni/10-Vyhledavani/Vyhledavani3-Binarni-vyhledavani/gvid.h
+

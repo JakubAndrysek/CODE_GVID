@@ -27,7 +27,6 @@ void znamky(FILE* vstup, FILE* vystup)
 {
 	ZNAMKY zak;
 
-
 	while(fscanf(vstup, "%19s %d %d %d %d", zak.jmeno, &zak.m, &zak.cj, &zak.aj, &zak.ivt) == 5)
 	{
 		zak.prumer = (zak.aj+zak.cj+zak.ivt+zak.m)/4.0;
@@ -45,10 +44,10 @@ void znamky(FILE* vstup, FILE* vystup)
 				strcpy(zak.vyznamenani, "s vyznamenanim");
 			}
 		}
-
 		dprintf("%s ma prumer [%d, %d, %d, %d] %.2f %s %s\n", zak.jmeno, zak.aj, zak.cj, zak.ivt, zak.m, zak.prumer, zak.prospel, zak.vyznamenani);
 		fprintf(vystup, "%s ma prumer %.2f %s %s\n", zak.jmeno, zak.prumer, zak.prospel, zak.vyznamenani);
 	}
+		printf("Vypocitano");
 }
 
 int main(void)
