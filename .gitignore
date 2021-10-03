@@ -1,0 +1,7 @@
+*.layout
+*.depend
+bin/
+obj/
+*.save
+private
+test

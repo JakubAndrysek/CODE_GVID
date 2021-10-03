@@ -1,0 +1,73 @@
+<html>
+<head>
+<title>pr5-cviko00-cteni-psani build log</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+<tt>
+Build started on: <u>22-09-2021 at 12:51.12</u><br />
+Build ended on: <u>22-09-2021 at 12:51.13</u><p />
+<b>-------------- Build: Debug in pr5-cviko00-cteni-psani (compiler: GNU GCC Compiler)---------------</b><br />
+gcc.exe -Wall -g -std=c99 -pedantic -Wextra -Wall  -c R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c -o obj\Debug\main.o<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:49:15: error: expected '{' before '-' token</font><br />
+ typedef struct- pole<br />
+               ^<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:53:3: warning: data definition has no type or storage class</font><br />
+ } Tpole;<br />
+   ^~~~~<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:53:3: warning: type defaults to 'int' in declaration of 'Tpole' [-Wimplicit-int]</font><br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:81:1: error: unknown type name 'Tpole'</font><br />
+ Tpole * novePole(int delka);<br />
+ ^~~~~<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:89:17: error: expected declaration specifiers or '...' before 'Tpole'</font><br />
+ void uvolniPole(Tpole *pole);<br />
+                 ^~~~~<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:107:1: error: unknown type name 'Tpole'</font><br />
+ Tpole * nactiSoubor(FILE *f)<br />
+ ^~~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: In function 'nactiSoubor':<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:118:10: error: 'pole' undeclared (first use in this function); did you mean 'Tpole'?</font><br />
+   Tpole *pole = novePole(pocetPrvku);<br />
+          ^~~~<br />
+          Tpole<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:118:10: note: each undeclared identifier is reported only once for each function it appears in<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: At top level:<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:149:32: error: expected declaration specifiers or '...' before 'Tpole'</font><br />
+ void vytiskniOpacne(FILE *out, Tpole * p)<br />
+                                ^~~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: In function 'main':<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:189:11: error: 'pole' undeclared (first use in this function); did you mean 'Tpole'?</font><br />
+   Tpole * pole = nactiSoubor(soubor);<br />
+           ^~~~<br />
+           Tpole<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:198:3: warning: implicit declaration of function 'vytiskniOpacne' [-Wimplicit-function-declaration]</font><br />
+   vytiskniOpacne(stdout, pole);<br />
+   ^~~~~~~~~~~~~~<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:203:3: warning: implicit declaration of function 'uvolniPole'; did you mean 'novePole'? [-Wimplicit-function-declaration]</font><br />
+   uvolniPole(pole);<br />
+   ^~~~~~~~~~<br />
+   novePole<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: At top level:<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:213:1: error: unknown type name 'Tpole'</font><br />
+ Tpole * novePole(int delka)<br />
+ ^~~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: In function 'novePole':<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:215:11: error: 'sp' undeclared (first use in this function)</font><br />
+   Tpole * sp = malloc(sizeof(Tpole));<br />
+           ^~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: At top level:<br />
+<font color="#ff0000">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:234:17: error: expected declaration specifiers or '...' before 'Tpole'</font><br />
+ void uvolniPole(Tpole *p)<br />
+                 ^~~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: In function 'nactiSoubor':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:136:1: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+ }<br />
+ ^<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c: In function 'novePole':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-cviko00-cteni-psani\main.c:232:1: warning: control reaches end of non-void function [-Wreturn-type]</font><br />
+ }<br />
+ ^<br />
+<font color="#a00000">Process terminated with status 1 (0 minute(s), 0 second(s))</font><br />
+<font color="#a00000">10 error(s), 6 warning(s) (0 minute(s), 0 second(s))</font><br />
+</tt>
+</body>
+</html>

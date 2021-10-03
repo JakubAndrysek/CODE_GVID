@@ -1,0 +1,33 @@
+<html>
+<head>
+<title>Ukol5-Znamky-vaha build log</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+<tt>
+Build started on: <u>16-12-2020 at 13:19.46</u><br />
+Build ended on: <u>16-12-2020 at 13:19.47</u><p />
+<b>-------------- Build: Debug in Ukol5-Znamky-vaha (compiler: GNU GCC Compiler)---------------</b><br />
+gcc.exe -Wall -g -std=c99 -pedantic -Wextra -Wall  -c R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c -o obj\Debug\main.o<br />
+R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c: In function 'znamky':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c:66:53: warning: implicit declaration of function 'round' [-Wimplicit-function-declaration]</font><br />
+     printf("%s -&gt; %g -&gt; %g\n", zn.jmeno, zn.prumer, round(zn.prumer));<br />
+                                                     ^~~~~<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c:66:53: warning: incompatible implicit declaration of built-in function 'round'</font><br />
+R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c:66:53: note: include '&lt;math.h&gt;' or provide a declaration of 'round'<br />
+R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c:10:1:<br />
++#include &lt;math.h&gt;<br />
+ // #include &lt;string.h&gt;  // pro praci s textovymi retezci<br />
+R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c:66:53:<br />
+     printf("%s -&gt; %g -&gt; %g\n", zn.jmeno, zn.prumer, round(zn.prumer));<br />
+                                                     ^~~~~<br />
+R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c: In function 'pocetZnamek':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\8-Soubory\Ukol5-Znamky-vaha\main.c:71:37: warning: unused parameter 'vystup' [-Wunused-parameter]</font><br />
+ void pocetZnamek(FILE* vstup, FILE* vystup)<br />
+                               ~~~~~~^~~~~~<br />
+gcc.exe  -o bin\Debug\Ukol5-Znamky-vaha.exe obj\Debug\main.o<br />
+Output file is bin\Debug\Ukol5-Znamky-vaha.exe with size 58.15 KB<br />
+<font color="#0000ff">Process terminated with status 0 (0 minute(s), 0 second(s))</font><br />
+<font color="#0000ff">0 error(s), 3 warning(s) (0 minute(s), 0 second(s))</font><br />
+</tt>
+</body>
+</html>
