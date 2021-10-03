@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1608120911 source:r:\github\c_gvid\skolni\8-soubory\ukol5-znamky-vaha\main.c
-	"gvid.h"
-	<stdio.h>
-	<stdlib.h>
-
-1593689749 r:\github\c_gvid\skolni\8-soubory\ukol5-znamky-vaha\gvid.h
-

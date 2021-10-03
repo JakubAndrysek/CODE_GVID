@@ -1,8 +1,0 @@
-# depslib dependency file v1.0
-1599647500 source:r:\github\c_gvid\skolni\5-retezce\opakovani2\main.c
-	"gvid.h"
-	<stdio.h>
-	<stdlib.h>
-
-1593693349 r:\github\c_gvid\skolni\5-retezce\opakovani2\gvid.h
-

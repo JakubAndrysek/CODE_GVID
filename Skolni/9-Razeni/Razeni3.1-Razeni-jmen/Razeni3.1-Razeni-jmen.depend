@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1611754034 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni3.1-Razeni-jmen/main.c
-	"gvid.h"
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
-1611751078 /media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni3.1-Razeni-jmen/gvid.h
-

@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1611751089 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni3-Bubble-sort/main.c
-	"gvid.h"
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
-1611749039 /media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/9-Razeni/Razeni3-Bubble-sort/gvid.h
-

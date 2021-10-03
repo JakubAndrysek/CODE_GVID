@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1605099759 source:/media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/8-Soubory/Ukol7-dopis/main.c
-	"gvid.h"
-	<stdio.h>
-	<stdlib.h>
-	<stdbool.h>
-
-1605090931 /media/kuba/Data/Github/Jakub_Andrysek/C_GVID/Skolni/8-Soubory/Ukol7-dopis/gvid.h
-
