@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>JakubAndrysek-pr5-04-fronta build log</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+<tt>
+Build started on: <u>13-10-2021 at 13:22.41</u><br />
+Build ended on: <u>13-10-2021 at 13:22.41</u><p />
+<b>-------------- Build: Debug in JakubAndrysek-pr5-04-fronta (compiler: GNU GCC Compiler)---------------</b><br />
+gcc.exe -Wall -g -std=c99 -pedantic -Wextra -Wall  -c R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c -o obj\Debug\main.o<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c: In function 'frEnqueue':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c:57:10: warning: 'return' with a value, in function returning void</font><br />
+   return NULL;<br />
+          ^~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c:54:6: note: declared here<br />
+ void frEnqueue(float hodnota, Tfronta * fronta) {<br />
+      ^~~~~~~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c: In function 'zrusSeznam':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c:105:18: warning: passing argument 1 of 'frDequeue' from incompatible pointer type [-Wincompatible-pointer-types]</font><br />
+  while(frDequeue(prvniPrvek, &amp;prvek)) {<br />
+                  ^~~~~~~~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c:77:26: note: expected 'Tfronta *' {aka 'struct &lt;anonymous&gt; *'} but argument is of type 'Tprvek *' {aka 'struct _prvek *'}<br />
+ bool frDequeue(Tfronta * fronta, float * hodnota) {<br />
+                ~~~~~~~~~~^~~~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c: In function 'main':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-04-fronta\main.c:132:8: warning: variable 'x' set but not used [-Wunused-but-set-variable]</font><br />
+  float x;<br />
+        ^<br />
+gcc.exe  -o bin\Debug\JakubAndrysek-pr5-04-fronta.exe obj\Debug\main.o<br />
+Output file is bin\Debug\JakubAndrysek-pr5-04-fronta.exe with size 56.79 KB<br />
+<font color="#0000ff">Process terminated with status 0 (0 minute(s), 0 second(s))</font><br />
+<font color="#0000ff">0 error(s), 3 warning(s) (0 minute(s), 0 second(s))</font><br />
+</tt>
+</body>
+</html>

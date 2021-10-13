@@ -1,0 +1,28 @@
+<html>
+<head>
+<title>JakubAndrysek-pr5-03-zavorky build log</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+<body>
+<tt>
+Build started on: <u>13-10-2021 at 11:56.13</u><br />
+Build ended on: <u>13-10-2021 at 11:56.14</u><p />
+<b>-------------- Build: Debug in JakubAndrysek-pr5-03-zavorky (compiler: GNU GCC Compiler)---------------</b><br />
+gcc.exe -Wall -g -std=c99 -pedantic -Wextra -Wall  -c R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-03-zavorky\main.c -o obj\Debug\main.o<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-03-zavorky\main.c: In function 'push':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-03-zavorky\main.c:53:10: warning: 'return' with a value, in function returning void</font><br />
+   return NULL;<br />
+          ^~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-03-zavorky\main.c:50:6: note: declared here<br />
+ void push(char hodnota, Tzasobnik * zasobnik) {<br />
+      ^~~~<br />
+R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-03-zavorky\main.c: In function 'pop':<br />
+<font color="#0000ff">R:\Github\C_GVID\Skolni\11-Dynamicke_datove_struktury\JakubAndrysek-pr5-03-zavorky\main.c:65:22: warning: initialization of 'char' from 'Tprvek *' {aka 'struct _prvek *'} makes integer from pointer without a cast [-Wint-conversion]</font><br />
+  char smazanyPrvek = zasobnik-&gt;vrchol;<br />
+                      ^~~~~~~~<br />
+gcc.exe  -o bin\Debug\JakubAndrysek-pr5-03-zavorky.exe obj\Debug\main.o<br />
+Output file is bin\Debug\JakubAndrysek-pr5-03-zavorky.exe with size 56.11 KB<br />
+<font color="#0000ff">Process terminated with status 0 (0 minute(s), 0 second(s))</font><br />
+<font color="#0000ff">0 error(s), 2 warning(s) (0 minute(s), 0 second(s))</font><br />
+</tt>
+</body>
+</html>
