@@ -3,5 +3,6 @@
 bin/
 obj/
 *.save
+*.bak
 private
 test

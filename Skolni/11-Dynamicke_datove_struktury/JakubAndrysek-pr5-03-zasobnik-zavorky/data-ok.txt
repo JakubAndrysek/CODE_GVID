@@ -1,0 +1,10 @@
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <title>Závorky 1</title>
+</head>
+<body>
+<h2>Toto je ok</h2>
+<p>a + b - {c * [d / [e + (f - g) / h ] + ((i * {2+j})- k / [l-m])] + n} - o + [q*{r+s}/(t-u) - w]</p>
+</body>
+</html>
