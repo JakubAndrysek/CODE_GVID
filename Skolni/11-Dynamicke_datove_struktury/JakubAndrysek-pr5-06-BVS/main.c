@@ -109,10 +109,44 @@ int main(void)
   Tstrom *strom = bvsInit();
 
   bvsVloz(strom, 5, 55);
-  bvsVloz(strom, 5, 55);
-  bvsVloz(strom, 4, 55);
+  bvsVloz(strom, 3, 55);
   bvsVloz(strom, 1, 55);
+  bvsVloz(strom, 2, 55);
+  bvsVloz(strom, 4, 55);
+
+  bvsVloz(strom, 9, 55);
+  bvsVloz(strom, 7, 55);
   bvsVloz(strom, 6, 55);
+  bvsVloz(strom, 8, 55);
+  bvsVloz(strom, 10, 55);
+
+
+  bvsTisk(strom);
+
+  bvsOdeber(strom, 5);
+
+  bvsTisk(strom);
+
+
+//  bvsVloz(strom, 5, 55);
+//  bvsVloz(strom, 4, 55);
+//  bvsVloz(strom, 2, 55);
+//  bvsVloz(strom, 1, 55);
+//  bvsVloz(strom, 6, 55);
+//  bvsVloz(strom, 8, 55);
+//  bvsVloz(strom, 9, 55);
+//  bvsVloz(strom, 3, 55);
+//
+//  bvsTisk(strom);
+//
+//  bvsOdeber(strom, 5);
+//  bvsTisk(strom);
+//  bvsOdeber(strom, 2);
+//  bvsTisk(strom);
+//  bvsOdeber(strom, 4);
+//
+//  bvsTisk(strom);
+
 
   char volba;
   int konec = 0;

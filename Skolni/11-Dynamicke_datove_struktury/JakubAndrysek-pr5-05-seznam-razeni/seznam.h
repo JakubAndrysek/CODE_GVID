@@ -15,20 +15,24 @@ struct _prvek {
 };
 
 typedef struct {
-//	Tprvek* zacatek;
-//	Tprvek* konec;
+	Tprvek* zacatek;
 	Tprvek* aktualni;
 	int delka;
 	int indexAktualniho;
 } Tseznam;
 
 Tseznam* seznamInitD();
-
 void seznamFree(Tseznam *sez);
+
+bool isEmpty(Tseznam* sez);
 bool seznamInsert(Tseznam* sez, float x);
 bool seznamRemove(Tseznam* sez, float* x);
-void seznamVypis()
+
+bool current(Tseznam* sez, float * data);
 bool next(Tseznam* sez);
 bool prev(Tseznam* sez);
+
+void seznamVypis(Tseznam* sez);
+
 
 #endif // SEZNAM_H_INCLUDED

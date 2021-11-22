@@ -10,53 +10,144 @@ Tprvek * novyPrvek(float hodnota) {
 	return prvek;
 }
 
-Tseznam* seznamInitD(){
-	Tseznam * seznam = malloc(sizeof(Tseznam));
-	if(seznam != NULL) {
-		seznam->zacatek = NULL;
-		seznam->konec= NULL;
-		seznam->aktualni = NULL;
-		seznam->indexAktualniho = -1;
-		seznam->delka = 0;
-	}
-	return seznam;
-}
-
-void seznamFree(Tseznam *sez){
+Tseznam* seznamInitD() {
+	Tseznam * sez = malloc(sizeof(Tseznam));
 	if(sez != NULL) {
-
+		sez->zacatek = NULL;
+		sez->aktualni = NULL;
+		sez->indexAktualniho = -1;
+		sez->delka = 0;
 	}
+	return sez;
+}
 
+void seznamFree(Tseznam *sez) {
+	float pom;
+	while(!isEmpty(sez)) {
+		seznamRemove(sez, &pom);
+	}
 }
 
 
-bool seznamInsert(Tseznam* sez, float hodnota){
+bool seznamInsert(Tseznam* sez, float hodnota) {
 	Tprvek * nPrvek;
-	if(nPrvek = novyPrvek(hodnota) == NULL) {
+	if((nPrvek = novyPrvek(hodnota)) == NULL) {
 		return false;
 	}
+	Tprvek * aktual = sez->aktualni;
 
-	if(sez->zacatek==NULL && sez->konec==NULL && sez->aktualni==NULL) {
+	if(isEmpty(sez)) { // prazdny seznam
+		nPrvek->dalsi = nPrvek;
+		nPrvek->pred = nPrvek;
+		aktual = nPrvek;
 		sez->zacatek = nPrvek;
-		sez->konec = nPrvek;
-		sez->aktualni = nPrvek;
-	}else {
+	}else if(sez->aktualni == sez->zacatek) { // jeden prvek
+		aktual->dalsi = nPrvek;
+		nPrvek->pred = aktual;
+		aktual->pred = nPrvek;
+		nPrvek->dalsi = aktual;
+	} else { // 2 a vice prvku
 		nPrvek->pred = sez->aktualni;
 		nPrvek->dalsi = sez->aktualni->dalsi;
 		sez->aktualni->dalsi->pred = nPrvek;
 		sez->aktualni->dalsi = nPrvek;
 	}
+	sez->aktualni = nPrvek;
 	return true;
 }
 
 
-bool seznamRemove(Tseznam* ssez, float* x){
-
+bool isEmpty(Tseznam* sez) {
+	return ((sez == NULL) || (sez->zacatek == NULL) || (sez->aktualni == NULL));
 }
-bool next(Tseznam* sez){
 
+//
+//bool seznamRemove(Tseznam* sez, float* x) {
+//	if(isEmpty(sez)) {
+//		printf("Neni co vymazat\n");
+//		return false;
+//	}
+//	*x = sez->aktualni->dalsi->hodnota;
+//
+//	if(sez->aktualni == sez->zacatek) {
+//		sez->zacatek = NULL;
+//		sez->aktualni = NULL;
+//		sez->indexAktualniho = -1;
+//		sez->delka = 0;
+//	} else {
+//		Tprvek * aktual = sez->aktualni;
+//		Tprvek * pomDalsi = aktual->dalsi;
+//		aktual->dalsi = aktual->dalsi->dalsi;
+//		aktual->dalsi->pred = aktual;
+//	}
+//	return true;
+//}
+
+
+bool seznamRemove(Tseznam* sez, float* x) {
+	if(isEmpty(sez)) {
+		printf("Neni co vymazat\n");
+		return false;
+	}
+	*x = sez->aktualni->hodnota;
+
+	if(sez->aktualni == sez->zacatek) {
+		sez->zacatek = NULL;
+		sez->aktualni = NULL;
+		sez->indexAktualniho = -1;
+		sez->delka = 0;
+	} else {
+		Tprvek * aktual = sez->aktualni;
+		aktual->pred->dalsi = aktual->dalsi;
+		aktual->dalsi->pred = aktual->pred;
+		sez->aktualni = aktual->pred;
+		free(aktual);
+	}
+	return true;
 }
-bool prev(Tseznam* sez){
+
+
+bool current(Tseznam* sez, float * data) {
+	if(isEmpty(sez)) {
+		printf("Neni co posunout\n");
+		return false;
+	}
+
+	*data = sez->aktualni->hodnota;
+	return true;
+}
+
+
+bool next(Tseznam* sez) {
+	if(isEmpty(sez)) {
+		printf("Neni co posunout\n");
+		return false;
+	}
+	sez->aktualni = sez->aktualni->dalsi;
+	return true;
+}
+
+
+bool prev(Tseznam* sez) {
+	if(isEmpty(sez)) {
+		printf("Neni co posunout\n");
+		return false;
+	}
+	sez->aktualni = sez->aktualni->pred;
+	return true;
+}
+
+void seznamVypis(Tseznam* sez) {
+	if(isEmpty(sez)) {
+		printf("Neni co vypsat\n");
+		return;
+	}
+	Tprvek * pom = sez->zacatek;
+
+	do {
+		printf("%g\n", pom->hodnota);
+		pom = pom->dalsi;
+	} while(pom != sez->zacatek);
 
 }
 

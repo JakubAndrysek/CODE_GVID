@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "strom.h"
+#include "gvid.h"
 
 // Tohle uživatel vidět nemusí. Ještě by mi do toho vlezl a něco mi tu poničil.
 struct _tuzel
@@ -71,23 +72,29 @@ Tuzel *_novyUzel(int klic, float data)
 
 bool _bvsVloz(Tuzel **u, int klic, float data)
 {
-  Tuzel *pom = *u;
+	Tuzel *pom = *u;
 
   // Prazdny strom
   if(pom == NULL) {
-
     pom = _novyUzel(klic, data);
     if(pom == NULL) {
       return false;
     }
-    *u = pom;
-    return true;
+      *u = pom;
+      return true;
   }
   else if(klic == pom->klic) {
     printf("Klic '%d' uz existuje\n", klic);
     return false;
   }
-//  else if
+  // Klic je mensi do leva
+  else if(klic < pom->klic) {
+    _bvsVloz(&pom->levy, klic, data);
+  }
+  // Klic je vetsi do prava
+  else {
+    _bvsVloz(&pom->pravy, klic, data);
+  }
 
 }
 
@@ -104,12 +111,28 @@ bool bvsVloz(Tstrom *strom, int klic, float data)
 /** Zruší zadaný uzel. */
 void _zrusUzel(Tuzel **uzel)
 {
+  Tuzel *pom = *uzel;
 
+  if(pom->levy == NULL && pom->pravy == NULL){
+    dprintf("Smazan klic: '%d' (bez potomku)\n", pom->data);
+    free(*uzel);
+    *uzel = NULL;
+  } else if(pom->levy != NULL && pom->pravy != NULL){
+    dprintf("Smazan klic: '%d' (oba potomci)\n", pom->data);
+      *uzel = pom->pravy;
+      (*uzel)->levy = pom->levy;
+  } else {
+    dprintf("Smazan klic: '%d' (jeden potomek)\n", pom->data);
 
+    if(pom->levy != NULL) {
+      *uzel = pom->levy;
 
+    } else if(pom->pravy != NULL) { // neni potreba
+      *uzel = pom->pravy;
 
+    }
+  }
 
-  printf("### A jeje! Zruseni nalezeneho uzlu jeste neni hotove. ###\n");
 
 
 
