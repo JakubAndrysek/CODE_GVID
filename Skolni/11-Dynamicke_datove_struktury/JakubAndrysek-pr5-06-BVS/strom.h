@@ -82,5 +82,9 @@ bool bvsOdeber(Tstrom *strom, int klic);
  */
 void bvsTisk(Tstrom *strom);
 
+int bvsVyska(Tstrom *strom);
+void bvsPreorder(Tstrom *strom);
+void bvsInorder(Tstrom *strom);
+void bvsPostorder(Tstrom *strom);
 
 #endif // STROM_H_INCLUDED

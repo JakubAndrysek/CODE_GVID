@@ -6,3 +6,4 @@ obj/
 *.bak
 private
 test
+_build_log.html

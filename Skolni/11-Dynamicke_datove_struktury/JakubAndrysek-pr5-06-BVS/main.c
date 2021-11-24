@@ -25,9 +25,9 @@
 
 void operace1(Tstrom *strom)
 {
-//Úkol1: Realizuj v modulu funkci, která zjistí výšku stromu
-//a vyzkoušej ji tady.
-  printf("Tato operace jeste nebyla vytvorena.\n");
+  //Úkol1: Realizuj v modulu funkci, která zjistí výšku stromu
+  int vyska = bvsVyska(strom);
+  printf("Strom ma vysku: %d\n", vyska);
 }
 
 void operace2(Tstrom *strom)
@@ -35,7 +35,8 @@ void operace2(Tstrom *strom)
 //Úkol 2: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
 //preorder a vyzkoušej ji tady.
 //Na každý řádek vypisuj dvojici klíč-data.
-  printf("Tato operace jeste nebyla vytvorena.\n");
+  printf("Vypis preorder\n");
+  bvsPreorder(strom);
 }
 
 void operace3(Tstrom *strom)

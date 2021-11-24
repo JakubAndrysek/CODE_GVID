@@ -109,7 +109,7 @@ bool bvsVloz(Tstrom *strom, int klic, float data)
 }
 
 /** Zruší zadaný uzel. */
-void _zrusUzel(Tuzel **uzel)
+bool _zrusUzel(Tuzel **uzel)
 {
   Tuzel *pom = *uzel;
   if(pom == NULL) {
@@ -171,6 +171,70 @@ bool bvsOdeber(Tstrom *strom, int klic)
   return false;
 }
 
+// je stejny jako funkce _bvsPom2
+int _bvsVyska(Tuzel *uzel) {
+  if(uzel == NULL) {
+    return 0;
+  } else {
+    int levy = _bvsVyska(uzel->levy);
+    int pravy = _bvsVyska(uzel->pravy);
+    if(levy>pravy) {
+      return 1+levy;
+    } else {
+      return 1+pravy;
+    }
+  }
+}
+
+int bvsVyska(Tstrom *strom) {
+  return _bvsVyska(strom->koren);
+}
+
+// PreOrder
+void _bvsPreorder(Tuzel* uzel){
+  if(uzel == NULL) {
+    return ;
+  }
+
+  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
+  _bvsPreorder(uzel->levy);
+  _bvsPreorder(uzel->pravy);
+}
+
+void bvsPreorder(Tstrom *strom) {
+  return _bvsPreorder(strom->koren);
+}
+
+
+// InOrder
+void _bvsInorder(Tuzel* uzel){
+  if(uzel == NULL) {
+    return;
+  }
+
+  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
+  _bvsInorder(uzel->levy);
+  _bvsInorder(uzel->pravy);
+}
+
+void bvsPreorder(Tstrom *strom) {
+  return _bvsPreorder(strom->koren);
+}
+
+// PostOrder
+void _bvsPostorder(Tuzel* uzel){
+  if(uzel == NULL) {
+    return;
+  }
+
+  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
+  _bvsPostorder(uzel->levy);
+  _bvsPostorder(uzel->pravy);
+}
+
+void bvsPostorder(Tstrom *strom) {
+  return _bvsPreorder(strom->koren);
+}
 
 /** Pomocna funkce pro tisk stromu. */
 unsigned int _bvsPom1(Tuzel *u)
