@@ -112,31 +112,36 @@ bool bvsVloz(Tstrom *strom, int klic, float data)
 void _zrusUzel(Tuzel **uzel)
 {
   Tuzel *pom = *uzel;
-
-  if(pom->levy == NULL && pom->pravy == NULL){
-    dprintf("Smazan klic: '%d' (bez potomku)\n", pom->data);
-    free(*uzel);
-    *uzel = NULL;
-  } else if(pom->levy != NULL && pom->pravy != NULL){
-    dprintf("Smazan klic: '%d' (oba potomci)\n", pom->data);
-      *uzel = pom->pravy;
-      (*uzel)->levy = pom->levy;
-  } else {
-    dprintf("Smazan klic: '%d' (jeden potomek)\n", pom->data);
-
-    if(pom->levy != NULL) {
-      *uzel = pom->levy;
-
-    } else if(pom->pravy != NULL) { // neni potreba
-      *uzel = pom->pravy;
-
-    }
+  if(pom == NULL) {
+    return false;
   }
 
+  if(pom->levy == NULL) {
+    *uzel = pom->pravy;
+    free(pom);
+    return true;
+  }
 
+  if(pom->pravy == NULL) {
+    *uzel = pom->levy;
+    free(pom);
+    return true;
+  }
 
+  if(pom->levy->pravy == NULL) {
+    pom->klic = pom->levy->klic;
+    pom->data = pom->levy->data;
+    return _zrusUzel(&pom->levy);
+  }
 
+  pom = pom->levy;
+  while(pom->pravy->pravy != NULL) {
+    pom = pom->pravy;
+  }
 
+  (*uzel)->klic = pom->pravy->klic;
+  (*uzel)->data = pom->pravy->data;
+  return _zrusUzel(&pom->pravy);
 
 }
 
