@@ -3,7 +3,7 @@
 
 /*
  * Projekt: Binární vyhledávací strom
- * Autor: David Martinek
+ * Autor: David Martinek a Jakub Andrysek
  * Datum: 2020-11-11
  * Popis
  * Toto je hlavičkový soubor - obsahuje deklarace konstant, typů a hlavičky
@@ -86,5 +86,8 @@ int bvsVyska(Tstrom *strom);
 void bvsPreorder(Tstrom *strom);
 void bvsInorder(Tstrom *strom);
 void bvsPostorder(Tstrom *strom);
+
+int bvsVyvazeni(Tstrom *strom);
+bool bvsJeVyvazeny(Tstrom *strom);
 
 #endif // STROM_H_INCLUDED

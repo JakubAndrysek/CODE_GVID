@@ -32,40 +32,46 @@ void operace1(Tstrom *strom)
 
 void operace2(Tstrom *strom)
 {
-//Úkol 2: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
-//preorder a vyzkoušej ji tady.
-//Na každý řádek vypisuj dvojici klíč-data.
+  //Úkol 2: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
+  //preorder a vyzkoušej ji tady.
   printf("Vypis preorder\n");
   bvsPreorder(strom);
 }
 
 void operace3(Tstrom *strom)
 {
-//Úkol 3: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
-//postorder a vyzkoušej ji tady.
-//Na každý řádek vypisuj dvojici klíč-data.
-  printf("Tato operace jeste nebyla vytvorena.\n");
+  //Úkol 3: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
+  //inorder a vyzkoušej ji tady.
+  printf("Vypis inorder\n");
+  bvsInorder(strom);
 }
 
 void operace4(Tstrom *strom)
 {
-//Úkol 4: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
-//inorder a vyzkoušej ji tady.
-//Na každý řádek vypisuj dvojici klíč-data.
-  printf("Tato operace jeste nebyla vytvorena.\n");
+  //Úkol 4: Realizuj v modulu funkci, která vypíše prvky stromu průchodem
+  //postorder a vyzkoušej ji tady.
+  printf("Vypis postorder\n");
+  bvsPostorder(strom);
+
 }
 
 void operace5(Tstrom *strom)
 {
-//Úkol 5: Realizuj v modulu funkci, která zjistí, zda je strom vyvážený.
-//Úkol 6: Tady (mimo modul) napiš algoritmus, který strom vyváží.
-//Návod:
-//- Ulož si obsahy uzlů do pole seřazené podle klíčů.
-//- (Vzpomeň si na princip průchodu polem při binárním vyhledávání.)
-//- Vlož do stromu prostřední prvek pole.
-//-- Pak totéž udělej rekurzivně s levou půlkou pole.
-//-- Pak totéž udělej rekurzivně s pravou půlkou pole.
-  printf("Tato operace jeste nebyla vytvorena.\n");
+  // https://www.geeksforgeeks.org/how-to-determine-if-a-binary-tree-is-balanced/
+  //Úkol 5: Realizuj v modulu funkci, která zjistí, zda je strom vyvážený.
+  printf("Vyvazenost: %d | je vyvazeny (bool): %d", bvsVyvazeni(strom), bvsJeVyvazeny(strom));
+}
+
+void operace6(Tstrom *strom)
+{
+  // https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/
+  //Úkol 6: Tady (mimo modul) napiš algoritmus, který strom vyváží.
+  //Návod:
+  //- Ulož si obsahy uzlů do pole seřazené podle klíčů.
+  //- (Vzpomeň si na princip průchodu polem při binárním vyhledávání.)
+  //- Vlož do stromu prostřední prvek pole.
+  //-- Pak totéž udělej rekurzivně s levou půlkou pole.
+  //-- Pak totéž udělej rekurzivně s pravou půlkou pole.
 }
 
 
@@ -82,11 +88,12 @@ void menu(void)
     "Konec.................................K\n"
     "---------------------------------------\n"
     "Doplnene operace\n"
-    "Ukol 1. xxxxxxxxxxxxxxxxx.............1\n"
-    "Ukol 2. xxxxxxxxxxxxxxxxx.............2\n"
-    "Ukol 3. xxxxxxxxxxxxxxxxx.............3\n"
-    "Ukol 4. xxxxxxxxxxxxxxxxx.............4\n"
-    "Ukol 5. xxxxxxxxxxxxxxxxx.............5\n"
+    "Ukol 1. Vyska stromu\n"
+    "Ukol 2. Vypis preorder\n"
+    "Ukol 3. Vypis inorder\n"
+    "Ukol 4. Vypis postorder\n"
+    "Ukol 5. Vyvazenost\n"
+    "Ukol 6. Vyvaz strom\n"
     "\n"
     "Tva volba: "
   );
@@ -104,11 +111,7 @@ char zjistiVolbu(void)
   return volba;
 }
 
-/********************************* MAIN ***********************************/
-int main(void)
-{
-  Tstrom *strom = bvsInit();
-
+void prvniNastaveni(Tstrom *strom) {
   bvsVloz(strom, 5, 55);
   bvsVloz(strom, 3, 55);
   bvsVloz(strom, 1, 55);
@@ -121,33 +124,26 @@ int main(void)
   bvsVloz(strom, 8, 55);
   bvsVloz(strom, 10, 55);
 
+  bvsTisk(strom);
+}
+
+void prvniNastaveniNevyvazeny(Tstrom *strom) {
+  bvsVloz(strom, 6, 55);
+  bvsVloz(strom, 5, 55);
+  bvsVloz(strom, 7, 55);
+  bvsVloz(strom, 3, 55);
+  bvsVloz(strom, 2, 55);
 
   bvsTisk(strom);
+}
 
-  bvsOdeber(strom, 5);
+/********************************* MAIN ***********************************/
+int main(void)
+{
+  Tstrom *strom = bvsInit();
 
-  bvsTisk(strom);
-
-
-//  bvsVloz(strom, 5, 55);
-//  bvsVloz(strom, 4, 55);
-//  bvsVloz(strom, 2, 55);
-//  bvsVloz(strom, 1, 55);
-//  bvsVloz(strom, 6, 55);
-//  bvsVloz(strom, 8, 55);
-//  bvsVloz(strom, 9, 55);
-//  bvsVloz(strom, 3, 55);
-//
-//  bvsTisk(strom);
-//
-//  bvsOdeber(strom, 5);
-//  bvsTisk(strom);
-//  bvsOdeber(strom, 2);
-//  bvsTisk(strom);
-//  bvsOdeber(strom, 4);
-//
-//  bvsTisk(strom);
-
+  // prvniNastaveni(strom);
+  prvniNastaveniNevyvazeny(strom);
 
   char volba;
   int konec = 0;
@@ -179,6 +175,9 @@ int main(void)
         operace5(strom);
       break;
 
+      case '6': // Úkol 5=6
+        operace6(strom);
+      break;
 
 
       case 'I': // Inicializace / zrušení

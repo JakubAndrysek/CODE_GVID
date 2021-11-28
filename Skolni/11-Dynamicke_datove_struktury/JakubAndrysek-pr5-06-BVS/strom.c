@@ -1,6 +1,6 @@
 /*
  * Projekt: Binární vyhledávací strom
- * Autor: David Martinek
+ * Autor: David Martinek a Jakub Andrysek
  * Datum: 2020-11-11
  * Popis
  * Implementace funkcí realizující binární vyhledávací strom.
@@ -212,13 +212,13 @@ void _bvsInorder(Tuzel* uzel){
     return;
   }
 
-  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
   _bvsInorder(uzel->levy);
+  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
   _bvsInorder(uzel->pravy);
 }
 
-void bvsPreorder(Tstrom *strom) {
-  return _bvsPreorder(strom->koren);
+void bvsInorder(Tstrom *strom) {
+  return _bvsInorder(strom->koren);
 }
 
 // PostOrder
@@ -226,15 +226,44 @@ void _bvsPostorder(Tuzel* uzel){
   if(uzel == NULL) {
     return;
   }
-
-  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
   _bvsPostorder(uzel->levy);
   _bvsPostorder(uzel->pravy);
+  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
 }
 
 void bvsPostorder(Tstrom *strom) {
-  return _bvsPreorder(strom->koren);
+  return _bvsPostorder(strom->koren);
 }
+
+int _bvsVyvazeni(Tuzel *uzel) {
+  if(uzel == NULL) {
+    return 0;
+  } else {
+    int levy = _bvsVyvazeni(uzel->levy);
+    int pravy = _bvsVyvazeni(uzel->pravy);
+
+    return abs(pravy-levy)+1;
+    // return levy+pravy+1;
+  }
+}
+
+
+int bvsVyvazeni(Tstrom *strom) {
+  int vyvazenost = _bvsVyvazeni(strom->koren);
+  if (vyvazenost>0) {
+    return vyvazenost;
+  }
+
+  return 0; 
+}
+
+
+bool bvsJeVyvazeny(Tstrom *strom) {
+  return bvsVyvazeni(strom)<=1;
+}
+
+
+/////////////////////////////
 
 /** Pomocna funkce pro tisk stromu. */
 unsigned int _bvsPom1(Tuzel *u)
