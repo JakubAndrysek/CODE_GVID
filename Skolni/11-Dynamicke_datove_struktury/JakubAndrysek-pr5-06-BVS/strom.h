@@ -21,6 +21,15 @@
 typedef struct _tuzel Tuzel;
 // Vnitřek typu Tuzel je ukryt v souboru strom.c.
 
+// Tohle uživatel vidět nemusí. Ještě by mi do toho vlezl a něco mi tu poničil.
+struct _tuzel
+{
+  int klic;           //< Klíč pro vyhledávání -- zde celé číslo
+  float data;         //< Data vázaná na klíč -- zde desetinné číslo
+  Tuzel* levy;   //< Ukazatel na levý podstrom
+  Tuzel* pravy;  //< Ukazatel na pravý podstrom
+};
+
 
 /** Struktura reprezentující celý strom. */
 typedef struct _strom Tstrom;
@@ -89,5 +98,7 @@ void bvsPostorder(Tstrom *strom);
 
 int bvsVyvazeni(Tstrom *strom);
 bool bvsJeVyvazeny(Tstrom *strom);
+
+void bvsStromNaPole(Tstrom* strom, Tuzel *uzel[], int *index);
 
 #endif // STROM_H_INCLUDED

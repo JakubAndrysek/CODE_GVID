@@ -10,16 +10,6 @@
 #include "strom.h"
 #include "gvid.h"
 
-// Tohle uživatel vidět nemusí. Ještě by mi do toho vlezl a něco mi tu poničil.
-struct _tuzel
-{
-  int klic;           //< Klíč pro vyhledávání -- zde celé číslo
-  float data;         //< Data vázaná na klíč -- zde desetinné číslo
-  Tuzel* levy;   //< Ukazatel na levý podstrom
-  Tuzel* pravy;  //< Ukazatel na pravý podstrom
-};
-
-
 
 Tstrom *bvsInit(void)
 {
@@ -95,7 +85,7 @@ bool _bvsVloz(Tuzel **u, int klic, float data)
   else {
     _bvsVloz(&pom->pravy, klic, data);
   }
-
+  return true;
 }
 
 bool bvsVloz(Tstrom *strom, int klic, float data)
@@ -202,7 +192,7 @@ void _bvsPreorder(Tuzel* uzel){
 }
 
 void bvsPreorder(Tstrom *strom) {
-  return _bvsPreorder(strom->koren);
+  _bvsPreorder(strom->koren);
 }
 
 
@@ -218,7 +208,7 @@ void _bvsInorder(Tuzel* uzel){
 }
 
 void bvsInorder(Tstrom *strom) {
-  return _bvsInorder(strom->koren);
+  _bvsInorder(strom->koren);
 }
 
 // PostOrder
@@ -232,7 +222,7 @@ void _bvsPostorder(Tuzel* uzel){
 }
 
 void bvsPostorder(Tstrom *strom) {
-  return _bvsPostorder(strom->koren);
+  _bvsPostorder(strom->koren);
 }
 
 int _bvsVyvazeni(Tuzel *uzel) {
@@ -241,25 +231,36 @@ int _bvsVyvazeni(Tuzel *uzel) {
   } else {
     int levy = _bvsVyvazeni(uzel->levy);
     int pravy = _bvsVyvazeni(uzel->pravy);
-
-    return abs(pravy-levy)+1;
-    // return levy+pravy+1;
+    if(abs(levy-pravy)<=1) {
+      return pravy+levy+1;
+    }
+    return -1;
   }
 }
 
 
 int bvsVyvazeni(Tstrom *strom) {
-  int vyvazenost = _bvsVyvazeni(strom->koren);
-  if (vyvazenost>0) {
-    return vyvazenost;
-  }
-
-  return 0; 
+  return _bvsVyvazeni(strom->koren);
 }
 
 
 bool bvsJeVyvazeny(Tstrom *strom) {
-  return bvsVyvazeni(strom)<=1;
+  return bvsVyvazeni(strom)>=0;
+}
+
+void _bvsStromNaPole(Tuzel* uzel, Tuzel *pole[], int *index) {
+  if (uzel == NULL) {
+    return;
+  }
+
+  _bvsStromNaPole(uzel->levy, pole, index);
+  pole[*index] = uzel;
+  (*index)++;
+  _bvsStromNaPole(uzel->pravy, pole, index);
+}
+
+void bvsStromNaPole(Tstrom* strom, Tuzel *uzel[], int *index) {
+  _bvsStromNaPole(strom->koren, uzel, index);
 }
 
 

@@ -62,6 +62,21 @@ void operace5(Tstrom *strom)
   printf("Vyvazenost: %d | je vyvazeny (bool): %d", bvsVyvazeni(strom), bvsJeVyvazeny(strom));
 }
 
+
+void vytvorVyvazeny(Tstrom *strom, Tuzel* pole[], int from, int to) {
+
+  if(from > to) {
+    return;
+  }
+
+  int mid = (from+to)/2;
+  bvsVloz(strom, pole[mid]->klic, pole[mid]->data);
+
+  vytvorVyvazeny(strom, pole, from, mid-1);
+  vytvorVyvazeny(strom, pole, mid+1, to);
+}
+
+
 void operace6(Tstrom *strom)
 {
   // https://www.geeksforgeeks.org/convert-normal-bst-balanced-bst/
@@ -72,9 +87,22 @@ void operace6(Tstrom *strom)
   //- Vlož do stromu prostřední prvek pole.
   //-- Pak totéž udělej rekurzivně s levou půlkou pole.
   //-- Pak totéž udělej rekurzivně s pravou půlkou pole.
+
+  int pocetPrvku = bvsVaha(strom);
+
+  Tuzel *pole[pocetPrvku];
+  int delkaPole = 0;
+
+  bvsStromNaPole(strom, pole, &delkaPole);
+  int mid = delkaPole/2;
+
+  Tstrom *vyvazeny = bvsInit();
+
+  vytvorVyvazeny(vyvazeny, pole, 0, delkaPole-1);
+
+  printf("Vyvazeny strom: pouze zeobrzeni (na vychozim strome se nic neprojevi)\n");
+  bvsTisk(vyvazeny);
 }
-
-
 
 /** Vytiskne uživatelské menu*/
 void menu(void)
@@ -117,7 +145,6 @@ void prvniNastaveni(Tstrom *strom) {
   bvsVloz(strom, 1, 55);
   bvsVloz(strom, 2, 55);
   bvsVloz(strom, 4, 55);
-
   bvsVloz(strom, 9, 55);
   bvsVloz(strom, 7, 55);
   bvsVloz(strom, 6, 55);
@@ -133,6 +160,9 @@ void prvniNastaveniNevyvazeny(Tstrom *strom) {
   bvsVloz(strom, 7, 55);
   bvsVloz(strom, 3, 55);
   bvsVloz(strom, 2, 55);
+  bvsVloz(strom, 1, 55);
+  bvsVloz(strom, 0, 55);
+  bvsVloz(strom, -1, 55);
 
   bvsTisk(strom);
 }
@@ -175,7 +205,7 @@ int main(void)
         operace5(strom);
       break;
 
-      case '6': // Úkol 5=6
+      case '6': // Úkol 6
         operace6(strom);
       break;
 
