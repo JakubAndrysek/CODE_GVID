@@ -6,4 +6,5 @@ obj/
 *.bak
 private
 test
-_build_log.html
+*_build_log.html
+.vscode
