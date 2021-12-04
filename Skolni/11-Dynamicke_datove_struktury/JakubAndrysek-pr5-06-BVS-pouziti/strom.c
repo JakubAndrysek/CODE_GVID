@@ -7,6 +7,7 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "strom.h"
 #include "gvid.h"
 
@@ -50,17 +51,17 @@ int bvsVaha(Tstrom* strom)
 }
 
 
-Tuzel *_novyUzel(int klic, float data)
+Tuzel *_novyUzel(char klic[], char data[])
 {
   Tuzel *u = malloc(sizeof(Tuzel));
   if (u == NULL) return NULL;
-  u->klic = klic;
-  u->data = data;
+  strcpy(u->klic, klic);
+  strcpy(u->data, data);
   u->levy = u->pravy = NULL;
   return u;
 }
 
-bool _bvsVloz(Tuzel **u, int klic, float data)
+bool _bvsVloz(Tuzel **u, char klic[], char data[])
 {
 	Tuzel *pom = *u;
 
@@ -73,12 +74,12 @@ bool _bvsVloz(Tuzel **u, int klic, float data)
       *u = pom;
       return true;
   }
-  else if(klic == pom->klic) {
-    printf("Klic '%d' uz existuje\n", klic);
+  else if(strcmp(klic, pom->klic)==0) {
+    printf("Klic '%s' uz existuje\n", klic);
     return false;
   }
   // Klic je mensi do leva
-  else if(klic < pom->klic) {
+  else if(strcmp(klic, pom->klic)<0) {
     _bvsVloz(&pom->levy, klic, data);
   }
   // Klic je vetsi do prava
@@ -88,7 +89,7 @@ bool _bvsVloz(Tuzel **u, int klic, float data)
   return true;
 }
 
-bool bvsVloz(Tstrom *strom, int klic, float data)
+bool bvsVloz(Tstrom *strom, char klic[], char data[])
 {
   if (_bvsVloz(&strom->koren, klic, data))
   {
@@ -119,8 +120,8 @@ bool _zrusUzel(Tuzel **uzel)
   }
 
   if(pom->levy->pravy == NULL) {
-    pom->klic = pom->levy->klic;
-    pom->data = pom->levy->data;
+    strcpy(pom->levy->klic, pom->klic);
+    strcpy(pom->levy->data, pom->data);
     return _zrusUzel(&pom->levy);
   }
 
@@ -129,29 +130,30 @@ bool _zrusUzel(Tuzel **uzel)
     pom = pom->pravy;
   }
 
-  (*uzel)->klic = pom->pravy->klic;
-  (*uzel)->data = pom->pravy->data;
+  strcpy(pom->pravy->klic, (*uzel)->klic);
+  strcpy(pom->pravy->data, (*uzel)->data);
   return _zrusUzel(&pom->pravy);
 
 }
 
-bool _bvsOdeber(Tuzel **u, int klic)
+bool _bvsOdeber(Tuzel **u, char klic[])
 {
   Tuzel *uzel = *u;
   if (uzel == NULL) return false;
-  if (klic == uzel->klic)
+  int rozdil = strcmp(klic, uzel->klic);
+  if (rozdil==0)
   {
     _zrusUzel(u); // tady se předává odkazem, i když to tak nevypadá! u se změní
     return true;
   }
-  else if (klic < uzel->klic)
+  else if (rozdil) //Mozna chyba
     return _bvsOdeber(&uzel->levy, klic);
   else
     return _bvsOdeber(&uzel->pravy, klic);
 }
 
 
-bool bvsOdeber(Tstrom *strom, int klic)
+bool bvsOdeber(Tstrom *strom, char klic[])
 {
   if (_bvsOdeber(&strom->koren, klic))
   {
@@ -186,7 +188,7 @@ void _bvsPreorder(Tuzel* uzel){
     return ;
   }
 
-  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
+  printf("Klic: %s -> data: %s\n", uzel->klic, uzel->data);
   _bvsPreorder(uzel->levy);
   _bvsPreorder(uzel->pravy);
 }
@@ -203,7 +205,7 @@ void _bvsInorder(Tuzel* uzel){
   }
 
   _bvsInorder(uzel->levy);
-  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
+  printf("Klic: %s -> data: %s\n", uzel->klic, uzel->data);
   _bvsInorder(uzel->pravy);
 }
 
@@ -218,7 +220,7 @@ void _bvsPostorder(Tuzel* uzel){
   }
   _bvsPostorder(uzel->levy);
   _bvsPostorder(uzel->pravy);
-  printf("Klic: %d -> data: %f\n", uzel->klic, uzel->data);
+  printf("Klic: %s -> data: %s\n", uzel->klic, uzel->data);
 }
 
 void bvsPostorder(Tstrom *strom) {
@@ -310,7 +312,7 @@ void _stromNaPole(Tuzel *uzel, Tuzel *uzly[], unsigned int uroven[], int *index,
  * nastaveny na NULL, ale jsou v nich náhodné adresy, skončí tato operace
  * havárií.
  */
-void bvsTisk(Tstrom *strom)
+void bvsTisk(Tstrom *strom, FILE* vystup)
 {
   if (strom->koren == NULL)
   {
@@ -329,21 +331,21 @@ void bvsTisk(Tstrom *strom)
 
   for (unsigned int u = 0; u < nn; u++)
   {
-    printf("Uroven %2d: ", u);
+    fprintf(vystup, "Uroven %2d: ", u);
     for(unsigned int i = 0; i < mm; i++)
     {
       if(uroven[i] == u)
       {
-        printf("%s[%4d]%s",
+        fprintf(vystup, "%s[%s]%s",
                (uzly[i]->levy == NULL)? "|-" : "<-",
                uzly[i]->klic,
                (uzly[i]->pravy == NULL)? "-|" : "->");
       }
       else
       {
-        printf("          ");
+        fprintf(vystup, "          ");
       }
     }
-    printf("\n");
+    fprintf(vystup, "\n");
   }
 }

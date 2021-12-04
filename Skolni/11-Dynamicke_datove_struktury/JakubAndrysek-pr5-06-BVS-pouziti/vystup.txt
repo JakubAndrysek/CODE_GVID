@@ -1,0 +1,11 @@
+Uroven  0:           <-[d]->                                                                                
+Uroven  1: |-[b]-|                                                  <-[m]->                              
+Uroven  2:                                         <-[h]->                    |-[p]->                    
+Uroven  3:                     |-[e]->                    |-[l]-|                    |-[q]->          
+Uroven  4:                               |-[f]-|                                                  |-[u]-|
+                        <-[Luděk]->                                                            |-[Samuel]-|          
+Uroven  3:                               <-[Augustin]->                                                                                          <-[Otokar]->                                                            
+Uroven  4: |-[Adela]->                              |-[Augustýn]->                                                                      |-[Otakar]-|          |-[Paulína]->                                                  
+Uroven  5:           |-[Adléta]->                                                            <-[Evelína]->                                                            |-[Pavlína]-|                                        
+Uroven  6:                     |-[Adéla]-|                              <-[Evelin]->                              <-[Linda]-|                                                                                          
+Uroven  7:                                                   |-[Bronislav]-|          |-[Evelina]-|          |-[Henrieta]-|                                                                                                    

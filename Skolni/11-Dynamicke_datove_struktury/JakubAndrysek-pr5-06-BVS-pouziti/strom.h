@@ -24,8 +24,8 @@ typedef struct _tuzel Tuzel;
 // Tohle uživatel vidět nemusí. Ještě by mi do toho vlezl a něco mi tu poničil.
 struct _tuzel
 {
-  char klic[21];           //< Klíč pro vyhledávání -- zde celé číslo
-  float data[21];         //< Data vázaná na klíč -- zde desetinné číslo
+  char klic[51];           //< Klíč pro vyhledávání -- zde celé číslo
+  char data[51];         //< Data vázaná na klíč -- zde desetinné číslo
   Tuzel* levy;   //< Ukazatel na levý podstrom
   Tuzel* pravy;  //< Ukazatel na pravý podstrom
 };
@@ -34,8 +34,8 @@ typedef struct _slovnik Tslovnik;
 
 struct _slovnik
 {
-  char klic[21];
-  float data[21];
+  char klic[51];
+  char data[51];
 };
 
 
@@ -97,7 +97,7 @@ bool bvsOdeber(Tstrom *strom, char klic[]);
  *
  * \param strom Tstrom* Ukazatel na alokovaný a inicializovaný strom.
  */
-void bvsTisk(Tstrom *strom);
+void bvsTisk(Tstrom *strom, FILE* vystup);
 
 int bvsVyska(Tstrom *strom);
 void bvsPreorder(Tstrom *strom);

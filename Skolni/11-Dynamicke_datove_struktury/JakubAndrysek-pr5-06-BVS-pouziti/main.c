@@ -10,7 +10,7 @@
 #include "gvid.h"       // par drobnosti pro zjednoduseni prace
 #include <stdio.h>
 #include <stdlib.h>
-// #include <string.h>  // pro praci s textovymi retezci
+#include <string.h>  // pro praci s textovymi retezci
 #include <stdbool.h> // pro praci s typem bool a konstantami true a false
 #include <ctype.h>   // isalpha, isspace, islower, isupper, ...
 // #include <math.h>    // funkce z matematicke knihovny
@@ -69,12 +69,15 @@ bool nactiZeSouboru(Tstrom* strom, FILE* vstup, char* nazevSouboru) {
   }
 
   Tslovnik slovnik;
-
-  while (fscanf(vstup, "%20c %20c", &slovnik.klic, &slovnik.klic) == 2)
+  int a, b;
+//  while (fscanf(vstup, "%50s\t%20[^\n] \n", &slovnik.klic, &slovnik.data) == 2)
+  //  while (fscanf(vstup, "%50s\t%50s\t%d\t%d ", &slovnik.klic, &slovnik.data, &a, &b) == 4)
+   while (fscanf(vstup, "%50s\t%50s\t%d\t%d ", &slovnik.data, &slovnik.klic, &a, &b) == 4)
   {
-    printf("Klic: %s | hodnota: %s\n", slovnik.klic, slovnik.data);
+    printf("Klic: %s | data: %s\n", slovnik.klic, slovnik.data);
+    bvsVloz(strom, slovnik.klic, slovnik.data);
   }
-  
+
 
   return true;
 
@@ -119,18 +122,9 @@ void operace6(Tstrom *strom)
   vytvorVyvazeny(vyvazeny, pole, 0, delkaPole-1);
 
   printf("Vyvazeny strom: pouze zeobrzeni (na vychozim strome se nic neprojevi)\n");
-  bvsTisk(vyvazeny);
+  bvsTisk(strom, stdout);
 }
 
-bool nactiZeSouboru(Tstrom* strom, FILE* vstup, char* nazevSouboru) {
-  vstup = fopen(nazevSouboru, "r");
-  if(vstup == NULL) {
-    return false;
-  }
-
-  return true;
-
-}
 
 /** Vytiskne uživatelské menu*/
 void menu(void)
@@ -139,6 +133,7 @@ void menu(void)
     "\n"
     "Inicializace/zruseni..................I\n"
     "Tisk stromu...........................T\n"
+    "Uloz stromu...........................U\n"
     "Vlozeni...............................V\n"
     "Odebrani..............................O\n"
     "Konec.................................K\n"
@@ -168,40 +163,24 @@ char zjistiVolbu(void)
 }
 
 void prvniNastaveni(Tstrom *strom) {
-  bvsVloz(strom, 5, 55);
-  bvsVloz(strom, 3, 55);
-  bvsVloz(strom, 1, 55);
-  bvsVloz(strom, 2, 55);
-  bvsVloz(strom, 4, 55);
-  bvsVloz(strom, 9, 55);
-  bvsVloz(strom, 7, 55);
-  bvsVloz(strom, 6, 55);
-  bvsVloz(strom, 8, 55);
-  bvsVloz(strom, 10, 55);
+  bvsVloz(strom, "d", "55");
+  bvsVloz(strom, "m", "55");
+  bvsVloz(strom, "h", "55");
+  bvsVloz(strom, "e", "55");
+  bvsVloz(strom, "p", "55");
+  bvsVloz(strom, "q", "55");
+  bvsVloz(strom, "l", "55");
+  bvsVloz(strom, "b", "55");
+  bvsVloz(strom, "u", "55");
+  bvsVloz(strom, "f", "55");
 
-  bvsTisk(strom);
-}
-
-void prvniNastaveniNevyvazeny(Tstrom *strom) {
-  bvsVloz(strom, 6, 55);
-  bvsVloz(strom, 5, 55);
-  bvsVloz(strom, 7, 55);
-  bvsVloz(strom, 3, 55);
-  bvsVloz(strom, 2, 55);
-  bvsVloz(strom, 1, 55);
-  bvsVloz(strom, 0, 55);
-  bvsVloz(strom, -1, 55);
-
-  bvsTisk(strom);
+  bvsTisk(strom, stdout);
 }
 
 /********************************* MAIN ***********************************/
 int main(void)
 {
   Tstrom *strom = bvsInit();
-
-  // prvniNastaveni(strom);
-  prvniNastaveniNevyvazeny(strom);
 
   char volba;
   int konec = 0;
@@ -244,34 +223,57 @@ int main(void)
         printf("Strom byl zrusen a znovu inicializovan.\n");
       break;
 
+
+      case 'D': // Default
+        bvsZrus(strom);
+        strom = bvsInit();
+        prvniNastaveni(strom);
+        printf("Strom byl defaultne inicializovan.\n");
+      break;
+
       case 'T': // Tisk stromu
         printf("Aktualni podoba stromu\n");
-        bvsTisk(strom);
+        bvsTisk(strom, stdout);
         printf("Pocet uzlu stromu: %d\n", bvsVaha(strom));
+      break;
+
+
+      case 'U': // Tisk stromu
+      {
+        char nazevSouboru[] = "vystup.txt";
+        // strcpy("", nazevSouboru);
+        printf("Aktualni podoba stromu\n");
+        printf("Tisknu do souboru '%s'\n", nazevSouboru);
+        FILE* vystup = fopen(nazevSouboru, "w");
+        if(vystup == NULL) {
+          printf("Nepodarilo se otevrit/vytvorit soubor %s\n", nazevSouboru);
+          return EXIT_FAILURE;
+        }
+        bvsTisk(strom, vystup);
+      }
       break;
 
       case 'V': // Vložení
       {
         printf("Zadej hodnotu klice pro vlozeni - kladne cislo.\n");
-        int klic;
-        float data;
-        scanf(" %d", &klic);
-        printf("Zadej hodnotu dat ke klici %d - kladne desetinne cislo.\n", klic);
+        char klic[51];
+        char data[51];
+        scanf(" %s", &klic);
+        printf("Zadej hodnotu dat ke klici %s - kladne desetinne cislo.\n", klic);
         scanf(" %f", &data);
-        if (data < 0) data = -data;
         if (bvsVloz(strom, klic, data))
-          printf("Uspech. Par (%d - %g) byl uspesne vlozen.\n", klic, data);
+          printf("Uspech. Par (%s - %s) byl uspesne vlozen.\n", klic, data);
         else
-          printf("Neuspech. Par (%d - %g) nebyl vlozen.\n", klic, data);
+          printf("Neuspech. Par (%s - %s) nebyl vlozen.\n", klic, data);
       }
       break;
 
       case 'O': // Odebrání
       {
         printf("Zadej hodnotu klice, ktery chces odebrat.\n");
-        int klic;
-        scanf(" %d", &klic);
-        printf("Zadal jsi klic s hodnotou %d.\n", klic);
+        char klic[51];
+        scanf(" %50s", &klic);
+        printf("Zadal jsi klic s hodnotou %s.\n", klic);
         if (bvsOdeber(strom, klic))
           printf("Uspech. Uzel se zadanym klicem odebran.\n");
         else
@@ -282,8 +284,10 @@ int main(void)
       case 'N': //Nacti soubor
       {
         FILE* vstup;
-        nactiZeSouboru(strom, vstup,"telefoniSeznam.txt")
-        
+        // nactiZeSouboru(strom, vstup,"telefoniSeznam.txt");
+        nactiZeSouboru(strom, vstup,"svatkySeznam.txt");
+        // nactiZeSouboru(strom, vstup,"svatkySeznamLong.txt");
+        break;
       }
 
       case 'K': // Konec
