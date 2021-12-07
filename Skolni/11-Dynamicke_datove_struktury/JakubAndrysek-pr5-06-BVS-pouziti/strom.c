@@ -163,6 +163,19 @@ bool bvsOdeber(Tstrom *strom, char klic[])
   return false;
 }
 
+
+int _bvsVahaIn(Tuzel *uzel) {
+  if(uzel == NULL) {
+    return 0;
+  }
+
+  return _bvsVahaIn(uzel->levy)+_bvsVahaIn(uzel->pravy)+1;
+}
+
+int bvsVahaIn(Tstrom *strom) {
+  return _bvsVahaIn(strom->koren);
+}
+
 // je stejny jako funkce _bvsPom2
 int _bvsVyska(Tuzel *uzel) {
   if(uzel == NULL) {
@@ -263,6 +276,26 @@ void _bvsStromNaPole(Tuzel* uzel, Tuzel *pole[], int *index) {
 
 void bvsStromNaPole(Tstrom* strom, Tuzel *uzel[], int *index) {
   _bvsStromNaPole(strom->koren, uzel, index);
+}
+
+
+bool _bvsHledej(Tuzel *uzel, char klic[], char hledany[]) {
+  if(uzel == NULL) {
+    return;
+  }
+
+  if(strcmp(uzel->klic, klic) == 0){
+    strcpy(hledany, uzel->data);
+    return;
+  }
+  _bvsHledej(uzel->levy, klic, hledany);
+  _bvsHledej(uzel->pravy, klic, hledany);
+}
+
+
+bool bvsHledej(Tstrom *strom, char klic[], char hledany[]) {
+  _bvsHledej(strom->koren, klic, hledany);
+  return strlen(hledany)>0;
 }
 
 

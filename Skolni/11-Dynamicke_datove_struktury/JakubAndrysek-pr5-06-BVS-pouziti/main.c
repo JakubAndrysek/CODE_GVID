@@ -26,8 +26,7 @@
 void operace1(Tstrom *strom)
 {
   //Úkol1: Realizuj v modulu funkci, která zjistí výšku stromu
-  int vyska = bvsVyska(strom);
-  printf("Strom ma vysku: %d\n", vyska);
+  printf("Strom ma vysku: %d, vahu: %d\n", bvsVyska(strom), bvsVahaIn(strom));
 }
 
 void operace2(Tstrom *strom)
@@ -290,11 +289,26 @@ int main(void)
         break;
       }
 
+
+      case 'H': // Hledej
+      {
+        printf("Zadej hledany klic: \n");
+        char hledany[51];
+        char klic[51];
+        scanf(" %50s", klic);
+        if(bvsHledej(strom, klic, hledany)) {
+          printf("Nalezena hodnota: %s\n", hledany);
+        } else {
+          printf("Pozadovany klic se nepodarilo najit\n");
+        }
+
+        break;
+      }
+
       case 'K': // Konec
         printf("Rusim strom a koncim.\n");
         konec = 1;
       break;
-
       default:
         printf("Neznamy prikaz. Zkus to znovu.\n");
       break;

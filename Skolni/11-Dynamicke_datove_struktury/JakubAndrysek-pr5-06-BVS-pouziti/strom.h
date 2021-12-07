@@ -99,6 +99,7 @@ bool bvsOdeber(Tstrom *strom, char klic[]);
  */
 void bvsTisk(Tstrom *strom, FILE* vystup);
 
+int bvsVahaIn(Tstrom *strom);
 int bvsVyska(Tstrom *strom);
 void bvsPreorder(Tstrom *strom);
 void bvsInorder(Tstrom *strom);
@@ -106,6 +107,7 @@ void bvsPostorder(Tstrom *strom);
 
 int bvsVyvazeni(Tstrom *strom);
 bool bvsJeVyvazeny(Tstrom *strom);
+bool bvsHledej(Tstrom *strom, char klic[], char hledany[]);
 
 void bvsStromNaPole(Tstrom* strom, Tuzel *uzel[], int *index);
 
