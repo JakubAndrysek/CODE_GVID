@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1618491419 source:/media/kuba/neon/git/kuba/C_GVID/Skolni/10-Vyhledavani/Vyhledavani1-Vyhledavani-jmen/main.c
-	"gvid.h"
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-
-1618487610 /media/kuba/neon/git/kuba/C_GVID/Skolni/10-Vyhledavani/Vyhledavani1-Vyhledavani-jmen/gvid.h
-
