@@ -1,4 +1,5 @@
-# C_GVID
+# CODE_GVID
+
 Kompletní příklady z výuky programování na [Gymnáziu Brno, Vídeňská](https://www.gvid.cz).
 
 ## [Céčko](./c)
