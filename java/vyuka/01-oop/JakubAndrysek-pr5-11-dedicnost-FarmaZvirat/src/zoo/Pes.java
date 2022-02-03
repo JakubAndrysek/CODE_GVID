@@ -10,10 +10,9 @@ package zoo;
  */
 public class Pes extends Zvire {
     protected String rasa;
-    protected int vek;
     
     public Pes(String rasa, int vek, String jmeno) {
-        super(jmeno, 4);
+        super(jmeno, 4, "Haf Haf");
         this.rasa = rasa;
         this.vek = vek;
     }
@@ -34,25 +33,10 @@ public class Pes extends Zvire {
         return rasa;
     }
 
-    public int getVek() {
-        return vek;
-    }
-
-    public void setVek(int vek) {
-        if(vek <= this.vek) {
-            return;
-        }
-        this.vek = vek;
-    }
-
-    @Override
-    public String vydejZvuk() {
-        return "Haf Haf";
-    }
 
     @Override
     public String toString() {
-        return "Pes{" + super.toString() + "rasa=" + rasa + ", vek=" + vek + '}';
+        return "Pes{" + super.toString() + " rasa=" + rasa + ", vek=" + vek + '}';
     }
     
     

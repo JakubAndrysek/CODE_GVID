@@ -10,12 +10,10 @@ package zoo;
  */
 public class Ptak extends Zvire {
     protected String rasa;
-    protected int vek;
 
     public Ptak(String rasa, int vek, String jmeno) {
-        super(jmeno, 2);
+        super(jmeno, 2, "Pip pip");
         this.rasa = rasa;
-        this.vek = vek;
     }
 
     public Ptak(String rasa, int vek) {
@@ -34,24 +32,9 @@ public class Ptak extends Zvire {
         return rasa;
     }
 
-    public int getVek() {
-        return vek;
-    }
-
-    public void setVek(int vek) {
-        if(vek <= this.vek) {
-            return;
-        }
-        this.vek = vek;
-    }
     
     @Override
-    public String vydejZvuk() {
-        return "Pip Pip";
-    }
-
-    @Override
     public String toString() {
-        return "Ptak{" + super.toString() + "rasa=" + rasa + ", vek=" + vek + '}';
+        return "Ptak{" + super.toString() + " rasa=" + rasa + ", vek=" + vek + '}';
     }
 }
