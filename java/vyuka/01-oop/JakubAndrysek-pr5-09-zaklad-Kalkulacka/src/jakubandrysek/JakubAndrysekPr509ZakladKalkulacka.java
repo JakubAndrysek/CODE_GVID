@@ -2,17 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package kalkulacka.jakubandrysek;
+package jakubandrysek;
 
 import java.util.Scanner;
 
-
-
 /**
  *
- * @author andrysekj
+ * @author kuba
  */
-public class KalkulackaJakubAndrysek {
+public class JakubAndrysekPr509ZakladKalkulacka {
 
     public static void hlavicka() {
         System.out.println("Kalkulacka ");
@@ -84,5 +82,4 @@ public class KalkulackaJakubAndrysek {
         }
         
     }
-    
 }
