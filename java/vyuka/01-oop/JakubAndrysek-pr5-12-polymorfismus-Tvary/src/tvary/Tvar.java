@@ -39,4 +39,12 @@ public abstract class Tvar {
      * @return 
      */
     public abstract double getObvod();
+
+    @Override
+    public String toString() {
+        return "Tvar{" + "stred=" + stred + '}';
+    }
+    
+    
+    
 }

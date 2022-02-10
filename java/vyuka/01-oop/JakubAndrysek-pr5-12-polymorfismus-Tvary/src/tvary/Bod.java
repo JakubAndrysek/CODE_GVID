@@ -9,19 +9,19 @@ package tvary;
  * @author andrysekj
  */
 public final class Bod {
-    private final int x;
-    private final int y;
+    private final double x;
+    private final double y;
 
-    public Bod(int x, int y) {
+    public Bod(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
-    public final int getX() {
+    public final double getX() {
         return x;
     }
 
-    public final int getY() {
+    public final double getY() {
         return y;
     }
     
