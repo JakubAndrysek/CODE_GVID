@@ -23,7 +23,7 @@ public class Trojuhelnik extends Tvar {
 
     @Override
     public double getObsah() {
-        return (this.strana * this.strana) / 2;
+        return (this.strana * this.strana * Math.sqrt(3.0)) / 2.0;
     }
 
     @Override

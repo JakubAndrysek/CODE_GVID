@@ -38,15 +38,22 @@ public class JakubAndrysekPr512PolymorfismusTvary {
         for(int i = 0; i<=9; i++) {
             var stred = new Bod( randomDoubleFrmTo(20, 80), randomDoubleFrmTo(20, 80));
             
-            Tvar tvaryExist[] = { // priprav pole moznosti
-                new Ctverec(randomDoubleFrmTo(1, 20), stred), 
-                new Obdelnik(randomDoubleFrmTo(1, 20), randomDoubleFrmTo(1, 20), stred),
-                new Kruh(randomDoubleFrmTo(1, 20), stred),
-                new Trojuhelnik(randomDoubleFrmTo(1, 20), stred),
-            };
+            int tvaryExistIndex = (int)randomDoubleFrmTo(0, 3);
             
-            int tvaryExistIndex = (int)randomDoubleFrmTo(0, tvaryExist.length-1); // get number from 0 to tvaryExist.length-1 -> random position
-            tvary.add(tvaryExist[tvaryExistIndex]);
+            switch (tvaryExistIndex) {
+                case 0:
+                    tvary.add(new Ctverec(randomDoubleFrmTo(1, 20), stred));
+                    break;
+                case 1:
+                    tvary.add(new Obdelnik(randomDoubleFrmTo(1, 20), randomDoubleFrmTo(1, 20), stred));
+                    break;
+                case 2:
+                    tvary.add(new Kruh(randomDoubleFrmTo(1, 20), stred));
+                    break;
+                case 3:
+                    tvary.add(new Trojuhelnik(randomDoubleFrmTo(1, 20), stred));
+                    break;
+            }
         }
         
         int index = 1;        
