@@ -39,6 +39,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="data.txt" />
 		<Unit filename="gvid.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
