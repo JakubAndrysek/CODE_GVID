@@ -18,4 +18,18 @@ dist/
 nbdist/
 .nb-gradle/
 
+cmake-build-debug/.cmake
+cmake-build-debug/.
+
+
+
 local
+
+# For Clion cmake-build-debug
+Testing/
+CMakeFiles/
+.cmake/
+.nin*
+*.ninja
+CMakeCache.txt
+cmake_install.cmake
