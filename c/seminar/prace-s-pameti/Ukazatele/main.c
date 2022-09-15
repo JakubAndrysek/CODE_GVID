@@ -32,7 +32,7 @@ TPole2d* vyrob2Dpole(int radku, int sloupcu) {
   }
 
   for(int i = 0; i<radku; i++) {
-    pole2d->data[i] = malloc(sizeof(int*sloupcu));
+    pole2d->data[i] = malloc(sloupcu * sizeof(int));
     if(pole2d->data[i] == NULL) {
       printf("E: data %d nevytvorena", i);
       pole2d->radku = i;
