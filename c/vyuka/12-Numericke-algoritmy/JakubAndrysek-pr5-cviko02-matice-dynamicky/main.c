@@ -1,5 +1,5 @@
 /*
- * Projekt: pr5-cviko01-matice
+ * Projekt: pr5-cviko02-matice
  * Autor: Jakub Andrysek
  * Datum: 11. 9. 2022
  */
@@ -16,8 +16,6 @@
 // #include <limits.h>  // konstanty pro celociselne typy INT_MAX, INT_MIN, ...
 // #include <time.h>    // funkce time a dalsi pro praci s casem
 
-#define MAXN 100
-
 
 typedef struct {
     float **prvek;
@@ -27,11 +25,15 @@ typedef struct {
 
 Tmatice* vyrobMatici(int radku, int sloupcu) {
   Tmatice* matice = malloc(sizeof(Tmatice));
+  if(matice == NULL) {
+    printf("E: matice nevytvorena\n");
+    return NULL;
+  }
 
   matice->prvek = malloc(radku * sizeof(float*));
   if(matice->prvek == NULL) {
-      // cisti
-      printf("X");
+      free(matice);
+      printf("E: matice nevytvorena\n");
       return NULL;
   }
 
@@ -40,8 +42,8 @@ Tmatice* vyrobMatici(int radku, int sloupcu) {
     if(matice->prvek[i] == NULL) {
       matice->radku = i;
       matice->sloupcu = sloupcu;
-      // cisti
-      printf("X");
+      znicMatici(matice);
+      printf("E: prvky matice nevytvoreny\n");
       return NULL;
     }
   }
@@ -49,6 +51,19 @@ Tmatice* vyrobMatici(int radku, int sloupcu) {
   matice->radku = radku;
   matice->sloupcu = sloupcu;
   return matice;
+}
+
+
+void znicMatici(Tmatice* matice) {
+  if(matice == NULL) {
+    return;
+  }
+
+  for(int r = 0; r < matice->radku; r++) {
+    free(matice->prvek[r]);
+  }
+  free(matice->prvek);
+  free(matice);
 }
 
 Tmatice* ctiM(FILE *in) {
@@ -66,7 +81,7 @@ Tmatice* ctiM(FILE *in) {
 
     Tmatice *m = vyrobMatici(radku, sloupcu);
     if(m == NULL) {
-      printf("E: Matice nevytvorena");
+      printf("E: Matice nevytvorena\n");
       exit(0);
     }
 
@@ -78,7 +93,6 @@ Tmatice* ctiM(FILE *in) {
                 m->radku = r;
                 exit(EXIT_FAILURE);
             }
-//            printf("%d\n", m->prvek[r][s]);
         }
     }
 
@@ -95,12 +109,13 @@ void tiskM(FILE *out, Tmatice *m) {
     }
 }
 
-void soucetM(Tmatice *m1, Tmatice *m2, Tmatice *soucet) {
+Tmatice* soucetM(Tmatice *m1, Tmatice *m2) {
     if (!(m1->radku == m2->radku && m1->sloupcu == m2->sloupcu)) {
         printf("E: matice nelze secist\n");
         exit(EXIT_FAILURE);
     }
 
+    Tmatice* soucet = vyrobMatici(m1->radku, m2->sloupcu);
 
     for (int r = 0; r < m1->radku; r++) {
         for (int s = 0; s < m1->sloupcu; s++) {
@@ -110,6 +125,7 @@ void soucetM(Tmatice *m1, Tmatice *m2, Tmatice *soucet) {
 
     soucet->radku = m1->radku;
     soucet->sloupcu = m1->sloupcu;
+    return soucet;
 }
 
 Tmatice* soucinM(Tmatice *m1, Tmatice *m2) {
@@ -161,7 +177,7 @@ void nactiNazevSouboru(char nazevSouboru[]) {
     scanf("%19s", nazevSouboru);
 }
 
-int testSoucet() {
+bool testSoucet() {
     printf("Test soucet\n");
 
     char nazevSouboruA[] = "matSoucetA.txt";
@@ -174,12 +190,16 @@ int testSoucet() {
     Tmatice *maticeB = nactiMaticiZeSouboru(nazevSouboruB);
     tiskniDveMatice(maticeA, maticeB);
 
-    Tmatice *maticeSoucetAB;
-    soucetM(maticeA, maticeB, maticeSoucetAB);
+    Tmatice *maticeSoucetAB = soucetM(maticeA, maticeB);
 
     printf("Matice SOUCET:\n");
     tiskM(stdout, maticeSoucetAB);
     printf("\n\n");
+
+    znicMatici(maticeA);
+    znicMatici(maticeB);
+    znicMatici(maticeSoucetAB);
+    return true;
 }
 
 
@@ -206,12 +226,16 @@ bool testSoucin() {
     printf("Matice SOUCIN:\n");
     tiskM(stdout, maticeSoucinAB);
     printf("\n\n");
+
+    znicMatici(maticeA);
+    znicMatici(maticeB);
+    znicMatici(maticeSoucinAB);
     return true;
 }
 
 int main(int argc, char *argv[])  // pro parametry prikazoveho radku
 {
-//    testSoucet();
+    testSoucet();
     testSoucin();
 
     return 0;
