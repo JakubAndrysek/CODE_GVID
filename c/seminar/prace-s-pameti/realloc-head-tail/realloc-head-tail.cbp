@@ -11,6 +11,7 @@
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters='tail 3 &quot;lorem.txt&quot;' />
 				<Compiler>
 					<Add option="-g" />
 					<Add option="-std=c99" />
@@ -24,6 +25,7 @@
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option parameters='head 3 &quot;lorem.txt&quot;' />
 				<Compiler>
 					<Add option="-O2" />
 					<Add option="-std=c99" />
@@ -43,6 +45,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="queue.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="queue.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
