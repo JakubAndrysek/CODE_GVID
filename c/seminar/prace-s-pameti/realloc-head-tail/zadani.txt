@@ -1,0 +1,10 @@
+Vytvoř program headtail, který podle zadaných parametrů vypíše zadaný počet prvních nebo posledních řádků standardního vstupu.
+
+headtail.exe [-h] (head | tail) pocet
+-h -- nepovinný parametr - vytiskne nápovědu
+head nebo tail -- volitelný (jeden nebo druhý) parametr
+pocet -- počet řádků, které se budou tisknout
+
+Pozor! Čteš ze standardního vstupu, takže dopředu nevíš, jak dlouhé budou vstupní řádky, ani kolik jich bude.
+
+Odevzdávej soubor ukol3-PrijmeniJmeno.zip bez adresářů bin a obj.
