@@ -12,11 +12,25 @@ const char* CHYBOVE_HLASENI[] = {
     [ENEZNAMA] = "Neznama chyba",
 };
 
-char* chyboveHlaseni(int kod) {
+const char* chyboveHlaseni(int kod) {
     if(kod < 0 || kod > ENEZNAMA) {
         kod = ENEZNAMA;
     }
     return CHYBOVE_HLASENI[kod];
+}
+
+const char* RESENI_ROVNICE[] = {
+    [EJEDNO] = "Soustava je regularni - jedno reseni",
+    [ENEKONECNO] = "Rovnice ma nekonecno reseni",
+    [EZADNE] = "Rovnice nema reseni",
+    [ECHYBARESENI] = "Chyba reseni",
+};
+
+const char* reseniRovnice(int kodReseni) {
+    if(kodReseni < 0 || kodReseni > EZADNE) {
+        kodReseni = ECHYBARESENI;
+    }
+    return RESENI_ROVNICE[kodReseni];
 }
 
 Tmatice* vyrobMatici(int radku, int sloupcu) {
@@ -66,12 +80,17 @@ Tmatice* ctiM(FILE *in) {
     int radku;
 
     if (fscanf(in, "%d", &radku) != 1) {
-        cisloChyby = EROZMER;
+        cisloChyby = ECTENI;
         return NULL;
     }
 
     int sloupcu;
     if (fscanf(in, "%d ", &sloupcu) != 1) {
+        cisloChyby = ECTENI;
+        return NULL;
+    }
+
+    if(!(radku > 2 && radku + 1 == sloupcu)) {
         cisloChyby = EROZMER;
         return NULL;
     }
@@ -122,6 +141,51 @@ int maxAbsPivot(Tmatice *matice, int d) {
         }
     }
     return max;
+}
+
+void radkoveUpravy(Tmatice* matice, int r) {
+    for(int k = r+1; k <= matice->radku-1; k++) {
+        float c = matice->prvek[k][r] / matice->prvek[r][r];
+        matice->prvek[k][r] = 0.0f;
+        for(int s = r+1; s <= matice->radku; s++) {
+            matice->prvek[k][s] = c*matice->prvek[r][s] - matice->prvek[k][s];
+//            printf("rad set [%d][%d]\n", k, s);
+//            tiskM(stdout, matice);
+        }
+    }
+}
+
+bool jeHorni(Tmatice* matice) {
+    for(int r = 0; r < matice->radku; r++) {
+        for(int s = 0; s < matice->sloupcu-1; s++) {
+            if(s>=r) { // nad diagonalou + diagonala
+//                printf("%+3.2f | ", matice->prvek[r][s]);
+                if(fabs(matice->prvek[r][s]) == 0) {
+                    return EXIT_FAILURE;
+                }
+            } else {
+//                printf(" x   | ");
+                if(fabs(matice->prvek[r][s]) != 0) {
+                    return EXIT_FAILURE;
+                }
+            }
+        }
+//        printf("\n");
+    }
+    return EXIT_SUCCESS;
+}
+
+int testResitelnosti(Tmatice* matice) {
+    int n = matice->radku-1;
+    if(matice->prvek[n][n] != 0) {
+        return EJEDNO;
+    } else if (matice->prvek[n][n+1] == 0) {
+        return ENEKONECNO;
+    } else if (matice->prvek[n][n+1] == 0) {
+        return EZADNE;
+    } else {
+        return ECHYBARESENI;
+    }
 }
 
 Tmatice* soucetM(Tmatice *m1, Tmatice *m2) {

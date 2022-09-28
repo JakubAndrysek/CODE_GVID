@@ -4,7 +4,7 @@
  * Datum:
  */
 
-#include "gvid.h"       // par drobnosti pro zjednoduseni prace
+//#include "gvid.h"       // par drobnosti pro zjednoduseni prace
 #include <stdio.h>
 #include <stdlib.h>
  #include <string.h>  // pro praci s textovymi retezci
@@ -25,7 +25,7 @@
 Tmatice* nactiMaticiZeSouboru(char nazevSouboru[]) {
     FILE *file = fopen(nazevSouboru, "r");
 
-    if (file == NULL || file == NULL) {
+    if (file == NULL) {
         printf("E: nepodaril se otevrit soubor %s\n", nazevSouboru);
         exit(EXIT_FAILURE);
     }
@@ -59,36 +59,61 @@ bool testNacteniAVymena() {
     tiskM(stdout, maticeA);
 }
 
-bool gem() {
-    char nazevSouboruA[] = "testGem.txt";
-
-    Tmatice *matice = nactiMaticiZeSouboru(nazevSouboruA);
-    if(matice == NULL) {
-        printf("Chyba: %s", chyboveHlaseni(cisloChyby));
-    }
-
+int gemPrimy(Tmatice *matice) {
     tiskM(stdout, matice);
-
-
+    printf("\n");
 
     for(int r = 0; r < matice->radku; r++) {
         int k = maxAbsPivot(matice, r);
+        if(matice->prvek[k][r] == 0) {
+            printf("Chyba reseni primeho chodu\n");
+            return EXIT_FAILURE;
+        }
 
-        printf("%d max\n", r);
         if(r!=k) {
+            printf("Pred vymenou %d\n", r);
+            tiskM(stdout, matice);
+
+            printf("Po vymene %d\n", r);
             vymenRadky(matice, r, k);
             tiskM(stdout, matice);
+
+            printf("Po radkoveUpravy %d\n", r);
+            radkoveUpravy(matice, r);
+            tiskM(stdout, matice);
+
+            printf("\n");
         }
     }
+
+    return jeHorni(matice);
 }
 
+int gem() {
+    char nazevSouboruA[] = "prezGem.txt";
 
+    Tmatice *matice = nactiMaticiZeSouboru(nazevSouboruA);
+    if(matice == NULL) {
+        printf("Chyba (nactiMaticiZeSouboru): %s", chyboveHlaseni(cisloChyby));
+        return EXIT_FAILURE;
+    }
+
+    if(gemPrimy(matice) == EXIT_FAILURE) {
+        return EXIT_FAILURE;
+    }
+
+    int reseni = testResitelnosti(matice);
+    if(reseni != EJEDNO) {
+        printf("Chyba (testResitelnosti): %s", reseniRovnice(reseni));
+        return EXIT_FAILURE;
+    }
+
+    return EXIT_SUCCESS;
+}
 
 
 int main(int argc, char *argv[])  // pro parametry prikazoveho radku
 {
-//    testNacteni();
-    gem();
-
-    return 0;
+    int gemResult = gem();
+    return gemResult;
 }

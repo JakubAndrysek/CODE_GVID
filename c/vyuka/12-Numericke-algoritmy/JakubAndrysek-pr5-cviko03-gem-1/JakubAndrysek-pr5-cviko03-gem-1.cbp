@@ -42,7 +42,7 @@
 		<Unit filename="gem.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="gem.h" />
+		<Unit filename="gemPrimy.h" />
 		<Unit filename="gvid.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
