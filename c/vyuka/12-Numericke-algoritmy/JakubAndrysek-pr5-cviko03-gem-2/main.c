@@ -284,8 +284,8 @@ int gemPrimy(Tmatice *matice) {
         int k = maxAbsPivot(matice, r);
         if (k != r) {
             maticeVymenRadky(matice, r, k);
-            maticeRadkoveUpravy(matice, r);
         }
+        maticeRadkoveUpravy(matice, r);
     }
 }
 
@@ -297,12 +297,29 @@ int gemPrimy(Tmatice *matice) {
  *
  */
 int gjemPrimy(Tmatice *m) {
-    return EMUNKNOWN;
+    printf("==========================================\n");
+    printf("Primy chod GJEM\n");
+
+    for (int r = 0; r < m->radku; r++) {
+        for (int k = 0; k < m->radku; k++) {
+            if (k != r) {
+                float c = m->prvek[k][r] / m->prvek[r][r];
+                m->prvek[k][r] = 0.0f;
+                for (int s = r + 1; s <= m->radku; s++) {
+                    m->prvek[k][s] = c * m->prvek[r][s] - m->prvek[k][s];
+//            printf("rad set [%d][%d]\n", k, s);
+//            tiskM(stdout, matice);
+                }
+            }
+
+        }
+    }
+
 }
 
 void testPrimyChod(char *jmenoSouboru) {
     printf("==========================================\n");
-    printf("Primy chod\n");
+    printf("Primy chod GEM\n");
 
     FILE *fin;
     if (jmenoSouboru != NULL) {
@@ -332,6 +349,37 @@ void testPrimyChod(char *jmenoSouboru) {
     printf("==========================================\n");
 }
 
+void testPrimyChodGjem(char *jmenoSouboru) {
+    printf("==========================================\n");
+    printf("Primy chod GJEM\n");
+
+    FILE *fin;
+    if (jmenoSouboru != NULL) {
+        fin = fopen(jmenoSouboru, "r");
+    } else {
+        printf("Spatne jmeno souboru\n");
+        return;
+    }
+
+    if (fin == NULL) {
+        fprintf(stderr, "Chybny nazev vstupniho souboru.");
+        return;
+    }
+
+    int chyba;
+    Tmatice *matice = maticeCtiZeSouboru(fin, &chyba);
+    if (chyba != EMOK) {
+        printf("Chyba...");
+        return;
+    }
+
+    maticeTiskni(matice);
+
+    gjemPrimy(matice);
+    maticeTiskni(matice);
+
+    printf("==========================================\n");
+}
 
 /** \brief Provede zpětný chod GEM.
  *
@@ -367,8 +415,12 @@ void gemZpetny(Tmatice *m) {
  * \param m Tmatice* Ukazatel na rozšířenou matici soustavy.
  */
 void gjemZpetny(Tmatice *m) {
-    // TODO: naprogramuj ji
-    printf("Funkce gjemZpetny neni hotova.");
+    printf("Funkce gjemZpetny");
+    int radku = m->radku;
+    for(int r = 0; r < m->radku; r++) {
+        m->prvek[r][radku] = m->prvek[r][radku] / m->prvek[r][r];
+        m->prvek[r][r] = 1;
+    }
 }
 
 
@@ -379,7 +431,7 @@ void gjemZpetny(Tmatice *m) {
 void tiskReseni(Tmatice *m) {
     printf("Reseni soustavy rovnic:\n");
     for (int r = 0; r < m->radku; ++r) {
-        printf("x%d = %f\n", r, m->prvek[r][m->sloupcu - 1]);
+        printf("x%d = %g\n", r, m->prvek[r][m->sloupcu - 1]);
     }
 }
 
@@ -429,6 +481,44 @@ void testZpetnyChod(char *jmenoSouboru) {
 }
 
 
+void testZpetnyChodGjem(char *jmenoSouboru) {
+    printf("==========================================\n");
+    printf("Funkce testZpetnyChod\n");
+
+    FILE *fin;
+    if (jmenoSouboru != NULL) {
+        fin = fopen(jmenoSouboru, "r");
+    } else {
+        printf("Spatne jmeno souboru\n");
+        return;
+    }
+
+    if (fin == NULL) {
+        fprintf(stderr, "Chybny nazev vstupniho souboru.");
+        return;
+    }
+
+    int chyba;
+    Tmatice *matice = maticeCtiZeSouboru(fin, &chyba);
+    if (chyba != EMOK) {
+        printf("Chyba...");
+        return;
+    }
+
+    maticeTiskni(matice);
+
+    gjemPrimy(matice);
+    maticeTiskni(matice);
+
+    gjemZpetny(matice);
+
+    maticeTiskni(matice);
+    tiskReseni(matice);
+
+    printf("==========================================\n");
+}
+
+
 /** \brief Startovní bod programu.
  *
  * \return int Návratový kód programu.
@@ -442,6 +532,13 @@ int main(void) {
 //  testMatice("C.txt");     // otestuj i jiné soubory
 //    testPrimyChod("prezGem.txt"); // prezGem.txt
 
+//    testPrimyChod("prezGem.txt"); // prezGem.txt
+//    testPrimyChodGjem("prezGem.txt"); // prezGem.txt
+
     testZpetnyChod("prezGem.txt"); // otestuj i jiné soubory
+//    testZpetnyChod("F.txt"); // otestuj i jiné soubory
+
+//    testZpetnyChodGjem("prezGem.txt"); // otestuj i jiné soubory
+//    testZpetnyChodGjem("F.txt"); // otestuj i jiné soubory
     return EXIT_SUCCESS;
 }

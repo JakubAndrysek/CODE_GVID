@@ -176,11 +176,13 @@ void maticeRadkoveUpravy(Tmatice *matice, int r) {
     for (int k = r + 1; k <= matice->radku - 1; k++) {
         float c = matice->prvek[k][r] / matice->prvek[r][r];
         matice->prvek[k][r] = 0.0f;
+        printf("rad set [%d][%d] = %g\n", k, r, matice->prvek[k][r]);
         for (int s = r + 1; s <= matice->radku; s++) {
+//            printf("rad set [%d][%d] = %g\n", k, s, matice->prvek[k][s]);
             matice->prvek[k][s] = c * matice->prvek[r][s] - matice->prvek[k][s];
-//            printf("rad set [%d][%d]\n", k, s);
-//            tiskM(stdout, matice);
+//            maticeTiskni(matice);
         }
     }
+    maticeTiskni(matice);
 }
 
