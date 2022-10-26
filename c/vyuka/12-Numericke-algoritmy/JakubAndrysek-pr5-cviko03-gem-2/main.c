@@ -280,9 +280,9 @@ void testMatice(char *jmenoSouboru) {
  * \return int Vrací kód chyby.
  */
 int gemPrimy(Tmatice *matice) {
-    for(int r = 0; r < matice->radku ; r++) {
+    for (int r = 0; r < matice->radku; r++) {
         int k = maxAbsPivot(matice, r);
-        if(k != r) {
+        if (k != r) {
             maticeVymenRadky(matice, r, k);
             maticeRadkoveUpravy(matice, r);
         }
@@ -343,9 +343,9 @@ void gemZpetny(Tmatice *m) {
     printf("Funkce gemZpetny");
 
     int posledniSloupec = m->radku;
-    for(int r = m->radku-1; r >= 0; r--) {
+    for (int r = m->radku - 1; r >= 0; r--) {
         float sum = 0.0f;
-        for(int s = r+1; s < posledniSloupec; s++) {
+        for (int s = r + 1; s < posledniSloupec; s++) {
             sum += m->prvek[r][s] * m->prvek[s][posledniSloupec];
             m->prvek[r][s] = 0.0f;
         }
@@ -377,7 +377,7 @@ void gjemZpetny(Tmatice *m) {
  * \param m Tmatice* Ukazatel na rozšířenou matici soustavy.
  */
 void tiskReseni(Tmatice *m) {
-    printf("Reseni soustavy rovnic:");
+    printf("Reseni soustavy rovnic:\n");
     for (int r = 0; r < m->radku; ++r) {
         printf("x%d = %f\n", r, m->prvek[r][m->sloupcu - 1]);
     }
@@ -423,6 +423,8 @@ void testZpetnyChod(char *jmenoSouboru) {
 
     gemZpetny(matice);
 
+    tiskReseni(matice);
+
     printf("==========================================\n");
 }
 
@@ -440,6 +442,6 @@ int main(void) {
 //  testMatice("C.txt");     // otestuj i jiné soubory
 //    testPrimyChod("prezGem.txt"); // prezGem.txt
 
-  testZpetnyChod("prezGem.txt"); // otestuj i jiné soubory
+    testZpetnyChod("prezGem.txt"); // otestuj i jiné soubory
     return EXIT_SUCCESS;
 }

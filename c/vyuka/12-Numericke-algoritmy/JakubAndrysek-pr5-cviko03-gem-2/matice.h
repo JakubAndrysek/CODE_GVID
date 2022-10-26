@@ -20,19 +20,18 @@
  * velikost matice a zbytečné paměťové nároky při práci s menšími maticemi.
  * Z toho důvodu předáváme tuto strukturu vždy odkazem, nikdy hodnotou.</p>
  */
-typedef struct
-{
-  float prvek[MATICE_MAX_VELIKOST][MATICE_MAX_VELIKOST]; /**< Dvourozměrné pole prvků. */
-  int radku;   /**< Počet řádků matice. */
-  int sloupcu; /**< Počet sloupců matice */
+typedef struct {
+    float prvek[MATICE_MAX_VELIKOST][MATICE_MAX_VELIKOST]; /**< Dvourozměrné pole prvků. */
+    int radku;   /**< Počet řádků matice. */
+    int sloupcu; /**< Počet sloupců matice */
 } Tmatice;
 
 /** \brief Deklarace chybových kódů pro jednotlivé operace. */
 enum maticeErrors {
-  EMOK,          /**< Kód pro stav bez chyby. */
-  EMCREATE,      /**< Kód chyby při vytváření matice v paměti.  */
-  EMREAD,        /**< Kód chyby při čtení ze souboru. */
-  EMUNKNOWN,     /**< Kód nezámé chyby. */
+    EMOK,          /**< Kód pro stav bez chyby. */
+    EMCREATE,      /**< Kód chyby při vytváření matice v paměti.  */
+    EMREAD,        /**< Kód chyby při čtení ze souboru. */
+    EMUNKNOWN,     /**< Kód nezámé chyby. */
 };
 
 
@@ -49,7 +48,7 @@ enum maticeErrors {
  * <p>Funkce končí s chybou i v případě, že zadané rozměry jsou nulové.</p>
  *
  */
-Tmatice * maticeAlokuj(int radku, int sloupcu);
+Tmatice *maticeAlokuj(int radku, int sloupcu);
 
 /** \brief Zruší zadanou matici.
  *
@@ -131,7 +130,7 @@ void maticeTiskniSoubor(FILE *soubor, const Tmatice *matice);
  *
  * <p>Používá funkci #maticeCtiZeSouboru.</p>
  */
-Tmatice * maticeCtiZeVstupu(int *chyba);
+Tmatice *maticeCtiZeVstupu(int *chyba);
 
 /** \brief Vytvoří a přečte matici ze souboru.
  *
@@ -152,7 +151,7 @@ Tmatice * maticeCtiZeVstupu(int *chyba);
  * Takto je totiž možné sem místo souboru předat stdin a číst ze standardního
  * vstupu. </p>
  */
-Tmatice * maticeCtiZeSouboru(FILE *file, int *chyba);
+Tmatice *maticeCtiZeSouboru(FILE *file, int *chyba);
 
 /** \brief Vymění v matici řádky zadané pomocí indexů.
  *
@@ -167,6 +166,6 @@ void maticeVymenRadky(Tmatice *m, int r1, int r2);
 
 int maxAbsPivot(Tmatice *matice, int d);
 
-void maticeRadkoveUpravy(Tmatice* matice, int r);
+void maticeRadkoveUpravy(Tmatice *matice, int r);
 
 #endif // matice_H_GUARD

@@ -75,7 +75,7 @@ void maticeTiskni(const Tmatice *matice) {
 void maticeTiskniSoubor(FILE *file, const Tmatice *matice) {
     fprintf(file, "%u %u\n", matice->radku, matice->sloupcu);
     printf(ANSI_COLOR_YELLOW"   |");
-    for(int s = 0; s < matice->sloupcu; s++) {
+    for (int s = 0; s < matice->sloupcu; s++) {
         fprintf(file, ANSI_COLOR_YELLOW "%6d   |", s);
     }
     printf("\n");
@@ -84,14 +84,14 @@ void maticeTiskniSoubor(FILE *file, const Tmatice *matice) {
         fprintf(file, ANSI_COLOR_YELLOW "%2d |", r);
         for (int s = 0; s < matice->sloupcu; ++s) {
             float toShow = matice->prvek[r][s];
-            if(file != stdout) {
+            if (file != stdout) {
                 fprintf(file, " %7.2f ", toShow);
             } else {
-                if(toShow == 1) {
+                if (toShow == 1) {
                     fprintf(file, ANSI_COLOR_MAGENTA " %7.2f " ANSI_COLOR_YELLOW "|" ANSI_COLOR_RESET, toShow);
-                } else if(toShow < 0) {
+                } else if (toShow < 0) {
                     fprintf(file, ANSI_COLOR_BLUE " %7.2f "ANSI_COLOR_YELLOW "|" ANSI_COLOR_RESET, toShow);
-                } else if(toShow > 0) {
+                } else if (toShow > 0) {
                     fprintf(file, ANSI_COLOR_GREEN " %7.2f " ANSI_COLOR_YELLOW "|" ANSI_COLOR_RESET, toShow);
                 } else {
                     fprintf(file, ANSI_COLOR_RED " %7.2f "ANSI_COLOR_YELLOW "|" ANSI_COLOR_RESET, toShow);
