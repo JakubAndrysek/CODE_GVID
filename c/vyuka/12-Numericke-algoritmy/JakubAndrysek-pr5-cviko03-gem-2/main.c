@@ -21,36 +21,24 @@
  * Tady si prohlédni, jak se s maticí zachází, tj. jak se vytváří a jak se
  * předává do podprogramů. Ve svých operacích to dělej podobně.
  */
-void testInit(void)
-{
-  printf("==========================================\n");
-  printf("Test vytvoreni a inicializace matice\n");
-  Tmatice * matice = maticeAlokuj(5, 3);
-  if (matice == NULL)
-  {
-    printf("Matici se nepovedlo alokovat.\n");
-    return;
-  }
+void testInit(void) {
+    printf("==========================================\n");
+    printf("Test vytvoreni a inicializace matice\n");
+    Tmatice *matice = maticeAlokuj(5, 3);
+    if (matice == NULL) {
+        printf("Matici se nepovedlo alokovat.\n");
+        return;
+    }
 
-//  maticeNastavPrvky(matice, 1.2);
+//  maticeNastavPrvky(matice, 1.2f);
 
-//  int chybovyKod;
-//  Tmatice * matice = maticeCtiSoubor(soubor, &chybovyKod);
-//  if (matice == NULL)
-//  {
-//    printf("Matici se nepovedlo přečíst. Chybový kód: %d\n", chybovyKod);
-//    // + tisk hlášení podle chybového kódu
-//    return;
-//  }
+    maticeRandom(matice);
+    maticeTiskni(matice);
 
-  maticeRandom(matice);
-  maticeTiskni(matice);
+    maticeUvolni(matice);
 
-  maticeUvolni(matice);
-
-  printf("==========================================\n");
+    printf("==========================================\n");
 }
-
 
 
 /** \brief Otestuje funkce pro čtení ze a zápis do souboru.
@@ -63,53 +51,47 @@ void testInit(void)
  * NULL, použije se soubor stdin nebo stdout.</p>
  *
  */
-int testFileRW(char *input, char *output)
-{
-  printf("==========================================\n");
-  printf("Test cteni a zapisu ze a do souboru\n");
-  FILE *fin = stdin;
-  FILE *fout = stdout;
+int testFileRW(char *input, char *output) {
+    printf("==========================================\n");
+    printf("Test cteni a zapisu ze a do souboru\n");
+    FILE *fin = stdin;
+    FILE *fout = stdout;
 
-  int exitCode = EXIT_SUCCESS;
+    int exitCode = EXIT_SUCCESS;
 
-  if (input != NULL)
-    fin = fopen(input, "r");
+    if (input != NULL)
+        fin = fopen(input, "r");
 
-  if (output != NULL)
-    fout = fopen(output, "w");
+    if (output != NULL)
+        fout = fopen(output, "w");
 
-  if (fin == NULL)
-  {
-    fprintf(stderr, "Chybny nazev vstupniho souboru.");
-    fin = stdin;
-    input = NULL;
-  }
+    if (fin == NULL) {
+        fprintf(stderr, "Chybny nazev vstupniho souboru.");
+        fin = stdin;
+        input = NULL;
+    }
 
-  if (fout == NULL)
-  {
-    fprintf(stderr, "Chybny nazev vystupniho souboru.");
-    fout = stdout;
-    output = NULL;
-  }
+    if (fout == NULL) {
+        fprintf(stderr, "Chybny nazev vystupniho souboru.");
+        fout = stdout;
+        output = NULL;
+    }
 
-  int chk;
-  Tmatice * m = maticeCtiZeSouboru(fin, &chk);
-  if (m != NULL)
-  {
-    maticeTiskniSoubor(fout, m);
-    maticeUvolni(m);
-  }
-  else
-  {
-    fprintf(stderr, "Chyba pri cteni vstupniho souboru.");
-    exitCode = EXIT_FAILURE;
-  }
+    int chk;
+    Tmatice *m = maticeCtiZeSouboru(fin, &chk);
+    if (m != NULL) {
+        maticeTiskniSoubor(fout, m);
+        maticeUvolni(m);
+    } else {
+        fprintf(stderr, "Chyba pri cteni vstupniho souboru.");
+        exitCode = EXIT_FAILURE;
+    }
 
 
-  if (input != NULL) fclose(fin);
-  if (output != NULL) fclose(fout);
-  printf("==========================================\n");
-  return exitCode;
+    if (input != NULL) fclose(fin);
+    if (output != NULL) fclose(fout);
+    printf("==========================================\n");
+    return exitCode;
 }
 
 
@@ -130,29 +112,25 @@ int testFileRW(char *input, char *output)
  * <p>Pozor! Operace maticového násobení není komutativní, tudíž záleží na
  * pořadí operandů.</p>
  */
-Tmatice * maticeMult(const Tmatice *a, const Tmatice *b)
-{
-  if (a->sloupcu != b->radku)
-    return NULL;
+Tmatice *maticeMult(const Tmatice *a, const Tmatice *b) {
+    if (a->sloupcu != b->radku)
+        return NULL;
 
-  Tmatice * c = maticeAlokuj(a->radku, b->sloupcu);
-  if (c == NULL)
-    return NULL;
+    Tmatice *c = maticeAlokuj(a->radku, b->sloupcu);
+    if (c == NULL)
+        return NULL;
 
-  for (int row = 0; row < c->radku ; ++row)
-  {
-    for (int col = 0; col < c->sloupcu ; ++col)
-    {
-      double ssum;
-      ssum = 0.0;
-      for (int k = 0; k < a->sloupcu ; ++k)
-      {
-        ssum += a->prvek[row][k] * b->prvek[k][col];
-      }
-      c->prvek[row][col] = ssum;
+    for (int row = 0; row < c->radku; ++row) {
+        for (int col = 0; col < c->sloupcu; ++col) {
+            double ssum;
+            ssum = 0.0;
+            for (int k = 0; k < a->sloupcu; ++k) {
+                ssum += a->prvek[row][k] * b->prvek[k][col];
+            }
+            c->prvek[row][col] = ssum;
+        }
     }
-  }
-  return c;
+    return c;
 
 //  Poznámka: Všimni si, že operace se sama stará o alokaci výsledku a ošetření
 //  chyb, které to může generovat. Jako autor takové operace nemůžu chtít po
@@ -162,32 +140,29 @@ Tmatice * maticeMult(const Tmatice *a, const Tmatice *b)
 }
 
 /** \brief Test operací #maticeRandom a #maticeMult. */
-void testMult(void)
-{
-  printf("==========================================\n");
-  printf("Test nasobeni nahodnych matic\n");
-  Tmatice * a = maticeAlokuj(4, 2);
-  Tmatice * b = maticeAlokuj(2, 3);
+void testMult(void) {
+    printf("==========================================\n");
+    printf("Test nasobeni nahodnych matic\n");
+    Tmatice *a = maticeAlokuj(4, 2);
+    Tmatice *b = maticeAlokuj(2, 3);
 
-  maticeRandom(a);
-  maticeRandom(b);
+    maticeRandom(a);
+    maticeRandom(b);
 
-  maticeTiskni(a);
-  printf("*\n");
-  maticeTiskni(b);
-  printf("=\n");
-  Tmatice * c = maticeMult(a, b);
-  if (c != NULL)
-  {
-    maticeTiskni(c);
-    maticeUvolni(c);
-  }
-  else
-    printf("Tohle nejde!\n");
+    maticeTiskni(a);
+    printf("*\n");
+    maticeTiskni(b);
+    printf("=\n");
+    Tmatice *c = maticeMult(a, b);
+    if (c != NULL) {
+        maticeTiskni(c);
+        maticeUvolni(c);
+    } else
+        printf("Tohle nejde!\n");
 
-  maticeUvolni(a);
-  maticeUvolni(b);
-  printf("==========================================\n");
+    maticeUvolni(a);
+    maticeUvolni(b);
+    printf("==========================================\n");
 }
 
 
@@ -201,23 +176,22 @@ void testMult(void)
  *              ve tvaru po provedení přímého chodu Gaussovy eliminační metody
  *              a soustava je dále řešitelná. Jinak vrací hodnotu false.
  */
-bool gemPoPrimem(Tmatice *m)
-{
-  for(int r = 1; r <= m->radku-1; r++) {
-    for(int s = 0; s < r; s++) {
-        if(m->prvek[r][s] != 0) {
+bool gemPoPrimem(Tmatice *m) {
+    for (int r = 1; r <= m->radku - 1; r++) {
+        for (int s = 0; s < r; s++) {
+            if (m->prvek[r][s] != 0) {
+                return false;
+            }
+        }
+    }
+
+    for (int r = 0; r < m->radku; r++) {
+        if (m->prvek[r][r] == 0) {
             return false;
         }
     }
-  }
 
-  for(int r = 0; r < m->radku; r++) {
-    if(m->prvek[r][r] == 0) {
-        return false;
-    }
-  }
-
-  return true;
+    return true;
 }
 
 /** \brief Vrací true, když je zadaná matice ve tvaru pro provedení přímého chodu GJEM.
@@ -229,19 +203,18 @@ bool gemPoPrimem(Tmatice *m)
  *              ve tvaru po provedení přímého chodu Gauss-Jordanovy eliminační metody
  *              a soustava je dále řešitelná. Jinak vrací false.
  */
-bool gjemPoPrimem(Tmatice *m)
-{
-  // TODO: naprogramuj ji
-  return false;
+bool gjemPoPrimem(Tmatice *m) {
+    // TODO: naprogramuj ji
+    return false;
 }
 
 
-int zjistiReseni(Tmatice* m) {
-    int rad = m->radku-1;
-    if(m->prvek[rad][rad] != 0) {
+int zjistiReseni(Tmatice *m) {
+    int rad = m->radku - 1;
+    if (m->prvek[rad][rad] != 0) {
         printf("Jedno reseni\n");
         return 1;
-    } else if(m->prvek[rad][rad+1] == 0) {
+    } else if (m->prvek[rad][rad + 1] == 0) {
         printf("Nekonecno\n");
         return -1;
     } else {
@@ -259,13 +232,15 @@ int zjistiReseni(Tmatice* m) {
  * 2. Otestuj ji a vytiskni, zda jde o matici po provedení přímého chodu GEM nebo GJEM.
  * 3. Vypiš, kolik řešení zadaná soustava má (0, 1, nekonečno).
  */
-void testMatice(char *jmenoSouboru)
-{
-  printf("==========================================\n");
+void testMatice(char *jmenoSouboru) {
+    printf("==========================================\n");
 
-    FILE* fin;
-    if (jmenoSouboru != NULL){
+    FILE *fin;
+    if (jmenoSouboru != NULL) {
         fin = fopen(jmenoSouboru, "r");
+    } else {
+        printf("Spatne jmeno souboru\n");
+        return;
     }
 
 
@@ -275,27 +250,27 @@ void testMatice(char *jmenoSouboru)
     }
 
 
-
     int chyba;
-    Tmatice* matice = maticeCtiZeSouboru(fin, &chyba);
-    if(chyba != EMOK) {
-    printf("Chyba...");
-    return;
+    Tmatice *matice = maticeCtiZeSouboru(fin, &chyba);
+    if (chyba != EMOK) {
+        printf("Chyba...");
+        return;
     }
 
     maticeTiskni(matice);
 
     bool jePoPrimem = gemPoPrimem(matice);
-    if(jePoPrimem) {
+    if (jePoPrimem) {
         printf("Je po primem\n");
     } else {
         printf("Neni po primem\n");
     }
 
     int reseni = zjistiReseni(matice);
+    printf("Pocet reseni %d\n", reseni);
 
 
-  printf("==========================================\n");
+    printf("==========================================\n");
 }
 
 // Začni testováním a zpětnými chody. Tohle dodělej pak.
@@ -304,35 +279,14 @@ void testMatice(char *jmenoSouboru)
  * \param m Tmatice* Ukazatel na alokovanou matici.
  * \return int Vrací kód chyby.
  */
-int gemPrimy(Tmatice *matice)
-{
-    maticeTiskni(matice);
-    printf("\n");
-
-    for(int r = 0; r < matice->radku; r++) {
+int gemPrimy(Tmatice *matice) {
+    for(int r = 0; r < matice->radku ; r++) {
         int k = maxAbsPivot(matice, r);
-        if(matice->prvek[k][r] == 0) {
-            printf("Chyba reseni primeho chodu\n");
-            return EXIT_FAILURE;
-        }
-
-        if(r!=k) {
-            printf("Pred vymenou %d\n", r);
-            maticeTiskni(matice);
-
-            printf("Po vymene %d\n", r);
+        if(k != r) {
             maticeVymenRadky(matice, r, k);
-            maticeTiskni(matice);
-
-            printf("Po radkoveUpravy %d\n", r);
-            radkoveUpravy(matice, r);
-            maticeTiskni(matice);
-
-            printf("\n");
+            maticeRadkoveUpravy(matice, r);
         }
     }
-
-    return EMOK;
 }
 
 
@@ -342,17 +296,40 @@ int gemPrimy(Tmatice *matice)
  * \return int Vrací kód chyby.
  *
  */
-int gjemPrimy(Tmatice *m)
-{
-  return EMUNKNOWN;
+int gjemPrimy(Tmatice *m) {
+    return EMUNKNOWN;
 }
 
-void testPrimyChod(char *jmenoSouboru)
-{
-  printf("==========================================\n");
-  // TODO: naprogramuj ji
-  printf("Funkce testZpetnyChod neni hotova.\n");
-  printf("==========================================\n");
+void testPrimyChod(char *jmenoSouboru) {
+    printf("==========================================\n");
+    printf("Primy chod\n");
+
+    FILE *fin;
+    if (jmenoSouboru != NULL) {
+        fin = fopen(jmenoSouboru, "r");
+    } else {
+        printf("Spatne jmeno souboru\n");
+        return;
+    }
+
+    if (fin == NULL) {
+        fprintf(stderr, "Chybny nazev vstupniho souboru.");
+        return;
+    }
+
+    int chyba;
+    Tmatice *matice = maticeCtiZeSouboru(fin, &chyba);
+    if (chyba != EMOK) {
+        printf("Chyba...");
+        return;
+    }
+
+    maticeTiskni(matice);
+
+    gemPrimy(matice);
+    maticeTiskni(matice);
+
+    printf("==========================================\n");
 }
 
 
@@ -362,10 +339,25 @@ void testPrimyChod(char *jmenoSouboru)
  *
  * \param m Tmatice* Ukazatel na rozšířenou matici soustavy.
  */
-void gemZpetny(Tmatice *m)
-{
-  // TODO: naprogramuj ji
-  printf("Funkce gemZpetny neni hotova.");
+void gemZpetny(Tmatice *m) {
+    printf("Funkce gemZpetny");
+
+    int posledniSloupec = m->radku;
+    for(int r = m->radku-1; r >= 0; r--) {
+        float sum = 0.0f;
+        for(int s = r+1; s < posledniSloupec; s++) {
+            sum += m->prvek[r][s] * m->prvek[s][posledniSloupec];
+            m->prvek[r][s] = 0.0f;
+        }
+        float b = m->prvek[r][posledniSloupec];
+        float res = (b - sum);
+        float div = res / m->prvek[r][r];
+
+        m->prvek[r][r] = 1.0f;
+        m->prvek[r][posledniSloupec] = div;
+
+        maticeTiskni(m);
+    }
 }
 
 /** \brief Provede zpětný chod GJEM.
@@ -374,23 +366,21 @@ void gemZpetny(Tmatice *m)
  *
  * \param m Tmatice* Ukazatel na rozšířenou matici soustavy.
  */
-void gjemZpetny(Tmatice *m)
-{
-  // TODO: naprogramuj ji
-  printf("Funkce gjemZpetny neni hotova.");
+void gjemZpetny(Tmatice *m) {
+    // TODO: naprogramuj ji
+    printf("Funkce gjemZpetny neni hotova.");
 }
+
 
 /** \brief Tiskne řešení soustavy rovnic, které je uloženo v posledním sloupci rozšířené matice soustavy.
  *
  * \param m Tmatice* Ukazatel na rozšířenou matici soustavy.
  */
-void tiskReseni(Tmatice *m)
-{
-  printf("Reseni soustavy rovnic:");
-  for (int r = 0; r < m->radku; ++r)
-  {
-    printf("x%d = %f\n", r, m->prvek[r][m->sloupcu-1]);
-  }
+void tiskReseni(Tmatice *m) {
+    printf("Reseni soustavy rovnic:");
+    for (int r = 0; r < m->radku; ++r) {
+        printf("x%d = %f\n", r, m->prvek[r][m->sloupcu - 1]);
+    }
 }
 
 /** \brief Vyřeší upravenou soustavu rovnic.
@@ -402,26 +392,54 @@ void tiskReseni(Tmatice *m)
  * 3. Vyřeš ji.
  * 4. Vypiš řešení soustavy pomocí funkce tiskReseni.
  */
-void testZpetnyChod(char *jmenoSouboru)
-{
-  printf("==========================================\n");
-  // TODO: naprogramuj ji
-  printf("Funkce testZpetnyChod neni hotova.\n");
-  printf("==========================================\n");
+void testZpetnyChod(char *jmenoSouboru) {
+    printf("==========================================\n");
+    printf("Funkce testZpetnyChod\n");
+
+    FILE *fin;
+    if (jmenoSouboru != NULL) {
+        fin = fopen(jmenoSouboru, "r");
+    } else {
+        printf("Spatne jmeno souboru\n");
+        return;
+    }
+
+    if (fin == NULL) {
+        fprintf(stderr, "Chybny nazev vstupniho souboru.");
+        return;
+    }
+
+    int chyba;
+    Tmatice *matice = maticeCtiZeSouboru(fin, &chyba);
+    if (chyba != EMOK) {
+        printf("Chyba...");
+        return;
+    }
+
+    maticeTiskni(matice);
+
+    gemPrimy(matice);
+    maticeTiskni(matice);
+
+    gemZpetny(matice);
+
+    printf("==========================================\n");
 }
+
 
 /** \brief Startovní bod programu.
  *
  * \return int Návratový kód programu.
  */
-int main(void)
-{
-  srand(time(NULL));
+int main(void) {
+    srand(time(NULL));
 
 //  testInit();
 //  testFileRW("A.txt", NULL); // NULL -> bude zapisovat na stdout
 //  testMult();
-  testMatice("C.txt");     // otestuj i jiné soubory
-//  testZpetnyChod("E.txt"); // otestuj i jiné soubory
-  return EXIT_SUCCESS;
+//  testMatice("C.txt");     // otestuj i jiné soubory
+//    testPrimyChod("prezGem.txt"); // prezGem.txt
+
+  testZpetnyChod("prezGem.txt"); // otestuj i jiné soubory
+    return EXIT_SUCCESS;
 }

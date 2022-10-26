@@ -167,6 +167,6 @@ void maticeVymenRadky(Tmatice *m, int r1, int r2);
 
 int maxAbsPivot(Tmatice *matice, int d);
 
-void radkoveUpravy(Tmatice* matice, int r);
+void maticeRadkoveUpravy(Tmatice* matice, int r);
 
 #endif // matice_H_GUARD
