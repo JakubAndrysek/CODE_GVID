@@ -13,14 +13,17 @@
 typedef struct {
     char **data;
     int length;
+    int capacity;
+    int actual;
 } Tqueue;
 
-Tqueue* createQueue(int length);
+Tqueue* createQueue(int capacity);
 void deleteQueue(Tqueue* queue);
 
-void loadQueue(Tqueue* queue, FILE* in);
 void printQueue(Tqueue* queue);
 
+void addItem(Tqueue* queue, char item, int *size, int *capacity);
+void startNewLine(Tqueue* queue);
 
 
 

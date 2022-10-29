@@ -49,7 +49,26 @@ void head(FILE* in, int count) {
 
 void tail(FILE* in, int count) {
     Tqueue* queue = createQueue(count);
-    loadQueue(queue, stdin);
+
+    char item;
+    int size = 0;
+    int capacity = 0;
+    while ((item = getchar())!= EOF) {
+        switch (item) {
+            case '\n':
+                addItem(queue, '\0', &size, &capacity); // end string
+                startNewLine(queue);
+                capacity = 0;
+                size = 0;
+                break;
+            default:
+                addItem(queue, item, &size, &capacity);
+                break;
+        }
+    }
+//    loadQueue(queue, stdin);
+    printf("Result:\n");
+
     printQueue(queue);
 
     deleteQueue(queue);
