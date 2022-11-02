@@ -34,9 +34,9 @@ void showHelp() {
 }
 
 
-void head(FILE* in, int count) {
+void head(int count) {
     char c;
-    while ((c = fgetc(in)) != EOF) {
+    while ((c = getchar()) != EOF) {
         if (c == '\n') {
             count--;
             if(count <=0) {
@@ -47,7 +47,7 @@ void head(FILE* in, int count) {
     }
 }
 
-void tail(FILE* in, int count) {
+void tail(int count) {
     Tqueue* queue = createQueue(count);
 
     char item;
@@ -97,12 +97,10 @@ void processArguments(int argc, char *argv[]) {
         return;
     }
 
-    FILE* file = fopen(argv[3], "r");
-
     if (strcmp(argv[1], "head") == 0) {
-        head(file, argToInt(argv[2]));
+        head(argToInt(argv[2]));
     } else if (strcmp(argv[1], "tail") == 0) {
-        tail(file, argToInt(argv[2]));
+        tail(argToInt(argv[2]));
     }
 }
 
