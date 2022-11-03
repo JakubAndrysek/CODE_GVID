@@ -93,7 +93,7 @@ void processArguments(int argc, char *argv[]) {
     }
 
     if(argc<3) {
-        printf("E: malo argumentu");
+        printf("E: malo argumentu123");
         return;
     }
 
