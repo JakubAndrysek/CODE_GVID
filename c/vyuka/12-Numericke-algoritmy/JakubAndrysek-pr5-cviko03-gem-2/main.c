@@ -209,7 +209,7 @@ bool gjemPoPrimem(Tmatice *m) {
 }
 
 
-int zjistiReseni(Tmatice *m) {
+int zjistiReseniGem(Tmatice *m) {
     int rad = m->radku - 1;
     if (m->prvek[rad][rad] != 0) {
         printf("Jedno reseni\n");
@@ -220,6 +220,15 @@ int zjistiReseni(Tmatice *m) {
     } else {
         printf("Nema reseni");
         return 0;
+    }
+}
+
+int zjistiReseniGjem(Tmatice *m) {
+    int radku = m->radku;
+    for(int r = 0; r < radku; r++) {
+        for(int s = r+1; s < radku-1; s++) {
+            printf("%g |", m->prvek[r][s]);
+        }
     }
 }
 
@@ -266,7 +275,7 @@ void testMatice(char *jmenoSouboru) {
         printf("Neni po primem\n");
     }
 
-    int reseni = zjistiReseni(matice);
+    int reseni = zjistiReseniGem(matice);
     printf("Pocet reseni %d\n", reseni);
 
 
@@ -416,11 +425,14 @@ void gemZpetny(Tmatice *m) {
  */
 void gjemZpetny(Tmatice *m) {
     printf("Funkce gjemZpetny");
+    maticeTiskni(m);
+
     int radku = m->radku;
     for(int r = 0; r < m->radku; r++) {
         m->prvek[r][radku] = m->prvek[r][radku] / m->prvek[r][r];
         m->prvek[r][r] = 1;
     }
+    maticeTiskni(m);
 }
 
 
@@ -430,8 +442,8 @@ void gjemZpetny(Tmatice *m) {
  */
 void tiskReseni(Tmatice *m) {
     printf("Reseni soustavy rovnic:\n");
-    for (int r = 0; r < m->radku; ++r) {
-        printf("x%d = %g\n", r, m->prvek[r][m->sloupcu - 1]);
+    for(int r = 0; r < m->radku; r++) {
+        printf("x%d = %2g\n", r, m->prvek[r][m->radku]);
     }
 }
 

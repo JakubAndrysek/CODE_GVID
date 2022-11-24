@@ -164,8 +164,8 @@ void maticeVymenRadky(Tmatice *m, int r1, int r2) {
 
 int maxAbsPivot(Tmatice *matice, int d) {
     int max = d;
-    for (int r = 1; r < matice->radku; r++) {
-        if (fabsf(matice->prvek[r][d]) > matice->prvek[max][d]) {
+    for(int r = d+1; r < matice->radku; r++) {
+        if(fabs(matice->prvek[r][d]) > fabs(matice->prvek[max][d])) {
             max = r;
         }
     }

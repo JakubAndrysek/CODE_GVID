@@ -177,13 +177,13 @@ Tmatice* testMaticeNacteni(char *jmenoSouboru) {
         fin = fopen(jmenoSouboru, "r");
     } else {
         printf("Spatne jmeno souboru\n");
-        return;
+        exit(EXIT_FAILURE);
     }
 
 
     if (fin == NULL) {
         fprintf(stderr, "Chybny nazev vstupniho souboru.");
-        return;
+        exit(EXIT_FAILURE);
     }
 
 
@@ -191,7 +191,7 @@ Tmatice* testMaticeNacteni(char *jmenoSouboru) {
     Tmatice *matice = maticeCtiZeSouboru(fin, &chyba);
     if (chyba != EMOK) {
         printf("Chyba...");
-        return;
+        exit(EXIT_FAILURE);
     }
 
     maticeTiskni(matice);
@@ -218,17 +218,141 @@ void tiskReseni(Tmatice *m) {
 
 
 bool jeDiagonalneDominanatni(Tmatice *m) {
-    for()
+    int radku = m->radku;
+    float sum = 0;
+    for(int r = 0; r < radku; r++) {
+        for(int s = 0; s < radku; s++) {
+            if(r != s) {
+                sum += m->prvek[r][s];
+            }
+        }
+        if(sum >= m->prvek[r][r]) {
+            return false;
+        }
+        sum = 0;
+    }
+    return true;
 }
 
 
 void testDDMatice() {
     printf("testDDMatice\n");
 
-    Tmatice* matice = testMaticeNacteni("prez.txt")
+    Tmatice* matice = testMaticeNacteni("jeDDM.txt");
+    bool jeDD = jeDiagonalneDominanatni(matice);
+    printf("Je DDM: %d (je)\n", jeDD);
+
+    Tmatice* maticeNeDD = testMaticeNacteni("neDDM.txt");
+    bool jeDD_false = jeDiagonalneDominanatni(maticeNeDD);
+    printf("Je DDM: %d (neni)\n", jeDD_false);
 }
 
 
+void upravaMatice(Tmatice *m) {
+    int radku = m->radku;
+    for (int r = 0; r < radku; r++) {
+        for(int s = 0; s <= radku; s++) {
+            if(r != s) {
+                m->prvek[r][s] /= m->prvek[r][r];
+            }
+        }
+        m->prvek[r][r] = 0;
+    }
+}
+
+void testUpravaMatice() {
+    Tmatice* matice = testMaticeNacteni("prez.txt");
+
+    upravaMatice(matice);
+
+    maticeTiskni(matice);
+}
+
+float vypocetGS(Tmatice* m, Tmatice* x, int r) {
+    float sum = 0;
+    int radku = m->radku;
+    for(int s = 0; s < m->radku; s++) {
+        sum += m->prvek[r][s] * x->prvek[s][0];
+    }
+    float res = m->prvek[r][radku] - sum;
+    return res;
+}
+
+void resGS(Tmatice *m, float eps, Tmatice *x) {
+    bool jePresny = false;
+
+    while(!jePresny) {
+        jePresny = true;
+        for(int r = 0; r < m->radku; r++) {
+            float xPred = x->prvek[r][0];
+            x->prvek[r][0] = vypocetGS(m, x, r);
+            jePresny = jePresny && (fabsf(xPred - x->prvek[r][0]) < eps);
+        }
+//        maticeTiskni(x);
+    }
+}
+
+
+void testGS(void) {
+    printf("testGS\n");
+
+    Tmatice* matice = testMaticeNacteni("prez.txt");
+
+    bool jeDD = jeDiagonalneDominanatni(matice);
+    if(!jeDD) {
+        printf("Neni DD\n");
+        return;
+    }
+
+    upravaMatice(matice);
+//    maticeTiskni(matice);
+
+    Tmatice* x = maticeAlokuj(matice->radku, 1);
+    maticeNastavPrvky(x, 0);
+//    maticeTiskni(x);
+
+    resGS(matice, 0.01f, x);
+    maticeTiskni(x);
+}
+
+
+void resJacobi(Tmatice *m, float eps, Tmatice *x) {
+    bool jePresny = false;
+    Tmatice* y = maticeAlokuj(m->radku, 1);
+
+    while(!jePresny) {
+        jePresny = true;
+        for(int r = 0; r < m->radku; r++) {
+            y->prvek[r][0] = vypocetGS(m, x, r);
+            jePresny = jePresny && (fabsf(y->prvek[r][0] - x->prvek[r][0]) < eps);
+            Tmatice* pom = x;
+            x = y;
+            y = pom;
+        }
+//        maticeTiskni(x);
+    }
+}
+
+void testJacobi(void) {
+    printf("testJacobi\n");
+    Tmatice* matice = testMaticeNacteni("prez.txt");
+
+    bool jeDD = jeDiagonalneDominanatni(matice);
+    if(!jeDD) {
+        printf("Neni DD\n");
+        return;
+    }
+
+    upravaMatice(matice);
+//    maticeTiskni(matice);
+
+    Tmatice* x = maticeAlokuj(matice->radku, 1);
+    maticeNastavPrvky(x, 0);
+//    maticeTiskni(x);
+
+    resJacobi(matice, 0.01f, x);
+    maticeTiskni(x);
+}
 
 /** \brief Startovní bod programu.
  *
@@ -244,7 +368,12 @@ int main(void) {
 //  testMult();
 //  testMatice("C.txt");     // otestuj i jiné soubory
 
+//    testDDMatice();
 
+//    testUpravaMatice();
+
+    testGS();
+    testJacobi();
 
     return EXIT_SUCCESS;
 }
