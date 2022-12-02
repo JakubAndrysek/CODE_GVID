@@ -1,0 +1,168 @@
+# řádek začínající mřížkou se změní na html komentář
+# řádek začínající mezerou nebo tabulátorem zůstane netknutý
+ <html lang="cs">
+   <head>
+     <title>Tabulka generovaná sedem</title>
+   </head>
+ <body>
+
+# řádek obsahující pouze !table se změní na začátek značky table
+!table
+#Jméno,Příjmení,Pohlaví,Datum narození,E-mail
+#Hana,Sabadková,žena,20. 8. 1971,sabadkova.hana@mail.cz
+Jelena,Perná,žena,4. 7. 1988,perna.jelena@mail.cz
+Božena,Nováková,žena,14. 4. 1993,novakova.bozena@mail.cz
+Dana,Vopršálková,žena,15. 1. 1977,voprsalkova.dana@mail.cz
+Žaneta,Olecká,žena,27. 5. 1959,olecka.zaneta@mail.cz
+Zdena,Vopršálková,žena,21. 12. 1992,voprsalkova.zdena@mail.cz
+Jelena,Doroženská,žena,21. 12. 1991,dorozenska.jelena@mail.cz
+Oto,Novák,muž,9. 9. 1964,novak.oto@mail.cz
+# řádek obsahující pouze !!table se změní na konec značky table
+!!table
+
+!table
+Lenka,Mašková,žena,29. 6. 1992,maskova.lenka@mail.cz
+Waldemar,Chaplin,muž,15. 9. 1992,chaplin.waldemar@mail.cz
+Lenka,Vopršálková,žena,15. 1. 1978,voprsalkova.lenka@mail.cz
+Karla,Mladá,žena,24. 8. 1983,mlada.karla@mail.cz
+Vladěna,Pertová,žena,2. 10. 1982,pertova.vladena@mail.cz
+Xaver,Kučera,muž,20. 6. 1983,kucera.xaver@mail.cz
+Aleš,Zábava,muž,26. 1. 1985,zabava.ales@mail.cz
+Ervín,Hovorka,muž,17. 10. 1967,hovorka.ervin@mail.cz
+Lenka,Mašková,žena,13. 7. 1984,maskova.lenka@mail.cz
+Libuše,Sabadková,žena,15. 3. 1978,sabadkova.libuse@mail.cz
+Rudolf,Fiala,muž,17. 1. 1992,fiala.rudolf@mail.cz
+Ladislav,Nejezchleba,muž,21. 11. 1965,nejezchleba.ladislav@mail.cz
+Adéla,Dvořáková,žena,24. 7. 1965,dvorakova.adela@mail.cz
+Pavel,Ulek,muž,19. 9. 1999,ulek.pavel@mail.cz
+Lucie,Doroženská,žena,23. 6. 1982,dorozenska.lucie@mail.cz
+Gerta,Gregorová,žena,28. 6. 1976,gregorova.gerta@mail.cz
+Zdena,Doroženská,žena,31. 10. 1971,dorozenska.zdena@mail.cz
+Stanislav,Zikuda,muž,2. 9. 1980,zikuda.stanislav@mail.cz
+Daniel,Kučera,muž,18. 12. 1961,kucera.daniel@mail.cz
+Filoména,Klaková,žena,10. 6. 1978,klakova.filomena@mail.cz
+Gerhard,Žampach,muž,3. 5. 1974,zampach.gerhard@mail.cz
+Libuše,Janzáková,žena,2. 7. 1962,janzakova.libuse@mail.cz
+Jana,Doroženská,žena,21. 3. 1956,dorozenska.jana@mail.cz
+Oto,Žampach,muž,30. 10. 1953,zampach.oto@mail.cz
+Ivo,Kučera,muž,26. 7. 1975,kucera.ivo@mail.cz
+Eva,Klaková,žena,12. 9. 1968,klakova.eva@mail.cz
+Žaneta,Janušinská,žena,29. 1. 1952,janusinska.zaneta@mail.cz
+Radka,Václavíková,žena,16. 3. 1995,vaclavikova.radka@mail.cz
+Stanislav,Řehoř,muž,22. 2. 1969,rehor.stanislav@mail.cz
+Florián,Žlutý,muž,19. 8. 1993,zluty.florian@mail.cz
+Naďa,Janušinská,žena,22. 9. 1963,janusinska.nada@mail.cz
+Naděžda,Rábová,žena,8. 9. 1981,rabova.nadezda@mail.cz
+Milada,Mladá,žena,9. 3. 1993,mlada.milada@mail.cz
+Pavel,Ulek,muž,27. 10. 1958,ulek.pavel@mail.cz
+Rudolf,Žampach,muž,4. 3. 1987,zampach.rudolf@mail.cz
+Zdeněk,Hladký,muž,27. 12. 1968,hladky.zdenek@mail.cz
+Norbert,Chaplin,muž,18. 2. 1974,chaplin.norbert@mail.cz
+Adam,Hladký,muž,13. 7. 1971,hladky.adam@mail.cz
+Žaneta,Ropická,žena,2. 4. 1992,ropicka.zaneta@mail.cz
+Teofil,Ďurik,muž,15. 3. 1956,ďurik.teofil@mail.cz
+Ulrich,Bílý,muž,1. 10. 1996,bily.ulrich@mail.cz
+Lenka,Klaisová,žena,14. 3. 1988,klaisova.lenka@mail.cz
+Waldemar,Horák,muž,11. 10. 1989,horak.waldemar@mail.cz
+Drahomíra,Černá,žena,7. 9. 1997,cerna.drahomira@mail.cz
+Cyril,Polák,muž,6. 10. 1985,polak.cyril@mail.cz
+Ludvík,Foriš,muž,28. 6. 1957,foris.ludvik@mail.cz
+Václav,Horák,muž,19. 1. 1989,horak.vaclav@mail.cz
+Rudolf,Bílý,muž,26. 2. 1994,bily.rudolf@mail.cz
+Pavla,Perná,žena,3. 2. 1988,perna.pavla@mail.cz
+Helena,Ropická,žena,28. 5. 1988,ropicka.helena@mail.cz
+David,Nárožný,muž,3. 8. 1991,narozny.david@mail.cz
+Evžen,Fiala,muž,17. 5. 1996,fiala.evzen@mail.cz
+Adéla,Ornestová,žena,12. 9. 1980,ornestova.adela@mail.cz
+Zdena,Olecká,žena,28. 11. 1993,olecka.zdena@mail.cz
+Aurélie,Vojáčková,žena,25. 9. 1995,vojackova.aurelie@mail.cz
+Danuše,Kozánková,žena,4. 10. 1984,kozankova.danuse@mail.cz
+Ludvík,Dvořák,muž,30. 12. 1960,dvorak.ludvik@mail.cz
+Blažena,Lízlerová,žena,19. 2. 1958,lizlerova.blazena@mail.cz
+Stanislava,Gregorová,žena,1. 1. 1985,gregorova.stanislava@mail.cz
+Karla,Mladá,žena,6. 3. 1974,mlada.karla@mail.cz
+Adalbert,Veselý,muž,11. 6. 1994,vesely.adalbert@mail.cz
+Aurélie,Václavíková,žena,25. 12. 1983,vaclavikova.aurelie@mail.cz
+Miroslav,Ďurik,muž,18. 1. 1963,ďurik.miroslav@mail.cz
+Božena,Ropická,žena,8. 12. 1974,ropicka.bozena@mail.cz
+Hugo,Gott,muž,11. 9. 1980,gott.hugo@mail.cz
+Gerta,Janzáková,žena,2. 10. 1988,janzakova.gerta@mail.cz
+Karel,Polák,muž,26. 5. 1962,polak.karel@mail.cz
+Ilona,Janušinská,žena,9. 12. 1966,janusinska.ilona@mail.cz
+Daniel,Ulek,muž,4. 3. 1988,ulek.daniel@mail.cz
+Stanislav,Závocký,muž,3. 9. 1969,zavocky.stanislav@mail.cz
+Teofil,Chaplin,muž,17. 9. 1955,chaplin.teofil@mail.cz
+Petr,Závocký,muž,16. 10. 1991,zavocky.petr@mail.cz
+Libuše,Pertová,žena,26. 4. 1994,pertova.libuse@mail.cz
+Tarzan,Ulek,muž,29. 10. 1975,ulek.tarzan@mail.cz
+Dana,Spozdilová,žena,27. 2. 1972,spozdilova.dana@mail.cz
+Bernard,Maškulka,muž,14. 10. 1974,maskulka.bernard@mail.cz
+Helena,Pokorná,žena,12. 2. 1994,pokorna.helena@mail.cz
+Tarzan,Závocký,muž,11. 7. 1979,zavocky.tarzan@mail.cz
+Jan,Řehoř,muž,20. 4. 1970,rehor.jan@mail.cz
+Pavla,Pokorná,žena,6. 9. 1982,pokorna.pavla@mail.cz
+Danuše,Vopršálková,žena,11. 8. 1986,voprsalkova.danuse@mail.cz
+Karla,Mladá,žena,30. 8. 1986,mlada.karla@mail.cz
+Gerhard,Starý,muž,7. 3. 1992,stary.gerhard@mail.cz
+Teofil,Procházka,muž,7. 2. 1955,prochazka.teofil@mail.cz
+Ladislav,Procházka,muž,27. 10. 1967,prochazka.ladislav@mail.cz
+Florián,Hovorka,muž,20. 9. 1971,hovorka.florian@mail.cz
+Hana,Poláková,žena,13. 5. 1961,polakova.hana@mail.cz
+Ilona,Sabadková,žena,11. 6. 1956,sabadkova.ilona@mail.cz
+Norbert,Mašek,muž,19. 11. 1975,masek.norbert@mail.cz
+Ulrich,Polák,muž,5. 6. 1966,polak.ulrich@mail.cz
+Jiří,Smutný,muž,17. 2. 1953,smutny.jiri@mail.cz
+Ilona,Gráfová,žena,26. 2. 1961,grafova.ilona@mail.cz
+Evžen,Trevisi,muž,5. 5. 1993,trevisi.evzen@mail.cz
+Damián,Kučera,muž,4. 3. 1962,kucera.damian@mail.cz
+Evženie,Gráfová,žena,7. 1. 1980,grafova.evzenie@mail.cz
+Karla,Pokorná,žena,29. 4. 1954,pokorna.karla@mail.cz
+Milada,Lízlerová,žena,4. 1. 1955,lizlerova.milada@mail.cz
+Xaver,Závocký,muž,9. 6. 1963,zavocky.xaver@mail.cz
+Lucie,Gregorová,žena,11. 6. 1990,gregorova.lucie@mail.cz
+Waldemar,Černý,muž,9. 10. 1996,cerny.waldemar@mail.cz
+Adam,Nárožný,muž,18. 2. 1995,narozny.adam@mail.cz
+Damián,Nárožný,muž,30. 5. 1986,narozny.damian@mail.cz
+Klaudie,Sabadková,žena,31. 5. 1962,sabadkova.klaudie@mail.cz
+Tarzan,Ulek,muž,31. 3. 1987,ulek.tarzan@mail.cz
+Eva,Klaisová,žena,10. 5. 1997,klaisova.eva@mail.cz
+Adam,Mašek,muž,9. 8. 1955,masek.adam@mail.cz
+Klaudius,Trautenberg,muž,25. 2. 1952,trautenberg.klaudius@mail.cz
+Ivan,Pokorný,muž,30. 12. 1999,pokorny.ivan@mail.cz
+Lenka,Nováková,žena,1. 6. 1960,novakova.lenka@mail.cz
+Ivan,Maškulka,muž,3. 12. 1986,maskulka.ivan@mail.cz
+Tarzan,Maškulka,muž,17. 5. 1950,maskulka.tarzan@mail.cz
+Evženie,Krakonošová,žena,7. 3. 1987,krakonosova.evzenie@mail.cz
+Xaver,Kučera,muž,12. 12. 1965,kucera.xaver@mail.cz
+Bernard,Svoboda,muž,27. 1. 1969,svoboda.bernard@mail.cz
+Helena,Lízlerová,žena,21. 2. 1991,lizlerova.helena@mail.cz
+Pavel,Závocký,muž,4. 3. 1988,zavocky.pavel@mail.cz
+Lucie,Gregorová,žena,14. 3. 1999,gregorova.lucie@mail.cz
+Danuše,Rábová,žena,19. 2. 1963,rabova.danuse@mail.cz
+Jan,Mašek,muž,25. 12. 1953,masek.jan@mail.cz
+Damián,Habanec,muž,14. 8. 1978,habanec.damian@mail.cz
+Ivona,Leherová,žena,23. 8. 1956,leherova.ivona@mail.cz
+Mirka,Zámečníková,žena,3. 12. 1987,zamecnikova.mirka@mail.cz
+Evžen,Závocký,muž,30. 3. 1958,zavocky.evzen@mail.cz
+Ivan,Chaplin,muž,13. 4. 1994,chaplin.ivan@mail.cz
+Drahomíra,Janušinská,žena,4. 2. 1992,janusinska.drahomira@mail.cz
+Václav,Smutný,muž,18. 7. 1954,smutny.vaclav@mail.cz
+Klaudius,Bína,muž,27. 1. 1977,bina.klaudius@mail.cz
+Žaneta,Zámečníková,žena,2. 11. 1957,zamecnikova.zaneta@mail.cz
+Helena,Dobešová,žena,3. 7. 1986,dobesova.helena@mail.cz
+Iveta,Lízlerová,žena,24. 7. 1984,lizlerova.iveta@mail.cz
+Dana,Poláková,žena,11. 6. 1972,polakova.dana@mail.cz
+Dominik,Habanec,muž,18. 12. 1971,habanec.dominik@mail.cz
+Stanislava,Krakonošová,žena,23. 10. 1957,krakonosova.stanislava@mail.cz
+Klaudie,Doroženská,žena,10. 1. 1971,dorozenska.klaudie@mail.cz
+Otýlie,Zámečníková,žena,8. 6. 1955,zamecnikova.otylie@mail.cz
+Miroslav,Mašek,muž,17. 5. 1968,masek.miroslav@mail.cz
+Hana,Černá,žena,10. 9. 1960,cerna.hana@mail.cz
+Mirka,Dvořáková,žena,17. 4. 1953,dvorakova.mirka@mail.cz
+Iva,Nováková,žena,22. 1. 1998,novakova.iva@mail.cz
+Aleš,Feber,muž,21. 3. 1951,feber.ales@mail.cz
+Klaudius,Zábava,muž,9. 6. 1989,zabava.klaudius@mail.cz
+David,Závocký,muž,7. 12. 1996,zavocky.david@mail.cz
+!!table
+ </body>
+ </html>

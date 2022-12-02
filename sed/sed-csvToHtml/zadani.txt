@@ -1,0 +1,8 @@
+Prozkoumej soubory osoby.csv a osoby.html.
+
+Napiš skript pro sed, který použiješ pro převod .csv souboru
+na .html soubor, který musí fungovat tak, aby šlo ze
+vzorového souboru osoby.csv vyrobit vzorový soubor osoby.html.
+
+Tabulku seznam.ods můžeš použít pro vygenerování nových náhodných
+dat (ale bez přídavných značek).

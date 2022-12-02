@@ -10,6 +10,7 @@ tri
 ctyri
 END
 
+# vnoreny skript
 {
     echo Ahoj
-} > stderr
+} > /dev/stderr
