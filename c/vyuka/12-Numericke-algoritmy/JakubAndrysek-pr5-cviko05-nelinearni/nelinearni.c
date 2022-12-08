@@ -21,7 +21,7 @@ float bisekce(float a, float b, Tfun f, float epsilon) {
 
     float c = (a+b) / 2;
     float fc = f(c);
-    while(fabsf(fc) >= epsilon) {
+    while(fabsf(fc) > epsilon) {
         if(fa * fc < 0) {
             b = c;
         } else {
@@ -31,4 +31,25 @@ float bisekce(float a, float b, Tfun f, float epsilon) {
         c = (a+b) / 2;
     }
     return c;
+}
+
+float regulaFalsiVzorec(float a, float b, float fa, float fb) {
+    float c = (b*fa - a*fb) / (fa - fb);
+    return c;
+}
+
+float regulaFalsi(float a, float b, Tfun f, float epsilon) {
+    float fa = f(a);
+    float fb = f(b);
+    float c = regulaFalsiVzorec(a, b, fa, fb);
+    float fc = f(c);
+    while (fabsf(fc) >= epsilon) {
+        if(fa * fc) {
+            b = c;
+        } else {
+            a = c;
+            fa = fc;
+        }
+        c = regulaFalsiVzorec(a, b, fa, fb);
+    }
 }

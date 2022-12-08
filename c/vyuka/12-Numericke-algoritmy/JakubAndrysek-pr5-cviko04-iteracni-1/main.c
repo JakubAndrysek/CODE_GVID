@@ -234,17 +234,46 @@ bool jeDiagonalneDominanatni(Tmatice *m) {
     return true;
 }
 
+bool jeUpravena(Tmatice *m) {
+    if(m->radku != m->sloupcu+1) {
+        printf("Spatne rozmery\n");
+        return false;
+    }
+    for(int rs = 0; rs < m->radku; rs++) {
+        if(m->prvek[rs][rs] != 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool jeDDPoUprave(Tmatice *m) {
+    float sum = 0;
+    for(int r = 0; r < m->radku; r++) {
+        for(int s = 0; s < m->radku; s++) {
+            if(r != s) {
+                sum += m->prvek[r][s];
+            }
+        }
+        if(sum >= 1) {
+            return false;
+        }
+        sum = 0;
+    }
+    return true;
+}
+
 
 void testDDMatice() {
     printf("testDDMatice\n");
 
     Tmatice* matice = testMaticeNacteni("jeDDM.txt");
     bool jeDD = jeDiagonalneDominanatni(matice);
-    printf("Je DDM: %d (je)\n", jeDD);
+    printf("Je DDM: %d (ma byt ano)\n", jeDD);
 
     Tmatice* maticeNeDD = testMaticeNacteni("neDDM.txt");
     bool jeDD_false = jeDiagonalneDominanatni(maticeNeDD);
-    printf("Je DDM: %d (neni)\n", jeDD_false);
+    printf("Je DDM: %d (ma byt ne)\n", jeDD_false);
 }
 
 
@@ -266,6 +295,9 @@ void testUpravaMatice() {
     upravaMatice(matice);
 
     maticeTiskni(matice);
+
+    bool jeDD = jeDDPoUprave(matice);
+    printf("Je DDM: %d (ma byt ano)\n", jeDD);
 }
 
 float vypocetGS(Tmatice* m, Tmatice* x, int r) {
@@ -325,10 +357,10 @@ void resJacobi(Tmatice *m, float eps, Tmatice *x) {
         for(int r = 0; r < m->radku; r++) {
             y->prvek[r][0] = vypocetGS(m, x, r);
             jePresny = jePresny && (fabsf(y->prvek[r][0] - x->prvek[r][0]) < eps);
-            Tmatice* pom = x;
-            x = y;
-            y = pom;
         }
+        Tmatice* pom = x;
+        x = y;
+        y = pom;
 //        maticeTiskni(x);
     }
 }

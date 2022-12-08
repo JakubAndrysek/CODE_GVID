@@ -16,5 +16,7 @@ float f1(float x);
 
 float bisekce(float a, float b, Tfun f, float epsilon);
 
+float regulaFalsi(float a, float b, Tfun f, float epsilon);
+
 
 #endif //JAKUBANDRYSEK_PR5_CVIKO03_GEM_2_NELINEARNI_H

@@ -32,11 +32,16 @@ float f1(float x) {
 
 
 void testBisekce() {
-    float koren = bisekce(0.0, 2.0, f1, 0.0001);
+    float koren = bisekce(0.0, 2.0, f1, 0.001);
 
     printf("Bisekce %f\n", koren);
 }
 
+void testRegulaFalsi() {
+    float koren = regulaFalsi(0.0, 2.0, f1, 0.001);
+
+    printf("Bisekce %f\n", koren);
+}
 
 
 /** \brief Startovní bod programu.
@@ -49,7 +54,8 @@ int main(void) {
     enableColors();
 
 //    testHorner();
-    testBisekce();
+//    testBisekce();
+    testRegulaFalsi();
 
 
 
