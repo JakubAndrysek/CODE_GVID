@@ -20,8 +20,8 @@ float bisekce(float a, float b, Tfun f, float epsilon) {
     float fa = f(a); // vycisleni f
 
     float c = (a+b) / 2;
-    float fc = f(c);
-    while(fabsf(fc) > epsilon) {
+    float fc;
+    while(fabsf(fc = f(c)) >= epsilon) {
         if(fa * fc < 0) {
             b = c;
         } else {
@@ -33,8 +33,23 @@ float bisekce(float a, float b, Tfun f, float epsilon) {
     return c;
 }
 
+float bisekceRek(float a, float b, Tfun f, float epsilon) {
+    float middle = (a+b)/2;
+    float fmiddle = f(middle);
+    if(fabsf(fmiddle) < epsilon) {
+        return middle;
+    }
+
+    if(f(a) * fmiddle < 0) {
+        return bisekce(a, middle, f, epsilon);
+    } else {
+        return bisekce(middle, b, f, epsilon);
+    }
+}
+
 float regulaFalsiVzorec(float a, float b, float fa, float fb) {
-    float c = (b*fa - a*fb) / (fa - fb);
+//    float c = (b*fa - a*fb) / (fa - fb);
+    float c = a + fa*(b-a)/(fa-fb);
     return c;
 }
 
@@ -42,8 +57,8 @@ float regulaFalsi(float a, float b, Tfun f, float epsilon) {
     float fa = f(a);
     float fb = f(b);
     float c = regulaFalsiVzorec(a, b, fa, fb);
-    float fc = f(c);
-    while (fabsf(fc) >= epsilon) {
+    float fc;
+    while (fabsf(fc = f(c)) >= epsilon) {
         if(fa * fc) {
             b = c;
         } else {
@@ -52,4 +67,5 @@ float regulaFalsi(float a, float b, Tfun f, float epsilon) {
         }
         c = regulaFalsiVzorec(a, b, fa, fb);
     }
+    return c;
 }

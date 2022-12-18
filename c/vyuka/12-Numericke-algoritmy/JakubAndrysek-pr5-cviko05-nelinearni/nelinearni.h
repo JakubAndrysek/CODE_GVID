@@ -15,6 +15,7 @@ float horner(const float koef[], int n, float x);
 float f1(float x);
 
 float bisekce(float a, float b, Tfun f, float epsilon);
+float bisekceRek(float a, float b, Tfun f, float epsilon);
 
 float regulaFalsi(float a, float b, Tfun f, float epsilon);
 

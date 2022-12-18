@@ -27,12 +27,19 @@ void testHorner() {
 
 float f1(float x) {
     float koef[] = {-5.0, 3.2, 7.5};
-    return horner(koef, 2, x);
+    return horner(koef, 3, x);
+}
+
+float f2(float x) {
+    float koef[] = {3, 3.2, 7.5};
+    return horner(koef, 3, x);
 }
 
 
 void testBisekce() {
-    float koren = bisekce(0.0, 2.0, f1, 0.001);
+//    float koren = bisekce(0.0, 2.0, f1, 0.001);
+    float koren = bisekceRek(0.0, 2.0, f1, 0.001);
+
 
     printf("Bisekce %f\n", koren);
 }
@@ -40,7 +47,7 @@ void testBisekce() {
 void testRegulaFalsi() {
     float koren = regulaFalsi(0.0, 2.0, f1, 0.001);
 
-    printf("Bisekce %f\n", koren);
+    printf("RegulaFalsi %f\n", koren);
 }
 
 
@@ -53,8 +60,8 @@ int main(void) {
 
     enableColors();
 
-//    testHorner();
-//    testBisekce();
+    testHorner();
+    testBisekce();
     testRegulaFalsi();
 
 
