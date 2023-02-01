@@ -1,0 +1,15 @@
+Úlohy se želví grafikou
+
+V každém souboru je komentář se zadáním. Dále se nachází
+náznak řešení, které musíš doplnit. Hlavičky funkcí neměň.
+Vše ostatní můžeš upravovat. U každého zadání se nachází
+obrázek demonstrující správné řešení.
+
+Pořadí úloh od nejjednodušších po složitější:
+
+trojuhelnik.py
+vesnice.py
+terc.py
+sachovnice.py
+puntiky.py
+vlajky.py
