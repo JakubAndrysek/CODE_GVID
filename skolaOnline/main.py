@@ -80,7 +80,7 @@ def extract_mark_from_html(mark_html: str) -> dict:
 
 
 # get window.open link and parse it
-def extract_mark_details(mark_html: str) -> dict[str, dict | None]:
+def extract_mark_details(mark_html: str):
     try:
         link = mark_html[2].find('a').attrs['onclick']
         # "window.open('../Hodnoceni/KHO010_HodnVypisDetail.aspx?UdalostID=C37917700&OsobaID=C3361427', 'detail', 'width=430, height=400, resizable, scrollbars')"  to "../Hodnoceni/KHO010_HodnVypisDetail.aspx?UdalostID=C37917700&OsobaID=C3361427"
