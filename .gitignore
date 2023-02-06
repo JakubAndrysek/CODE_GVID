@@ -37,3 +37,4 @@ cmake_install.cmake
 c/doplnky/
 
 main
+__pycache__/
