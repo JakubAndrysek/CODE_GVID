@@ -18,6 +18,9 @@ float bisekce(float a, float b, Tfun f, float epsilon);
 float bisekceRek(float a, float b, Tfun f, float epsilon);
 
 float regulaFalsi(float a, float b, Tfun f, float epsilon);
+float secny(float a, float b, Tfun f, float epsilon, int iterationOut);
+
+float newton(float x, Tfun fNewton, Tfun fNewtonDeriv, float epsilon, int iterationOut);
 
 
 #endif //JAKUBANDRYSEK_PR5_CVIKO03_GEM_2_NELINEARNI_H
