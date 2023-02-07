@@ -107,11 +107,11 @@ def extract_mark_details(mark_html: str):
         return {}
 
 
-def scrape_sol_hompage():
-    htmlContent = scrape_sol_url("/SOL/App/Spolecne/KZZ010_RychlyPrehled.aspx")
+def scrape_sol_to_file():
+    html_content = scrape_sol_url("/SOL/App/Spolecne/KZZ010_RychlyPrehled.aspx")
     # save to file
     with open('htmlContent.html', 'w') as f:
-        f.write(htmlContent)
+        f.write(html_content)
 
 
 # get mark from file
@@ -132,10 +132,10 @@ def print_pretty_table(marks: list):
 
 if __name__ == '__main__':
     log_in_sol('zak_jakub', 'T3stovan1')
-    scrape_sol_hompage()
+    scrape_sol_to_file()
 
-    htmlContent = load_mark_from_file()
+    html_content = load_mark_from_file()
 
-    if htmlContent is not None:
-        marks = find_marks_in_html(htmlContent)
+    if html_content is not None:
+        marks = find_marks_in_html(html_content)
         print_pretty_table(marks)

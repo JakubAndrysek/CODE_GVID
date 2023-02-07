@@ -1,9 +1,13 @@
 ###
 ## Želva šachistkou
-## Zadání: Vytvoř podprogram pro kreslení šachovnice 8x8 políček.
-##   Parametrem bude šířka jednoho políčka. V šachovnici se budou
-##   střídat políčka dvou barev.
+## Zadání:
+## 1. Vytvoř podprogram pro kreslení šachovnice 8x8 políček.
+##    Parametrem bude šířka jednoho políčka. V šachovnici se budou
+##    střídat políčka dvou barev.
+## 2. Uprav program tak, aby se uvnitř každého políčka vypsalo číslo políčka
+##    písmem o velikosti půlky políčka.
 ###
+
 
 from gvid_zelva import *
 
@@ -23,7 +27,7 @@ def policko(delka, barva, barvaTextu, index=0):
   if index > 0:
     hopniRel(delka/2, delka/4)
     pencolor(barvaTextu)
-    write(index, align="center", font=("Arial", 22, "bold"))
+    write(index, align="center", font=("Arial", round(delka/2), "bold"))
     hopniRel(-delka/2, -delka/4)
     pencolor(barva)
 
@@ -38,7 +42,7 @@ def radek(delka, barvy, index=0):
     hopniRel(delka, 0)
   vzpomen()
 
-def ohranicSahovnice(delka, barvy):
+def ohranic_sahovnici(delka, barvy):
   """Ohraničí šachovnici."""
   # ohraničení šachovnice
   pencolor(barvy[0])
@@ -59,7 +63,7 @@ def sachovnice(delka, barvy):
     radek(delka, barvy, i)
     hopniRel(0, delka)
   vzpomen()
-  ohranicSahovnice(delka, barvy)
+  ohranic_sahovnici(delka, barvy)
 
 
 # zrychlení 1 - pomalu, 10 - rychle, 0 - turboželva
@@ -72,7 +76,7 @@ speed(100)
 # tloušťka čáry
 pensize(3)
 
-delka = 50
+delka = 100
 
 # posun výchozí pozice, aby se šachovnice kreslila uprostřed
 penup()
