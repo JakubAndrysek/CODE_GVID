@@ -34,10 +34,15 @@
 ;                 ; případech vracela true.
 
 (define (hanoi n a b c)
-  (begin
-    (move a b)
-    (move a c)
-    (move b c)
+  ; n > 0
+  (if (> n 0)
+      (begin        
+        (hanoi (- n 1) a c b) ;skp
+        (move a c)
+        (hanoi (- n 1) b a k)
+        ;hanoi psk
+        )
+      "konec")
     )
   )
 
