@@ -18,7 +18,7 @@
 
 ; Ladění
 ; ------
-; 1. Použij místo tlačítka Run tlačítko Debug. 
+; 1. Použij místo tlačítka Run tlačítko Debug.
 ; 2. Teď tlačítkem Step krokuj postup výpočtu programu.
 ;    - v okně Stack můžeš sledovat stav zásobníku při volání funkcí
 ; 3. Zarážka - Go

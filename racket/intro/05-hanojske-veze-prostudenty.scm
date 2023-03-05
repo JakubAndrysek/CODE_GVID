@@ -35,15 +35,8 @@
 
 (define (hanoi n a b c)
   ; n > 0
-  (if (> n 0)
-      (begin        
-        (hanoi (- n 1) a c b) ;skp
-        (move a c)
-        (hanoi (- n 1) b a k)
-        ;hanoi psk
-        )
-      "konec")
-    )
+  1
+
   )
 
 
@@ -52,7 +45,8 @@
     (init-window n)
     (init-towers n)
 
-    (hanoi n 1 2 3)))
+    ;(hanoi n 1 2 3)
+    ))
 
 (run-hanoi 4)
 

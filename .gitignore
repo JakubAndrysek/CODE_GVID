@@ -38,3 +38,4 @@ c/doplnky/
 
 main
 __pycache__/
+*.scm~
