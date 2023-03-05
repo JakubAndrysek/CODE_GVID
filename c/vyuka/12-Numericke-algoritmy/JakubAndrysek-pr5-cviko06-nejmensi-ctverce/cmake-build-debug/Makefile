@@ -57,10 +57,10 @@ RM = "/Users/kuba/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko05-nelinearni
+CMAKE_SOURCE_DIR = /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko06-nejmensi-ctverce
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko05-nelinearni/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko06-nejmensi-ctverce/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko05-nelinearni/cmake-build-debug/CMakeFiles /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko05-nelinearni/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko06-nejmensi-ctverce/cmake-build-debug/CMakeFiles /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko06-nejmensi-ctverce/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko05-nelinearni/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/kuba/Documents/git/kuba/CODE_GVID/c/vyuka/12-Numericke-algoritmy/JakubAndrysek-pr5-cviko06-nejmensi-ctverce/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,24 +117,48 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named JakubAndrysek_pr5_cviko05_nelinearni
+# Target rules for targets named JakubAndrysek_pr5_cviko06_nejmensi_ctverce
 
 # Build rule for target.
-JakubAndrysek_pr5_cviko05_nelinearni: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 JakubAndrysek_pr5_cviko05_nelinearni
-.PHONY : JakubAndrysek_pr5_cviko05_nelinearni
+JakubAndrysek_pr5_cviko06_nejmensi_ctverce: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 JakubAndrysek_pr5_cviko06_nejmensi_ctverce
+.PHONY : JakubAndrysek_pr5_cviko06_nejmensi_ctverce
 
 # fast build rule for target.
-JakubAndrysek_pr5_cviko05_nelinearni/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build
-.PHONY : JakubAndrysek_pr5_cviko05_nelinearni/fast
+JakubAndrysek_pr5_cviko06_nejmensi_ctverce/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build
+.PHONY : JakubAndrysek_pr5_cviko06_nejmensi_ctverce/fast
+
+gem.o: gem.c.o
+.PHONY : gem.o
+
+# target to build an object file
+gem.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/gem.c.o
+.PHONY : gem.c.o
+
+gem.i: gem.c.i
+.PHONY : gem.i
+
+# target to preprocess a source file
+gem.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/gem.c.i
+.PHONY : gem.c.i
+
+gem.s: gem.c.s
+.PHONY : gem.s
+
+# target to generate assembly for a file
+gem.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/gem.c.s
+.PHONY : gem.c.s
 
 main.o: main.c.o
 .PHONY : main.o
 
 # target to build an object file
 main.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/main.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/main.c.o
 .PHONY : main.c.o
 
 main.i: main.c.i
@@ -142,7 +166,7 @@ main.i: main.c.i
 
 # target to preprocess a source file
 main.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -150,7 +174,7 @@ main.s: main.c.s
 
 # target to generate assembly for a file
 main.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/main.c.s
 .PHONY : main.c.s
 
 matice.o: matice.c.o
@@ -158,7 +182,7 @@ matice.o: matice.c.o
 
 # target to build an object file
 matice.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/matice.c.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/matice.c.o
 .PHONY : matice.c.o
 
 matice.i: matice.c.i
@@ -166,7 +190,7 @@ matice.i: matice.c.i
 
 # target to preprocess a source file
 matice.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/matice.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/matice.c.i
 .PHONY : matice.c.i
 
 matice.s: matice.c.s
@@ -174,32 +198,32 @@ matice.s: matice.c.s
 
 # target to generate assembly for a file
 matice.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/matice.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/matice.c.s
 .PHONY : matice.c.s
 
-nelinearni.o: nelinearni.c.o
-.PHONY : nelinearni.o
+nejmensiCtverce.o: nejmensiCtverce.c.o
+.PHONY : nejmensiCtverce.o
 
 # target to build an object file
-nelinearni.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/nelinearni.c.o
-.PHONY : nelinearni.c.o
+nejmensiCtverce.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/nejmensiCtverce.c.o
+.PHONY : nejmensiCtverce.c.o
 
-nelinearni.i: nelinearni.c.i
-.PHONY : nelinearni.i
+nejmensiCtverce.i: nejmensiCtverce.c.i
+.PHONY : nejmensiCtverce.i
 
 # target to preprocess a source file
-nelinearni.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/nelinearni.c.i
-.PHONY : nelinearni.c.i
+nejmensiCtverce.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/nejmensiCtverce.c.i
+.PHONY : nejmensiCtverce.c.i
 
-nelinearni.s: nelinearni.c.s
-.PHONY : nelinearni.s
+nejmensiCtverce.s: nejmensiCtverce.c.s
+.PHONY : nejmensiCtverce.s
 
 # target to generate assembly for a file
-nelinearni.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko05_nelinearni.dir/nelinearni.c.s
-.PHONY : nelinearni.c.s
+nejmensiCtverce.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/build.make CMakeFiles/JakubAndrysek_pr5_cviko06_nejmensi_ctverce.dir/nejmensiCtverce.c.s
+.PHONY : nejmensiCtverce.c.s
 
 # Help Target
 help:
@@ -209,16 +233,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... JakubAndrysek_pr5_cviko05_nelinearni"
+	@echo "... JakubAndrysek_pr5_cviko06_nejmensi_ctverce"
+	@echo "... gem.o"
+	@echo "... gem.i"
+	@echo "... gem.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
 	@echo "... matice.o"
 	@echo "... matice.i"
 	@echo "... matice.s"
-	@echo "... nelinearni.o"
-	@echo "... nelinearni.i"
-	@echo "... nelinearni.s"
+	@echo "... nejmensiCtverce.o"
+	@echo "... nejmensiCtverce.i"
+	@echo "... nejmensiCtverce.s"
 .PHONY : help
 
 
