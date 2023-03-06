@@ -1,5 +1,10 @@
 # CODE_GVID
 
+<p align="center">
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJakubAndrysek%2FCODE_GVID&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=true"/></a>
+<img src="https://img.shields.io/github/license/JakubAndrysek/CODE_GVID?style=flat-square">
+</p>
+
 Kompletní příklady z výuky programování na [Gymnáziu Brno, Vídeňská](https://www.gvid.cz).
 
 ## [Céčko](./c)
