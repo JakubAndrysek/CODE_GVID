@@ -35,7 +35,7 @@
 
 (define (hanoi n a b c)
   (if (= n 1) ; základní případ: přesunout jeden disk z a na c
-    (fast-move a c)
+    (move a c)
     (begin ; rekurzivní případ: přesunout n-1 disků z a na b s pomocí c
       (hanoi (- n 1) a c b)
       (fast-move a c) ; přesunout největší disk z a na c
@@ -48,5 +48,5 @@
 
     (hanoi n 1 2 3))) ; vyřešit úlohu s n disky
 
-(run-hanoi 4) ; spustit program se 4 disky
+(run-hanoi 11) ; spustit program se 4 disky
 

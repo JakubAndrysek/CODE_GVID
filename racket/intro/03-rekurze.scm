@@ -1,82 +1,694 @@
-; Rekurze
-; -------
-; Rekurzivní funkce používá ve svém těle sebe samu.
-; Skládá se z primitivních případů (koncová podmínka rekurze) a rekurzivních případů
-; (rekurzivních volání).
-(define (faktorial x)
-  (if (<= x 0)
-      1
-      (* x (faktorial (- x 1)))))
-"Volání funkce faktorial"
-(faktorial 7)
-;(faktorial 700) ; tohle se ještě spočítá
+#reader(lib"read.ss""wxme")WXME0109 ## 
+#|
+   This file uses the GRacket editor format.
+   Open this file in DrRacket version 7.7 or later to read it.
 
-; Nezapomínej, že každé volání funkce způsobí vyhrazení prostoru na zásobníku.
-; Scheme umí pracovat s obrovskými čísly, ale potřebuje pro ně paměť. Pokud bychom
-; volali funkci faktorial s příliš velkými parametry, způsobí to vyčerpání paměti
-; a může to způsobit zaseknutí nebo havárii operačního systému.
+   Most likely, it was created by saving a program in DrRacket,
+   and it probably contains a program with non-text elements
+   (such as images or comment boxes).
 
-; Ladění
-; ------
-; 1. Použij místo tlačítka Run tlačítko Debug.
-; 2. Teď tlačítkem Step krokuj postup výpočtu programu.
-;    - v okně Stack můžeš sledovat stav zásobníku při volání funkcí
-; 3. Zarážka - Go
-;    - přejeď myší přes kteroukoli závorku s výrazem a objeví se na ní puntík
-;    - pravým tlačítkem myši teď nastav pauzu (breakpoint) na tuto závorku
-;    - tlačítkem Go spusť výpočet
-;    - výpočet se zastaví na nejbližší zarážce, kterou máš nastavenu
-; 4. Stop
-;    - až tě přestane ladění bavit, zastav jej tlačítkem Stop
-
-; Zkus si teď tímto postupem krokovat výpočet funkce faktorial.
-
-; Trasování
-; ---------
-; Trasování slouží ke sledování průběhu výpočtu zejména u rekurzivních funkcí.
-; Nejprve natáhneme knihovnu pro trasování funkcí.
-(require racket/trace)
-
-; Teď lze používat funkci trace. Řekneme jí, že chceme sledovat funkci faktorial.
-(trace faktorial)
-
-; Teď sleduj, co to udělá na výstupu.
-"Trasování funkce faktorial"
-(faktorial 7)
-
-
-; Koncová rekurze
-; ---------------
-; Funkce faktorial je pomalá a nebezpečná, protože může vypotřebovat paměť počítače.
-; Faktoriál se dá počítat i cyklem. Je to efektivnější, protože se nespotřebovává
-; zásobník. Ve funkcionálním jazyce se ale cykly dělají pomocí rekurze!
-; Koncová rekurze jde snadno převést na cyklus, proto interpret jazyka Scheme nemusí
-; zbytečně alokovat prostor na zásobníku. Místo toho na zásobníku přepisuje hodnoty
-; parametrů. Funguje tedy prakticky jako cyklus.
-
-; Koncová rekurze je taková, která má rekurzivní volání, jako posledí operaci, která
-; se ve funkci provádí. Funkce faktorial taková není, protože zde je poslední operací
-; násobení, ne rekurzivní volání. Funkce faktorial ale jde přepsat na koncově rekurzivní
-; verzi. Finta spočívá v přidání pomocného parametru, který bude sloužit pro ukládání
-; mezivýsledků. Do této pomocné proměnné pak při volání musíme uložit vhodnou počáteční
-; hodnotu
-
-(define (tr-faktorial x pom)
-  (if (<= x 0)
-      pom
-      (tr-faktorial (- x 1) (* x pom))))
-
-; V tomto případě bude v pomocné proměnné uložena hodnota, která se vrací v primitivním
-; případě, tedy 1
-"Volání funkce tr-faktorial"
-(tr-faktorial 7 1)
-
-; Aby uživatel omylem nezadal jinou počáteční hodnotu, lze jednoduše vyrobit
-; pomocnou obalovací funkci, která to zařídí.
-(define (faktorial-t x)
-  (tr-faktorial x 1))
-
-; Zároveň teď budeme trasovat funkci tr-faktorial pro srovnání s původní funkcí faktorial.
-"Volání funkce faktorial-t"
-(trace tr-faktorial)
-(faktorial-t 7)
+            http://racket-lang.org/
+|#
+ 33 7 #"wxtext\0"
+3 1 6 #"wxtab\0"
+1 1 8 #"wximage\0"
+2 0 8 #"wxmedia\0"
+4 1 34 #"(lib \"syntax-browser.ss\" \"mrlib\")\0"
+1 0 36 #"(lib \"cache-image-snip.ss\" \"mrlib\")\0"
+1 0 68
+(0
+ #"((lib \"image-core.ss\" \"mrlib\") (lib \"image-core-wxme.rkt\" \"mr"
+ #"lib\"))\0"
+) 1 0 16 #"drscheme:number\0"
+3 0 44 #"(lib \"number-snip.ss\" \"drscheme\" \"private\")\0"
+1 0 36 #"(lib \"comment-snip.ss\" \"framework\")\0"
+1 0 93
+(1
+ #"((lib \"collapsed-snipclass.ss\" \"framework\") (lib \"collapsed-sni"
+ #"pclass-wxme.ss\" \"framework\"))\0"
+) 0 0 43 #"(lib \"collapsed-snipclass.ss\" \"framework\")\0"
+0 0 19 #"drscheme:sexp-snip\0"
+0 0 29 #"drscheme:bindings-snipclass%\0"
+1 0 101
+(2
+ #"((lib \"ellipsis-snip.rkt\" \"drracket\" \"private\") (lib \"ellipsi"
+ #"s-snip-wxme.rkt\" \"drracket\" \"private\"))\0"
+) 2 0 88
+(3
+ #"((lib \"pict-snip.rkt\" \"drracket\" \"private\") (lib \"pict-snip.r"
+ #"kt\" \"drracket\" \"private\"))\0"
+) 0 0 55
+#"((lib \"snip.rkt\" \"pict\") (lib \"snip-wxme.rkt\" \"pict\"))\0"
+1 0 34 #"(lib \"bullet-snip.rkt\" \"browser\")\0"
+0 0 25 #"(lib \"matrix.ss\" \"htdp\")\0"
+1 0 22 #"drscheme:lambda-snip%\0"
+1 0 29 #"drclickable-string-snipclass\0"
+0 0 26 #"drracket:spacer-snipclass\0"
+0 0 57
+#"(lib \"hrule-snip.rkt\" \"macro-debugger\" \"syntax-browser\")\0"
+1 0 26 #"drscheme:pict-value-snip%\0"
+0 0 45 #"(lib \"image-snipr.ss\" \"slideshow\" \"private\")\0"
+1 0 38 #"(lib \"pict-snipclass.ss\" \"slideshow\")\0"
+2 0 55 #"(lib \"vertical-separator-snip.ss\" \"stepper\" \"private\")\0"
+1 0 18 #"drscheme:xml-snip\0"
+1 0 31 #"(lib \"xml-snipclass.ss\" \"xml\")\0"
+1 0 21 #"drscheme:scheme-snip\0"
+2 0 34 #"(lib \"scheme-snipclass.ss\" \"xml\")\0"
+1 0 10 #"text-box%\0"
+1 0 32 #"(lib \"text-snipclass.ss\" \"xml\")\0"
+1 0 1 6 #"wxloc\0"
+          0 0 59 0 1 #"\0"
+0 75 1 #"\0"
+0 10 90 -1 90 -1 3 -1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 255 255 255 1 -1 0 9
+#"Standard\0"
+0 75 12 #"Courier New\0"
+0 13 90 -1 90 -1 3 -1 0 1 0 1 0 0 0 0 0 0 0 0 0 0 0 255 255 255 1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 1 1 1 1 1 1 0 0 0 0 0 0 -1 -1 2 24
+#"framework:default-color\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 1 1 1 150 0 150 0 0 0 -1 -1 2 15
+#"text:ports out\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 150 0 150 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1.0 0 -1 -1 93 -1 -1 -1 0 0 0 0 0 0 0 0 0 1.0 1.0 1.0 255 0 0 0 0 0 -1
+-1 2 15 #"text:ports err\0"
+0 -1 1 #"\0"
+1 0 -1 -1 93 -1 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 255 0 0 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 1 1 1 0 0 175 0 0 0 -1 -1 2 17
+#"text:ports value\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 175 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1.0 0 92 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 1.0 1.0 1.0 34 139 34 0 0 0 -1
+-1 2 27 #"Matching Parenthesis Style\0"
+0 -1 1 #"\0"
+1.0 0 92 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 1.0 1.0 1.0 34 139 34 0 0 0 -1
+-1 2 1 #"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 38 38 128 0 0 0 -1 -1 2 37
+#"framework:syntax-color:scheme:symbol\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 38 38 128 0 0 0 -1 -1 2 38
+#"framework:syntax-color:scheme:keyword\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 38 38 128 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 194 116 31 0 0 0 -1 -1 2
+38 #"framework:syntax-color:scheme:comment\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 194 116 31 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 41 128 38 0 0 0 -1 -1 2 37
+#"framework:syntax-color:scheme:string\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 41 128 38 0 0 0 -1 -1 2 35
+#"framework:syntax-color:scheme:text\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 41 128 38 0 0 0 -1 -1 2 39
+#"framework:syntax-color:scheme:constant\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 41 128 38 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 132 60 36 0 0 0 -1 -1 2 49
+#"framework:syntax-color:scheme:hash-colon-keyword\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 132 60 36 0 0 0 -1 -1 2 42
+#"framework:syntax-color:scheme:parenthesis\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 132 60 36 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 255 0 0 0 0 0 -1 -1 2 36
+#"framework:syntax-color:scheme:error\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 255 0 0 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 -1 -1 2 36
+#"framework:syntax-color:scheme:other\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 -1 -1 2 16
+#"Misspelled Text\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 81 112 203 0 0 0 -1 -1 2
+38 #"drracket:check-syntax:lexically-bound\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 81 112 203 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 178 34 34 0 0 0 -1 -1 2 28
+#"drracket:check-syntax:set!d\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 178 34 34 0 0 0 -1 -1 2 37
+#"drracket:check-syntax:unused-require\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 255 0 0 0 0 0 -1 -1 2 36
+#"drracket:check-syntax:free-variable\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 255 0 0 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 68 0 203 0 0 0 -1 -1 2 31
+#"drracket:check-syntax:imported\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 68 0 203 0 0 0 -1 -1 2 47
+#"drracket:check-syntax:my-obligation-style-pref\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 178 34 34 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 116 0 0 0 0 -1 -1 2 50
+#"drracket:check-syntax:their-obligation-style-pref\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 116 0 0 0 0 -1 -1 2 48
+#"drracket:check-syntax:unk-obligation-style-pref\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 139 142 28 0 0 0 -1 -1 2
+49 #"drracket:check-syntax:both-obligation-style-pref\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 139 142 28 0 0 0 -1 -1 2
+26 #"plt:htdp:test-coverage-on\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 -1 -1 2 1
+#"\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 1 0 0 0 0 0 0 255 165 0 0 0 0 -1 -1 2 27
+#"plt:htdp:test-coverage-off\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 1 0 0 0 0 0 0 255 165 0 0 0 0 -1 -1 4 1
+#"\0"
+0 70 1 #"\0"
+1.0 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+-1 -1 4 4 #"XML\0"
+0 70 1 #"\0"
+1.0 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+-1 -1 2 37 #"plt:module-language:test-coverage-on\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 0 0 0 0 1 1 1 0 0 0 0 0 0 -1 -1 2 38
+#"plt:module-language:test-coverage-off\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 93 -1 -1 0 1 0 0 0 1 0 0 0 0 0 0 255 165 0 0 0 0 -1 -1 0 36
+#"mrlib/syntax-browser:subtitle-color\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 1 0 0 0 0 0 0 36 36 140 255 255 255 -1
+-1 0 42 #"mrlib/syntax-browser:focused-syntax-color\0"
+0 -1 1 #"\0"
+1 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 1 0 0 0 0 0 0 34 139 34 255 255 255 -1
+-1 4 1 #"\0"
+0 71 1 #"\0"
+1.0 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+-1 -1 4 1 #"\0"
+0 -1 1 #"\0"
+1.0 0 -1 -1 -1 -1 -1 -1 1 0 0 0 0 0 0 0 0 1.0 1.0 1.0 0 0 255 0 0 0 -1
+-1 4 1 #"\0"
+0 71 1 #"\0"
+1.0 0 -1 -1 -1 -1 -1 -1 1 0 0 0 0 0 0 0 0 1.0 1.0 1.0 0 0 255 0 0 0 -1
+-1 4 1 #"\0"
+0 71 1 #"\0"
+1.0 0 -1 -1 -1 -1 -1 -1 0 0 0 0 0 0 0 0 0 1.0 1.0 1.0 0 100 0 0 0 0 -1
+-1 4 1 #"\0"
+0 -1 1 #"\0"
+1.0 0 90 -1 -1 -1 -1 -1 0 0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+-1 -1 4 1 #"\0"
+0 -1 1 #"\0"
+1.0 0 92 -1 -1 -1 -1 -1 0 0 0 0 0 0 1.0 1.0 1.0 1.0 1.0 1.0 0 0 0 0 0 0
+-1 -1           0 307 0 17 3 9 #"; Rekurze"
+0 0 24 29 1 #"\n"
+0 0 17 3 9 #"; -------"
+0 0 24 29 1 #"\n"
+0 0 17 3 57
+(4
+ #"; Rekurzivn\303\255 funkce pou\305"
+ #"\276\303\255v\303\241 ve sv\303\251m t\304\233le sebe samu."
+) 0 0 24 29 1 #"\n"
+0 0 17 3 96
+(5
+ #"; Skl\303\241d\303\241 se z primitivn"
+ #"\303\255ch p\305\231\303\255pad\305\257 (koncov\303\241"
+ #" podm\303\255nka rekurze) a r"
+ #"ekurzivn\303\255ch p\305\231\303\255pad\305\257"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 27 #"; (rekurzivn\303\255ch vol\303\241n\303\255)."
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 15 3 6 #"define"
+0 0 24 3 2 #" ("
+0 0 14 3 9 #"faktorial"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 3 #"  ("
+0 0 14 3 2 #"if"
+0 0 24 3 2 #" ("
+0 0 14 3 2 #"<="
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"0"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 6 #"      "
+0 0 21 3 1 #"1"
+0 0 24 29 1 #"\n"
+0 0 24 3 7 #"      ("
+0 0 14 3 1 #"*"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 2 #" ("
+0 0 14 3 9 #"faktorial"
+0 0 24 3 2 #" ("
+0 0 14 3 1 #"-"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"1"
+0 0 24 3 5 #")))))"
+0 0 24 29 1 #"\n"
+0 0 19 3 27 #"\"Vol\303\241n\303\255 funkce faktorial\""
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 14 3 9 #"faktorial"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"7"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 17 3 46
+(6
+ #";(faktorial 700) ; tohl"
+ #"e se je\305\241t\304\233 spo\304\215\303\255t\303\241"
+) 0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 89
+(7
+ #"; Nezapom\303\255nej, \305\276e ka\305\276d"
+ #"\303\251 vol\303\241n\303\255 funkce zp\305\257so"
+ #"b\303\255 vyhrazen\303\255 prostoru na z\303\241sobn\303\255ku."
+) 0 0 24 29 1 #"\n"
+0 0 17 3 90
+(8
+ #"; Scheme um\303\255 pracovat s "
+ #"obrovsk\303\275mi \304\215\303\255sly, ale "
+ #"pot\305\231ebuje pro n\304\233 pam\304\233\305\245. Pokud bychom"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 91
+(9
+ #"; volali funkci faktorial"
+ #" s p\305\231\303\255li\305\241 velk\303\275mi par"
+ #"ametry, zp\305\257sob\303\255 to"
+ #" vy\304\215erp\303\241n\303\255 pam\304\233ti"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 71
+(10
+ #"; a m\305\257\305\276e to zp\305\257sobit z"
+ #"aseknut\303\255 nebo hav\303\241rii"
+ #" opera\304\215n\303\255ho syst\303\251mu."
+) 0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 10 #"; Lad\304\233n\303\255"
+0 0 24 29 1 #"\n"
+0 0 17 3 8 #"; ------"
+0 0 24 29 1 #"\n"
+0 0 17 3 52
+(11
+ #"; 1. Pou\305\276ij m\303\255sto tla\304\215"
+ #"\303\255tka Run tla\304\215\303\255tko Debug."
+) 0 0 24 29 1 #"\n"
+0 0 17 3 60
+(12
+ #"; 2. Te\304\217 tla\304\215\303\255tkem Ste"
+ #"p krokuj postup v\303\275po\304\215tu programu."
+) 0 0 24 29 1 #"\n"
+0 0 17 3 77
+(13
+ #";    - v okn\304\233 Stack m\305\257\305"
+ #"\276e\305\241 sledovat stav z\303\241sob"
+ #"n\303\255ku p\305\231i vol\303\241n\303\255 funkc\303\255"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 19 #"; 3. Zar\303\241\305\276ka - Go"
+0 0 24 29 1 #"\n"
+0 0 17 3 87
+(14
+ #";    - p\305\231eje\304\217 my\305\241\303\255 p\305"
+ #"\231es kteroukoli z\303\241vorku s"
+ #" v\303\275razem a objev\303\255 se na n\303\255 punt\303\255k"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 80
+(15
+ #";    - prav\303\275m tla\304\215\303\255tke"
+ #"m my\305\241i te\304\217 nastav pauzu (breakpoint) na tuto z\303\241"
+ #"vorku"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 38
+#";    - tla\304\215\303\255tkem Go spus\305\245 v\303\275po\304\215et"
+0 0 24 29 1 #"\n"
+0 0 17 3 78
+(16
+ #";    - v\303\275po\304\215et se zasta"
+ #"v\303\255 na nejbli\305\276\305\241\303\255 zar\303\241"
+ #"\305\276ce, kterou m\303\241\305\241 nastavenu"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 9 #"; 4. Stop"
+0 0 24 29 1 #"\n"
+0 0 17 3 68
+(17
+ #";    - a\305\276 t\304\233 p\305\231estane "
+ #"lad\304\233n\303\255 bavit, zastav jej tla\304\215\303\255tkem Stop"
+) 0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 67
+(18
+ #"; Zkus si te\304\217 t\303\255mto pos"
+ #"tupem krokovat v\303\275po\304\215et funkce faktorial."
+) 0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 13 #"; Trasov\303\241n\303\255"
+0 0 24 29 1 #"\n"
+0 0 17 3 11 #"; ---------"
+0 0 24 29 1 #"\n"
+0 0 17 3 91
+(19
+ #"; Trasov\303\241n\303\255 slou\305\276\303\255 ke"
+ #" sledov\303\241n\303\255 pr\305\257b\304\233hu v\303"
+ #"\275po\304\215tu zejm\303\251na u rekurzivn\303\255ch funkc\303\255."
+) 0 0 24 29 1 #"\n"
+0 0 17 3 54
+(20
+ #"; Nejprve nat\303\241hneme knihovnu pro trasov\303\241n\303\255 funk"
+ #"c\303\255."
+) 0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 15 3 7 #"require"
+0 0 24 3 1 #" "
+0 0 14 3 12 #"racket/trace"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 87
+(21
+ #"; Te\304\217 lze pou\305\276\303\255vat fun"
+ #"kci trace. \305\230ekneme j\303\255, \305\276e chceme sledovat funkc"
+ #"i faktorial."
+) 0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 14 3 5 #"trace"
+0 0 24 3 1 #" "
+0 0 14 3 9 #"faktorial"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 41
+#"; Te\304\217 sleduj, co to ud\304\233l\303\241 na v\303\275stupu."
+0 0 24 29 1 #"\n"
+0 0 19 3 30 #"\"Trasov\303\241n\303\255 funkce faktorial\""
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 14 3 9 #"faktorial"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"7"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 18 #"; Koncov\303\241 rekurze"
+0 0 24 29 1 #"\n"
+0 0 17 3 17 #"; ---------------"
+0 0 24 29 1 #"\n"
+0 0 17 3 96
+(22
+ #"; Funkce faktorial je pomal\303\241 a nebezpe\304\215n\303\241, prot"
+ #"o\305\276e m\305\257\305\276e vypot\305\231ebov"
+ #"at pam\304\233\305\245 po\304\215\303\255ta\304\215e."
+) 0 0 24 29 1 #"\n"
+0 0 17 3 92
+(23
+ #"; Faktori\303\241l se d\303\241 po\304\215\303"
+ #"\255tat i cyklem. Je to efek"
+ #"tivn\304\233j\305\241\303\255, proto\305\276e"
+ #" se nespot\305\231ebov\303\241v\303\241"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 78
+(24
+ #"; z\303\241sobn\303\255k. Ve funkcion"
+ #"\303\241ln\303\255m jazyce se ale cyk"
+ #"ly d\304\233laj\303\255 pomoc\303\255 rekurze!"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 88
+(25
+ #"; Koncov\303\241 rekurze jde snadno p\305\231ev\303\251st na cyklus,"
+ #" proto interpret jazyka Scheme nemus\303\255"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 91
+(26
+ #"; zbyte\304\215n\304\233 alokovat pro"
+ #"stor na z\303\241sobn\303\255ku. M\303\255s"
+ #"to toho na z\303\241sobn\303\255ku p\305\231episuje hodnoty"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 49 #"; parametr\305\257. Funguje tedy prakticky jako cyklus."
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 93
+(27
+ #"; Koncov\303\241 rekurze je tak"
+ #"ov\303\241, kter\303\241 m\303\241 rekurziv"
+ #"n\303\255 vol\303\241n\303\255, jako po"
+ #"sled\303\255 operaci, kter\303\241"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 92
+(28
+ #"; se ve funkci prov\303\241d\303\255. Funkce faktorial takov\303\241"
+ #" nen\303\255, proto\305\276e zde je posledn\303\255 operac\303\255"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 96
+(29
+ #"; n\303\241soben\303\255, ne rekurziv"
+ #"n\303\255 vol\303\241n\303\255. Funkce fakt"
+ #"orial ale jde p\305\231epsat na koncov\304\233 rekurzivn\303\255"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 97
+(30
+ #"; verzi. Finta spo\304\215\303\255v\303\241"
+ #" v p\305\231id\303\241n\303\255 pomocn\303\251ho "
+ #"parametru, kter\303\275 bude "
+ #"slou\305\276it pro ukl\303\241d\303\241n\303\255"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 102
+(31
+ #"; meziv\303\275sledk\305\257. Do t\303\251t"
+ #"o pomocn\303\251 prom\304\233nn\303\251 pak"
+ #" p\305\231i vol\303\241n\303\255 mus\303\255me ul"
+ #"o\305\276it vhodnou po\304\215\303\241te\304\215n\303\255"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 9 #"; hodnotu"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 15 3 6 #"define"
+0 0 24 3 2 #" ("
+0 0 14 3 12 #"tr-faktorial"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #" "
+0 0 14 3 3 #"pom"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 3 #"  ("
+0 0 14 3 2 #"if"
+0 0 24 3 2 #" ("
+0 0 14 3 2 #"<="
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"0"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 6 #"      "
+0 0 14 3 3 #"pom"
+0 0 24 29 1 #"\n"
+0 0 24 3 7 #"      ("
+0 0 14 3 12 #"tr-faktorial"
+0 0 24 3 2 #" ("
+0 0 14 3 1 #"-"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"1"
+0 0 24 3 3 #") ("
+0 0 14 3 1 #"*"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #" "
+0 0 14 3 3 #"pom"
+0 0 24 3 4 #"))))"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 97
+(32
+ #"; V tomto p\305\231\303\255pad\304\233 bude"
+ #" v pomocn\303\251 prom\304\233nn\303\251 ul"
+ #"o\305\276ena hodnota, kter\303\241 "
+ #"se vrac\303\255 v primitivn\303\255m"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 20 #"; p\305\231\303\255pad\304\233, tedy 1"
+0 0 24 29 1 #"\n"
+0 0 19 3 30 #"\"Vol\303\241n\303\255 funkce tr-faktorial\""
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 14 3 12 #"tr-faktorial"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"7"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"1"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 82
+(33
+ #"; Aby u\305\276ivatel omylem ne"
+ #"zadal jinou po\304\215\303\241te\304\215n\303\255"
+ #" hodnotu, lze jednodu\305\241e vyrobit"
+) 0 0 24 29 1 #"\n"
+0 0 17 3 50
+(34
+ #"; pomocnou obalovac\303\255 fun"
+ #"kci, kter\303\241 to za\305\231\303\255d\303\255."
+) 0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 15 3 6 #"define"
+0 0 24 3 2 #" ("
+0 0 14 3 11 #"faktorial-t"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 3 #"  ("
+0 0 14 3 12 #"tr-faktorial"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"x"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"1"
+0 0 24 3 2 #"))"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 98
+(35
+ #"; Z\303\241rove\305\210 te\304\217 budeme trasovat funkci tr-faktori"
+ #"al pro srovn\303\241n\303\255 s p\305\257v"
+ #"odn\303\255 funkc\303\255 faktorial."
+) 0 0 24 29 1 #"\n"
+0 0 19 3 29 #"\"Vol\303\241n\303\255 funkce faktorial-t\""
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 14 3 5 #"trace"
+0 0 24 3 1 #" "
+0 0 14 3 12 #"tr-faktorial"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 14 3 11 #"faktorial-t"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"7"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 17 3 8 #"; b na n"
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 15 3 6 #"define"
+0 0 24 3 2 #" ("
+0 0 14 3 7 #"mocnina"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"b"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"n"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 3 #"  ("
+0 0 14 3 2 #"if"
+0 0 24 3 2 #" ("
+0 0 14 3 1 #"="
+0 0 24 3 1 #" "
+0 0 14 3 1 #"n"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"0"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 6 #"      "
+0 0 21 3 1 #"1"
+0 0 24 29 1 #"\n"
+0 0 24 3 7 #"      ("
+0 0 14 3 1 #"*"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"b"
+0 0 24 3 2 #" ("
+0 0 14 3 7 #"mocnina"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"b"
+0 0 24 3 2 #" ("
+0 0 14 3 1 #"-"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"n"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"1"
+0 0 24 3 5 #")))))"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 3 1 #"("
+0 0 14 3 7 #"mocnina"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"2"
+0 0 24 3 1 #" "
+0 0 21 3 2 #"64"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 0 24 29 1 #"\n"
+0 9         169 21           0 0           0 27 0 24 3 1 #"("
+0 0 15 3 6 #"define"
+0 0 24 3 2 #" ("
+0 0 14 3 10 #"tr-mocnina"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"b"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"n"
+0 0 24 3 1 #" "
+0 0 14 3 1 #"k"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 3 #"  ("
+0 0 14 3 2 #"if"
+0 0 24 3 2 #" ("
+0 0 14 3 1 #"="
+0 0 24 3 1 #" "
+0 0 14 3 1 #"n"
+0 0 24 3 1 #" "
+0 0 21 3 1 #"0"
+0 0 24 3 1 #")"
+0 0 24 29 1 #"\n"
+0 0 24 3 6 #"      "
+0 0 14 3 1 #"k"
+0 0 24 29 1 #"\n"
+0 0 24 3 7 #"      ("
+0 0 14 3 10 #"tr-mocnina"
+0           0 0           0
