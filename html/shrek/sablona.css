@@ -1,0 +1,51 @@
+@charset "iso-8859-1";
+
+body{
+background-color:royalblue; 
+margin:0;
+text-align:center;
+height: 500px;
+width: 700px;
+}
+
+
+div{
+background-color:orange
+}
+
+
+.nadpis{
+text-align: center;
+margin-top: 5px;
+height: 100px;
+width: 700px;   
+font-size: 20pt;
+font-weight: bold;
+
+}
+
+.telo{
+top:5px;
+margin-top: 10px;
+margin-bottom: 10px;
+width: 700px;
+height: 340px;
+overflow: hidden;
+} 
+ 
+.menu{
+top:10px;
+
+}
+
+
+.odkaz{
+padding: 5px 10px ;
+
+}
+
+img{
+margin-bottom: 50px;
+margin-top: 5px;
+
+}

@@ -1,0 +1,30 @@
+/* CSS Document */
+body{
+background-color: red;
+}
+
+.tucne{
+font-weight: bold;
+color: rgb(0,204,0);
+}
+
+#paticka{
+height: 100px;
+background-color: rgb(153,51,102);
+
+}
+
+.zkouska{
+font-family: serif;
+font-style: italic;
+font-variant: small-caps;
+font-size: 16pt;
+}
+
+.dalsi{
+font: normal 15pt Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.zarovnani{
+text-align: justify;
+}

@@ -1,0 +1,49 @@
+/* CSS Document */
+body{
+    background: url('Obrazky/tmava.png'); 
+}
+
+.stred{
+    width: 900px;  
+    margin-left:auto;
+    margin-right:auto;
+    
+    color: white;
+    font-family: Arial;
+    
+}
+
+.hlavicka{
+    height: 110px;
+    text-align: center;    
+    background: url('Obrazky/cerna.png'); 
+    border-radius: 10px;
+    margin: 50px 0px 10px 0px;    
+}
+
+
+.telo{  
+    padding: 20px 20px 20px 20px; 
+    text-align: justify; 
+    background: url('Obrazky/pozadi.png');
+    border-radius: 10px;
+    margin: 10px 0px 10px 0px;
+}
+
+
+.paticka{ 
+    //border: 1px solid black;  
+    background: url('Obrazky/cerna.png');
+    border-radius: 10px;  
+    padding: 20px 20px 20px 20px;
+    margin: 10px 0px 10px 0px;
+}
+
+a{
+text-decoration: none;
+text-align: center;
+}
+
+.vyska{
+height: 400px;
+}

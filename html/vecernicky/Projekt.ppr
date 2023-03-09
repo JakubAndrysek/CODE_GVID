@@ -1,0 +1,55 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+[Project tree]
+Projekt
+	+Složka
+		bab.html
+		bab.css
+		fik.html
+		fik.css
+		rak.html
+		rak.css
+		vecernicky.css
+[Open project files]
+0=bab.html
+1=bab.css
+2=fik.html
+3=fik.css
+4=rak.html
+5=rak.css
+6=vecernicky.css
+[Selected Project Files]
+Main=
+Selected=vecernicky.css
+[bab.html]
+TopLine=1
+Caret=7,8
+[bab.css]
+TopLine=1
+Caret=30,4
+[fik.html]
+TopLine=1
+Caret=195,29
+[fik.css]
+TopLine=1
+Caret=30,4
+[rak.html]
+TopLine=1
+Caret=380,28
+[rak.css]
+TopLine=1
+Caret=1,3
+[vecernicky.css]
+TopLine=1
+Caret=16,38

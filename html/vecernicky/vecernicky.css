@@ -1,0 +1,42 @@
+/* CSS Document */
+body{
+background-color:rgb(37,74,92);
+color: white;
+}
+
+
+#hlava{
+width: 800px;
+background-image: url(obr/vecernicek.jpg);
+background-repeat: no-repeat;
+padding-top: 150px;
+//width: 800;
+}
+
+#menu{
+width: 800px;
+margin: 20px 0;
+//background-color: white;
+}
+
+a:hover{
+background-color: gray;
+}
+
+a{
+color: black;
+padding: 6px ;
+background-color: white;
+font-weight: bold;
+text-decoration: none;
+}
+
+#telo{
+width: 800px;
+background-image: url(obr/bab.png);
+background-repeat: no-repeat;
+padding-top: 140px;
+text-align: justify;
+
+}
+

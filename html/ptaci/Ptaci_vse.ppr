@@ -1,0 +1,35 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+[Project tree]
+Ptaci_vse
+	+Složka
+		stehovavi.html
+		ptaci.html
+		stali.html
+[Open project files]
+0=stehovavi.html
+1=ptaci.html
+2=stali.html
+[Selected Project Files]
+Main=
+Selected=stehovavi.html
+[stehovavi.html]
+TopLine=1
+Caret=1,14
+[ptaci.html]
+TopLine=1
+Caret=72,21
+[stali.html]
+TopLine=1
+Caret=106,15

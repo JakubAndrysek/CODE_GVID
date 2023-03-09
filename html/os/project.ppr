@@ -1,0 +1,35 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.HideOutput=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultCPIndex=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+[Project tree]
+project
+	+Folder
+		index.html
+		styl.css
+		linux.html
+[Open project files]
+0=styl.css
+1=index.html
+2=linux.html
+[Selected Project Files]
+Main=
+Selected=linux.html
+[styl.css]
+TopLine=19
+Caret=15,48
+[index.html]
+TopLine=5
+Caret=30,20
+[linux.html]
+TopLine=16
+Caret=412,56
