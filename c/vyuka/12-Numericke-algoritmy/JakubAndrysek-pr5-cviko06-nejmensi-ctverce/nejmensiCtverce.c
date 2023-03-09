@@ -44,6 +44,19 @@ void ctverceLinearniRegrese(const double x[], const double y[], unsigned int n) 
     gemTiskReseniFunkce(a, b);
 }
 
+
+void ctverceKonstantniRegrese(const double y[], unsigned int n) {
+    double b;
+
+    double sumy = 0.0;
+    for(int i=0; i<n; i++) {
+        sumy+=y[i];
+    }
+    b = sumy / n;
+
+    gemTiskReseniFunkce(0, b);
+}
+
 int ctverceLoadDataFromFile(const char *filename, double x[], double y[], const int maxNum) {
     FILE *f = fopen(filename, "r");
     if(f == NULL)  {

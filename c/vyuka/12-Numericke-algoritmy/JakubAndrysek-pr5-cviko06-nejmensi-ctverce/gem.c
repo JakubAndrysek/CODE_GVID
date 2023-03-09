@@ -61,9 +61,9 @@ void gemTiskReseni(Tmatice *m) {
 
 void gemTiskReseniFunkce(float a, float b) {
     if(fabs(a) <= 0.01) {
-        printf("f(x)=%2.2g", b);
+        printf("f(x)=%2.2g\n", b);
         return;
     }
 
-    printf("f(x)=%2.2gx%2.2g", a, b);
+    printf("f(x)=%2.2gx%2.2g\n", a, b);
 }

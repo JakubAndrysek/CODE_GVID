@@ -26,8 +26,13 @@ void testLinRegresePoleFile(const char *filename) {
         printf("Error loading line (loaded lines: %d)\n", realLen);
     }
 
-    printf("Len %d", realLen);
+//    printf("Len %d", realLen);
+
+    printf("Konstantni regrese\n");
     ctverceLinearniRegrese(x, y, realLen);
+
+    printf("Linearni regrese\n");
+    ctverceKonstantniRegrese(y, realLen);
 }
 
 void testLinRegresePoleFileE(){
