@@ -31,12 +31,12 @@
 
 
 (define (rand-between a b)
-  (+ a (random-real (- b a))))
+  (+ a (random (- b a))))
 
 (define (rand+- a b)
   (if (zero? b)
       a
-      (+ (- a b) (random-real (* 2 b)))))
+      (+ (- a b) (random (* 2 b)))))
 
 ; L systemy
 (define (plevel n size)
@@ -51,12 +51,76 @@
         (return))
       0))
 
+(define (plevel-random n size)
+  (if (> n 0)
+      (begin
+        (remember)
+        (forward size)
+        (left (rand+- 20 10))
+        (plevel (- n 1) (* size 0.5))
+        (right (rand+- 40 10))
+        (plevel (- n 1) (* size 0.5))
+        (return))
+      0))
 
-(define (trava )
+
+(define (trava-zasobnik n size rotate scale)
+  (if (> n 0)
+      (begin
+        (remember)
+        (forward (* 2 size))
+
+        (remember)
+        (forward size)
+
+        (remember)
+        (left rotate)
+        (trava (- n 1) (* size scale) rotate scale)
+        (return)
+
+
+        (remember)
+        (right rotate)
+        (trava (- n 1) (* size scale) rotate scale)
+        (return)
+
+        ;(backward size)
+        (return)
+        
+        (right rotate)
+        (trava (- n 1) (* size scale) rotate scale)
+        
+        (return))
+        ))
+
+(define (trava n size rotate scale)
+  (if (> n 0)
+      (begin
+        (remember)
+        (forward (* 3 size))
+
+        (left rotate)
+        (trava (- n 1) (* size scale) rotate scale)
+
+        (right (* 2 rotate))
+        (trava (- n 1) (* size scale) rotate scale)
+
+        (left rotate)
+        (backward size)
+        
+        (right rotate)
+        (trava (- n 1) (* size scale) rotate scale)
+        
+        (return))
+        ))
 
 (init-playground 500)
 (set-turtle 0 -450 0)
-(plevel 10 450)
+;(plevel 10 450)
+;(plevel-random 10 450)
+(trava 8 220 50 0.3)
+;(trava-zasobnik 8 220 50 0.3)
+
 ;(set-turtle 0 -450 0)
 ;(plevel 5 450 40)
 ;(set-turtle 0 -450 0)
