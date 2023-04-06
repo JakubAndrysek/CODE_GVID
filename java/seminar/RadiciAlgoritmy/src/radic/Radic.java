@@ -10,9 +10,19 @@ import java.util.ArrayList;
  *
  * @author kuba
  */
-public interface Radic {
-    public void serad(ArrayList<Integer> array);
+public abstract class Radic {
+    public Integer[] serad(Integer[] array) {
+        return array;
+    }
+
+    protected void swap(Integer[] array, Integer indexA, Integer indexB) {
+        Integer helper = array[indexA];
+        array[indexA] = array[indexB];
+        array[indexB] = helper;
+    }
 
     @Override
-    public String toString();
+    public String toString() {
+        return "abstract Radic{" + '}';
+    }
 }

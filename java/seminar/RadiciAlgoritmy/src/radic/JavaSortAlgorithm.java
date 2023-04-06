@@ -6,6 +6,7 @@ package radic;
 
 import java.text.CollationElementIterator;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 
@@ -13,7 +14,7 @@ import java.util.Collections;
  *
  * @author kuba
  */
-public class JavaSortAlgorithm implements Radic {
+public class JavaSortAlgorithm extends Radic {
 
     @Override
     public String toString() {
@@ -21,11 +22,15 @@ public class JavaSortAlgorithm implements Radic {
     }
 
     @Override
-    public void serad(ArrayList<Integer> array) {
-//        System.out.println("radic.JavaSortAlgorithm.serad()");
-        Collections.sort(array);
+    public Integer[] serad(Integer[] array) {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.addAll(Arrays.asList(array));
+        Collections.sort(list);
+        Integer[] arraySorted = new Integer[array.length];
+        for (int i = 0; i < array.length; i++)
+        {
+            arraySorted[i] = list.get(i);
+        }
+        return arraySorted;
     }
-    
-    
-    
 }

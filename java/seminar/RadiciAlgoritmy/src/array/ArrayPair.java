@@ -5,34 +5,45 @@
 package array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
  * @author kuba
  */
 public class ArrayPair {
-    private ArrayList<Integer> arrayRandom;
-    private ArrayList<Integer> arraySorted;
+    private Integer[] arrayRandom;
+    private Integer[] arraySorted;
+    private String arrayType;
 
-    public ArrayPair(ArrayList<Integer> arrayRandom, ArrayList<Integer> arraySorted) {
+    public ArrayPair(Integer[] arrayRandom, Integer[] arraySorted, String arrayType) {
         this.arrayRandom = arrayRandom;
         this.arraySorted = arraySorted;
+        this.arrayType = arrayType;
     }
 
-    public ArrayList<Integer> getArrayRandom() {
+    public Integer[] getArrayRandom() {
         return arrayRandom;
     }
 
-    public ArrayList<Integer> getArraySorted() {
+    public Integer[] getArraySorted() {
         return arraySorted;
     }
-    
+
+    public String getArrayType() {
+        return arrayType;
+    }
+
+    public void setArrayRandomWithSorted(Integer[] arraySortedByAlgorithm) {
+        this.arrayRandom = arraySortedByAlgorithm;
+    }
+
     public Boolean isEqual() {
-        return this.arrayRandom.equals(this.arraySorted);
+        return Arrays.equals(arrayRandom, arraySorted);
     }
 
     @Override
     public String toString() {
-        return "ArrayTuple {\n   arrayRandom=" + arrayRandom + "\n   arraySorted=" + arraySorted + "\n}";
-    } 
+        return "ArrayTuple {\n   arrayRandom=" + Arrays.toString(arrayRandom) + "\n   arraySorted=" + Arrays.toString(arraySorted) + "\n   arrayType=" + arrayType + "\n}";
+    }
 }

@@ -11,39 +11,33 @@ import java.util.ArrayList;
  *
  * @author kuba
  */
-public class BubbleSortAlgorithm implements Radic {
+public class BubbleSortAlgorithm extends Radic {
 
     @Override
     public String toString() {
         return "BubbleSortAlgorithm";
     }
-    
-    public void swap(ArrayList<Integer> array, int a, int b) {
-        int pom = array.get(a);
-        array.set(a, array.get(b));
-        array.set(b, pom);
-    }
-    
-    public void print(ArrayList<Integer> array) {
-//        for (int i = 0; i < array.size(); i++) {
-//            System.out.printf("%d, ", array.get(i));
-//        }
-//        System.out.println("\n");
-    }
+
 
     @Override
-    public void serad(ArrayList<Integer> array) {
-        System.out.println("radic.BubbleSortAlgorithm.serad()");
-       int size = array.size();
-        
-        print(array);
-        for(int neserazeno = 0; neserazeno < size-1; neserazeno++) {
-            for(int radimI = size-1; radimI >= neserazeno+1 ; radimI--) {
-                if(array.get(radimI-1) > array.get(radimI)) {
-                    swap(array, radimI, radimI-1);
+    public Integer[] serad(Integer[] array) {
+        Integer[] arraySorted = new Integer[array.length];
+        for (int i = 0; i < array.length; i++)
+        {
+            arraySorted[i] = array[i];
+        }
+        for (int i = 0; i < arraySorted.length; i++)
+        {
+            for (int j = 0; j < arraySorted.length - 1; j++)
+            {
+                if (arraySorted[j] > arraySorted[j + 1])
+                {
+                    Integer temp = arraySorted[j];
+                    arraySorted[j] = arraySorted[j + 1];
+                    arraySorted[j + 1] = temp;
                 }
-                print(array);
             }
-        }   
+        }
+        return arraySorted;
     }
 }

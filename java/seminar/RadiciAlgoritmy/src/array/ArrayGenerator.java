@@ -16,45 +16,60 @@ public class ArrayGenerator {
 
     public ArrayGenerator() {
     }
-    
-    private ArrayList<Integer> generateSortedList(int n, int step){
-        ArrayList<Integer> list = new ArrayList<>(n);
-        Random random = new Random(5);
+
+    private Integer[] generateSortedList(int n, int step, int seed){
+        Integer[] array = new Integer[n];
+        Random random = new Random(seed);
         int startNumber = random.nextInt(10);
-    
         for (int i = 0; i < n; i++)
         {
             startNumber += random.nextInt(step);
-            list.add(startNumber);
+            array[i] = startNumber;
         }
-        return list;
+        return array;
     }
-    
-   
+
+
     public ArrayPair generateSortedArray(int n) {
-        ArrayList<Integer> list = generateSortedList(n, 5);
-        return new ArrayPair(list, list);
+        int randomSeed = new Random().nextInt();
+        Integer[] list = generateSortedList(n, 5, randomSeed);
+        return new ArrayPair(list, list, "Sorted");
     }
-    
+
     public ArrayPair generateReverseArray(int n) {
-        ArrayList<Integer> listSorted = generateSortedList(n, 5);
-        ArrayList<Integer> listReverse = (ArrayList) listSorted.clone();
-        Collections.reverse(listReverse);
-        return new ArrayPair(listReverse, listSorted);
+        int randomSeed = new Random().nextInt();
+        Integer[] list = generateSortedList(n, 5, randomSeed);
+        Integer[] listReverse = new Integer[n];
+        for (int i = 0; i < n; i++)
+        {
+            listReverse[i] = list[n - i - 1];
+        }
+        return new ArrayPair(listReverse, list, "Reverse");
     }
-    
+
     public ArrayPair generateRandomArray(int n) {
-        ArrayList<Integer> listSorted = generateSortedList(n, 10);
-        ArrayList<Integer> listRandom = (ArrayList) listSorted.clone();
+        int randomSeed = new Random().nextInt();
+        Integer[] list = generateSortedList(n, 5, randomSeed);
+        ArrayList<Integer> listRandom = new ArrayList<>();
+        for (int i = 0; i < n; i++)
+        {
+            listRandom.add(list[i]);
+        }
         Collections.shuffle(listRandom);
-        return new ArrayPair(listRandom, listSorted);
+        Integer[] listRandomArray = new Integer[n];
+        for (int i = 0; i < n; i++)
+        {
+            listRandomArray[i] = listRandom.get(i);
+        }
+        return new ArrayPair(listRandomArray, list, "Random");
     }
-    
-    public ArrayPair generateSameArray(int n, int step) {
-        ArrayList<Integer> listSorted = generateSortedList(n, 10);
-        ArrayList<Integer> listRandom = (ArrayList) listSorted.clone();
-        Collections.shuffle(listRandom);
-        return new ArrayPair(listRandom, listSorted);
+
+    public ArrayPair generateSameArray() {
+        // 5 2 1 5 4 5 0 1 2 7 3 - from presentation
+        Integer[] listSame = {5, 2, 1, 5, 4, 5, 0}; //, 1, 2, 7, 3};
+        Integer[] list = {0, 1, 2, 4, 5, 5, 5}; //, 1, 2, 7, 3};
+
+        return new ArrayPair(listSame, list, "[Every time the same array]");
     }
-    
+
 }

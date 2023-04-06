@@ -17,10 +17,10 @@ public class RadiciAlgoritmy {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        
+
         Meric meric = new Meric();
-        
-        meric.zmerData();
+
+        meric.zmerData(1);
     }
-    
+
 }
