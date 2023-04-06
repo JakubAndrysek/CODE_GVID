@@ -1,0 +1,36 @@
+==45061== Memcheck, a memory error detector
+==45061== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==45061== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==45061== Command: ./main
+==45061==
+size: 1, capacity: 4, string: ><
+size: 3, capacity: 4, string: >ab<
+stringDestroy 8, 8, 8
+==45061== Invalid free() / delete / delete[] / realloc()
+==45061==    at 0x484AF20: free (in /usr/lib/aarch64-linux-gnu/valgrind/vgpreload_memcheck-arm64-linux.so)
+==45061==    by 0x10898B: stringDestroy (main.c:52)
+==45061==    by 0x108AF3: main (main.c:103)
+==45061==  Address 0x49eb048 is 8 bytes inside a block of size 12 alloc'd
+==45061==    at 0x4849D8C: malloc (in /usr/lib/aarch64-linux-gnu/valgrind/vgpreload_memcheck-arm64-linux.so)
+==45061==    by 0x1088DF: stringCreate (main.c:31)
+==45061==    by 0x108ABF: main (main.c:94)
+==45061==
+==45061==
+==45061== HEAP SUMMARY:
+==45061==     in use at exit: 12 bytes in 1 blocks
+==45061==   total heap usage: 2 allocs, 2 frees, 1,036 bytes allocated
+==45061==
+==45061== 12 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==45061==    at 0x4849D8C: malloc (in /usr/lib/aarch64-linux-gnu/valgrind/vgpreload_memcheck-arm64-linux.so)
+==45061==    by 0x1088DF: stringCreate (main.c:31)
+==45061==    by 0x108ABF: main (main.c:94)
+==45061==
+==45061== LEAK SUMMARY:
+==45061==    definitely lost: 12 bytes in 1 blocks
+==45061==    indirectly lost: 0 bytes in 0 blocks
+==45061==      possibly lost: 0 bytes in 0 blocks
+==45061==    still reachable: 0 bytes in 0 blocks
+==45061==         suppressed: 0 bytes in 0 blocks
+==45061==
+==45061== For lists of detected and suppressed errors, rerun with: -s
+==45061== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)

@@ -1,0 +1,3 @@
+Jmeno: Kuba
+Skola: GVID
+CP: 48

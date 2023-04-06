@@ -1,0 +1,9 @@
+Nazev: Vesuv
+Vyska: 1281
+Aktivni: 1
+Nazev: Mauna-Loa
+Vyska: 4169
+Aktivni: 1
+Nazev: Kilimandzaro
+Vyska: 5895
+Aktivni: 0
