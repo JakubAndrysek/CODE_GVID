@@ -108,6 +108,26 @@ void bvsPruchodInorder(Tstrom *strom) {
 	_bvsPruchodInorder(strom->koren);
 }
 
+Tuzel* _bvsHledejKlicPreorder(Tuzel *koren, int klic) {
+	if(koren == NULL) { // Je ukazatel na kořen roven NULL?
+		return NULL;
+	}
+
+	if(koren->klic == klic) { // Je klíč shodný s klíčem kořene?
+		return koren;
+	}
+
+	if(klic < koren->klic) {
+		_bvsHledejKlicPreorder(koren->levy, klic); // Je klíč menší než klíč kořene?
+	} else {
+		_bvsHledejKlicPreorder(koren->pravy, klic); // Je klíč větší než klíč kořene?
+	}
+}
+
+Tuzel* bvsHledejKlic(Tstrom *strom, int klic) {
+	return _bvsHledejKlicPreorder(strom->koren, klic);
+}
+
 void errCodeToText(int errorCode) {
 	switch(errorCode) {
 		case EOK:
@@ -140,6 +160,9 @@ void basicTest() {
 	errCodeToText(bvsVlozKlic(strom, 8));
 
 	bvsPruchodInorder(strom);
+
+
+	Tuzel *hledany = bvsHledejKlic(strom, 3);
 
 
 	bvsZrus(strom);

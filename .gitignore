@@ -39,3 +39,6 @@ c/doplnky/
 main
 __pycache__/
 *.scm~
+*.dSYM/
+gpt/
+html/
