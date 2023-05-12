@@ -20,7 +20,7 @@ public class RadiciAlgoritmy {
 
         Meric meric = new Meric();
 
-        meric.zmerData(1);
+        meric.zmerData(1000);
     }
 
 }

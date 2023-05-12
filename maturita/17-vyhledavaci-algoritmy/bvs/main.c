@@ -118,14 +118,49 @@ Tuzel* _bvsHledejKlicPreorder(Tuzel *koren, int klic) {
 	}
 
 	if(klic < koren->klic) {
-		_bvsHledejKlicPreorder(koren->levy, klic); // Je klíč menší než klíč kořene?
+		return _bvsHledejKlicPreorder(koren->levy, klic); // Je klíč menší než klíč kořene?
 	} else {
-		_bvsHledejKlicPreorder(koren->pravy, klic); // Je klíč větší než klíč kořene?
+		return _bvsHledejKlicPreorder(koren->pravy, klic); // Je klíč větší než klíč kořene?
 	}
 }
 
 Tuzel* bvsHledejKlic(Tstrom *strom, int klic) {
 	return _bvsHledejKlicPreorder(strom->koren, klic);
+}
+
+int _bvsVaha(Tuzel *koren, int vaha) {
+	if(koren==NULL) {
+		return 0;
+	}
+	return _bvsVaha(koren->levy, vaha) + _bvsVaha(koren->pravy, vaha) + 1;
+}
+
+int bvsVaha(Tstrom *strom) {
+	if(strom==NULL || strom->koren == NULL) {
+		return -1;
+	}
+	return _bvsVaha(strom->koren, 0);
+}
+
+
+int _bvsVyska(Tuzel *koren) {
+	if(koren==NULL) {
+		return 0;
+	}
+	int vyskaLevy = _bvsVyska(koren->levy);
+	int vyskaPravy = _bvsVyska(koren->pravy);
+	if(vyskaLevy > vyskaPravy) {
+		return vyskaLevy + 1;
+	} else {
+		return vyskaPravy + 1;
+	}
+}
+
+int bvsVyska(Tstrom *strom) {
+	if(strom==NULL || strom->koren == NULL) {
+		return 0;
+	}
+	return _bvsVyska(strom->koren);
 }
 
 void errCodeToText(int errorCode) {
@@ -152,14 +187,25 @@ void basicTest() {
 	Tstrom *strom = bvsInit();
 
 	errCodeToText(bvsVlozKlic(strom, 5));
-	errCodeToText(bvsVlozKlic(strom, 5));
+	errCodeToText(bvsVlozKlic(strom, 5)); // uz pridano
 
 	errCodeToText(bvsVlozKlic(strom, 2));
 
 	errCodeToText(bvsVlozKlic(strom, 3));
 	errCodeToText(bvsVlozKlic(strom, 8));
+	errCodeToText(bvsVlozKlic(strom, 4));
+
+	errCodeToText(bvsVlozKlic(strom, 9));
+	errCodeToText(bvsVlozKlic(strom, 10));
+	errCodeToText(bvsVlozKlic(strom, 13));
 
 	bvsPruchodInorder(strom);
+
+	int vaha = bvsVaha(strom);
+	printf("vaha: %d\n", vaha);
+
+	int vyska = bvsVyska(strom);
+	printf("vyska: %d\n", vyska);
 
 
 	Tuzel *hledany = bvsHledejKlic(strom, 3);

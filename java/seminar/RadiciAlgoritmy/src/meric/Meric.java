@@ -36,12 +36,12 @@ public class Meric {
 
 
     Radic[] radicArr = {
-//        new JavaSortAlgorithm(),
-//        new BubbleSortAlgorithm(),
-//        new MergeSortAlgorithm(),
-//        new SelectionSortAlgorithm(),
-//        new InsertSortAlgorithm(),
-        new InsertZarazkaSortAlgorithm(),
+        new JavaSortAlgorithm(),
+        new BubbleSortAlgorithm(),
+        new MergeSortAlgorithm(),
+        new SelectionSortAlgorithm(),
+        new InsertSortAlgorithm(),
+//        new InsertZarazkaSortAlgorithm(), // neni dokoncen
     };
 
     public void showResults() {
@@ -57,9 +57,9 @@ public class Meric {
 
         final int arraySize = 5;
 
-//        arraysForTests.add(arrayGenerator.generateSortedArray(arraySize));
-//        arraysForTests.add(arrayGenerator.generateReverseArray(arraySize));
-//        arraysForTests.add(arrayGenerator.generateRandomArray(arraySize));
+        arraysForTests.add(arrayGenerator.generateSortedArray(arraySize));
+        arraysForTests.add(arrayGenerator.generateReverseArray(arraySize));
+        arraysForTests.add(arrayGenerator.generateRandomArray(arraySize));
         arraysForTests.add(arrayGenerator.generateSameArray());
 
         for (ArrayPair arrayPair : arraysForTests) {

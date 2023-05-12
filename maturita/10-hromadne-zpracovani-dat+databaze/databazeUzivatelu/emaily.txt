@@ -1,0 +1,5 @@
+# ID_uzivatele, email
+3, dan@mujmail.cz
+1, kuba@nema.mail
+4, pavelpavel@mail.cz
+2, pert@svetr.at
