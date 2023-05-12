@@ -22,9 +22,17 @@ double exponentNaDesetine(int celeCislo, int exponent) {
 	return result;
 }
 
+double funkceNeniPotreba() {
+	double result;
+	sscanf("-4.25E-3", "%lf", &result);
+	return result;
+}
+
 int main() {
 
 	double des = exponentNaDesetine(124, -6); // 6 is maximum exponent (double stores 6 digits after decimal point)
-	printf("Desetine: lf:%lf = g:%g\n", des, des);
+	printf("Desetine: lf:%lf => g:%g\n", des, des);
+
+	printf("%g\n", funkceNeniPotreba());
 	return 0;
 }
